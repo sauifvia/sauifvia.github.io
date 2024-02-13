@@ -101,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clsk736g60004q3fye2gwbg3q" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clsk769g90003r6fy5t63enz8" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -139,17 +139,63 @@
 <p>对位于 (row, col) 的每个结点而言，其左右子结点分别位于 (row + 1, col - 1) 和 (row + 1, col + 1) 。树的根结点位于 (0, 0) 。</p>
 <p>二叉树的 垂序遍历 从最左边的列开始直到最右边的列结束，按列索引每一列上的所有结点，形成一个按出现位置从上到下排序的有序列表。如果同行同列上有多个结点，则按结点的值从小到大进行排序。</p>
 <p>返回二叉树的 垂序遍历 序列。</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/29/vtree1.jpg"></p>
 <p>示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/29/vtree1.jpg"></p>
 <p>输入：root &#x3D; [3,9,20,null,null,15,7]<br>输出：[[9],[3,15],[20],[7]]<br>解释：<br>列 -1 ：只有结点 9 在此列中。<br>列  0 ：只有结点 3 和 15 在此列中，按从上到下顺序。<br>列  1 ：只有结点 20 在此列中。<br>列  2 ：只有结点 7 在此列中。<br>示例 2：</p>
-<p>输入：root &#x3D; [1,2,3,4,5,6,7]<br>输出：[[4],[2],[1,5,6],[3],[7]]<br>解释：<br>列 -2 ：只有结点 4 在此列中。<br>列 -1 ：只有结点 2 在此列中。<br>列  0 ：结点 1 、5 和 6 都在此列中。<br>          1 在上面，所以它出现在前面。<br>          5 和 6 位置都是 (2, 0) ，所以按值从小到大排序，5 在 6 的前面。<br>列  1 ：只有结点 3 在此列中。<br>列  2 ：只有结点 7 在此列中。<br>示例 3：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/29/vtree2.jpg"></p>
+<p>输入：root &#x3D; [1,2,3,4,5,6,7]<br>输出：[[4],[2],[1,5,6],[3],[7]]<br>解释：<br>列 -2 ：只有结点 4 在此列中。<br>列 -1 ：只有结点 2 在此列中。<br>列  0 ：结点 1 、5 和 6 都在此列中。<br>1 在上面，所以它出现在前面。<br>5 和 6 位置都是 (2, 0) ，所以按值从小到大排序，5 在 6 的前面。<br>列  1 ：只有结点 3 在此列中。<br>列  2 ：只有结点 7 在此列中。<br>示例 3：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/29/vtree3.jpg"></p>
 <p>输入：root &#x3D; [1,2,3,4,6,5,7]<br>输出：[[4],[2],[1,5,6],[3],[7]]<br>解释：<br>这个示例实际上与示例 2 完全相同，只是结点 5 和 6 在树中的位置发生了交换。<br>因为 5 和 6 的位置仍然相同，所以答案保持不变，仍然按值从小到大排序。</p>
 <p>提示：</p>
 <p>树中结点数目总数在范围 [1, 1000] 内<br>0 &lt;&#x3D; Node.val &lt;&#x3D; 1000</p>
+<p>解题如下：</p>
+<p>&#x2F;**</p>
+<ul>
+<li><p>Definition for a binary tree node.</p>
+</li>
+<li><p>struct TreeNode {</p>
+</li>
+<li><pre><code>     int val;
+</code></pre>
+</li>
+<li><pre><code>     struct TreeNode *left;
+</code></pre>
+</li>
+<li><pre><code>     struct TreeNode *right;
+</code></pre>
+</li>
+<li><p>};<br><em>&#x2F;<br>&#x2F;</em>*</p>
+</li>
+<li><p>Return an array of arrays of size *returnSize.</p>
+</li>
+<li><p>The sizes of the arrays are returned as *returnColumnSizes array.</p>
+</li>
+<li><p>Note: Both returned array and <em>columnSizes array must be malloced, assume caller calls free().<br>&#x2F;<br>typedef struct nums{&#x2F;&#x2F;结构体<br>int left;&#x2F;&#x2F;水平下标<br>int right;&#x2F;&#x2F;垂直下标<br>int val;&#x2F;&#x2F;树节点值<br>}nums;<br>&#x2F;&#x2F;递归遍历每一个树节点<br>void dfs(struct TreeNode * root, int * inode, nums * ans, int left, int right)<br>{<br>if(root &#x3D;&#x3D; NULL)<br>{<br>return;<br>}<br>ans[(inode)].val &#x3D; root-&gt;val;&#x2F;&#x2F;保存对应值和下标<br>ans[(inode)].left &#x3D; left;<br>ans[(inode)].right &#x3D; right;<br>(inode)++;<br>dfs(root-&gt;left, inode, ans, left - 1, right + 1);&#x2F;&#x2F;遍历左子节点<br>dfs(root-&gt;right, inode, ans, left + 1, right + 1);&#x2F;&#x2F;遍历右子节点<br>return;<br>}<br>&#x2F;&#x2F;用于结构体的三级排序<br>int cmp(const nums</em> a, const nums b) {<br>&#x2F;&#x2F; 先排left，再排right，最后排val<br>if (a-&gt;left !&#x3D; b-&gt;left) {<br>return a-&gt;left - b-&gt;left;<br>} else if (a-&gt;right !&#x3D; b-&gt;right){<br>return a-&gt;right - b-&gt;right;<br>} else {<br>return a-&gt;val - b-&gt;val;<br>}<br>}<br>int verticalTraversal(struct TreeNode root, int returnSize, int** returnColumnSizes){<br>nums ans[1001];&#x2F;&#x2F;申请结构体数组<br>int inode &#x3D; 0;&#x2F;&#x2F;初始化结构体下标<br>dfs(root, &amp;inode, ans, 0, 0);&#x2F;&#x2F;更新结构体<br>qsort(ans,inode,sizeof(struct nums),cmp);&#x2F;&#x2F;排序<br>int n &#x3D; ans[inode-1].left - ans[0].left + 1;&#x2F;&#x2F;确定垂序遍历序列的行数<br>int ** res &#x3D; malloc(sizeof(int *) * n);&#x2F;&#x2F;申请空间<br>*returnSize &#x3D; n;<br>*returnColumnSizes &#x3D; malloc(sizeof(int) * n);</p>
+<p>int l &#x3D; 0;<br>int inod &#x3D; 0;<br>int i &#x3D; 0;<br>ans[inode++].left &#x3D; INT_MAX;&#x2F;&#x2F;构造一个坏点，使最后一个元素可以被访问<br>for(i &#x3D; 0; i &lt; inode-1; i++)&#x2F;&#x2F;遍历结构体数组<br>{</p>
+<pre><code> if(ans[i].left == ans[i+1].left)//是同一水平下标
+ &#123;
+     continue;
+ &#125;
+ int max = i - l + 1;//不是同一水平下标了，存入垂序遍历序列
+ res[inod] = malloc(sizeof(int) * max);//初始化垂序遍历序列的列长
+ (*returnColumnSizes)[inod] = max;
+ int j = 0;
+ while(l &lt;= i &amp;&amp; j &lt; max)//存入垂序遍历序列
+ &#123;
+     res[inod][j++] = ans[l].val;//直接存就好了，因为快速排序的时候，已经对数组进行处理了
+     l++;
+ &#125;
+ inod++;
+</code></pre>
+<p>}<br>return res;<br>}</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/2-13learn/" data-id="clsk736g20000q3fya27pgcoz" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/2-13learn/" data-id="clsk78itt0000rifygbtr2924" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -188,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/Myr-First-Post4444/" data-id="clsk736g40001q3fy3bhb7vdp" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/Myr-First-Post4444/" data-id="clsk769g50000r6fyfwq295vq" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -227,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/Myr-First-Post_%E5%89%AF%E6%9C%AC/" data-id="clsk736g50002q3fy59j36c22" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/Myr-First-Post_%E5%89%AF%E6%9C%AC/" data-id="clsk769g70001r6fyafq7es74" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -278,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/hello-world/" data-id="clsk736g60003q3fygcr0avk9" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/hello-world/" data-id="clsk769g80002r6fy36i426x4" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
