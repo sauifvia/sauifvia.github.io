@@ -101,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clsk769g90003r6fy5t63enz8" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clsk8ae8v0004uvfyhpwe7dtb" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -150,52 +150,13 @@
 <p>提示：</p>
 <p>树中结点数目总数在范围 [1, 1000] 内<br>0 &lt;&#x3D; Node.val &lt;&#x3D; 1000</p>
 <p>解题如下：</p>
-<p>&#x2F;**</p>
-<ul>
-<li><p>Definition for a binary tree node.</p>
-</li>
-<li><p>struct TreeNode {</p>
-</li>
-<li><pre><code>     int val;
-</code></pre>
-</li>
-<li><pre><code>     struct TreeNode *left;
-</code></pre>
-</li>
-<li><pre><code>     struct TreeNode *right;
-</code></pre>
-</li>
-<li><p>};<br><em>&#x2F;<br>&#x2F;</em>*</p>
-</li>
-<li><p>Return an array of arrays of size *returnSize.</p>
-</li>
-<li><p>The sizes of the arrays are returned as *returnColumnSizes array.</p>
-</li>
-<li><p>Note: Both returned array and <em>columnSizes array must be malloced, assume caller calls free().<br>&#x2F;<br>typedef struct nums{&#x2F;&#x2F;结构体<br>int left;&#x2F;&#x2F;水平下标<br>int right;&#x2F;&#x2F;垂直下标<br>int val;&#x2F;&#x2F;树节点值<br>}nums;<br>&#x2F;&#x2F;递归遍历每一个树节点<br>void dfs(struct TreeNode * root, int * inode, nums * ans, int left, int right)<br>{<br>if(root &#x3D;&#x3D; NULL)<br>{<br>return;<br>}<br>ans[(inode)].val &#x3D; root-&gt;val;&#x2F;&#x2F;保存对应值和下标<br>ans[(inode)].left &#x3D; left;<br>ans[(inode)].right &#x3D; right;<br>(inode)++;<br>dfs(root-&gt;left, inode, ans, left - 1, right + 1);&#x2F;&#x2F;遍历左子节点<br>dfs(root-&gt;right, inode, ans, left + 1, right + 1);&#x2F;&#x2F;遍历右子节点<br>return;<br>}<br>&#x2F;&#x2F;用于结构体的三级排序<br>int cmp(const nums</em> a, const nums b) {<br>&#x2F;&#x2F; 先排left，再排right，最后排val<br>if (a-&gt;left !&#x3D; b-&gt;left) {<br>return a-&gt;left - b-&gt;left;<br>} else if (a-&gt;right !&#x3D; b-&gt;right){<br>return a-&gt;right - b-&gt;right;<br>} else {<br>return a-&gt;val - b-&gt;val;<br>}<br>}<br>int verticalTraversal(struct TreeNode root, int returnSize, int** returnColumnSizes){<br>nums ans[1001];&#x2F;&#x2F;申请结构体数组<br>int inode &#x3D; 0;&#x2F;&#x2F;初始化结构体下标<br>dfs(root, &amp;inode, ans, 0, 0);&#x2F;&#x2F;更新结构体<br>qsort(ans,inode,sizeof(struct nums),cmp);&#x2F;&#x2F;排序<br>int n &#x3D; ans[inode-1].left - ans[0].left + 1;&#x2F;&#x2F;确定垂序遍历序列的行数<br>int ** res &#x3D; malloc(sizeof(int *) * n);&#x2F;&#x2F;申请空间<br>*returnSize &#x3D; n;<br>*returnColumnSizes &#x3D; malloc(sizeof(int) * n);</p>
-<p>int l &#x3D; 0;<br>int inod &#x3D; 0;<br>int i &#x3D; 0;<br>ans[inode++].left &#x3D; INT_MAX;&#x2F;&#x2F;构造一个坏点，使最后一个元素可以被访问<br>for(i &#x3D; 0; i &lt; inode-1; i++)&#x2F;&#x2F;遍历结构体数组<br>{</p>
-<pre><code> if(ans[i].left == ans[i+1].left)//是同一水平下标
- &#123;
-     continue;
- &#125;
- int max = i - l + 1;//不是同一水平下标了，存入垂序遍历序列
- res[inod] = malloc(sizeof(int) * max);//初始化垂序遍历序列的列长
- (*returnColumnSizes)[inod] = max;
- int j = 0;
- while(l &lt;= i &amp;&amp; j &lt; max)//存入垂序遍历序列
- &#123;
-     res[inod][j++] = ans[l].val;//直接存就好了，因为快速排序的时候，已经对数组进行处理了
-     l++;
- &#125;
- inod++;
-</code></pre>
-<p>}<br>return res;<br>}</p>
-</li>
-</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">/\*\*</span><br><span class="line"></span><br><span class="line">*   Definition for a binary tree node.</span><br><span class="line">*   struct TreeNode &#123;</span><br><span class="line">*</span><br><span class="line">          int val;</span><br><span class="line">*</span><br><span class="line">          struct TreeNode *left;</span><br><span class="line">*</span><br><span class="line">          struct TreeNode *right;</span><br><span class="line">*   &#125;;</span><br><span class="line">    */</span><br><span class="line">    /*\*</span><br><span class="line">*   Return an array of arrays of size \*returnSize.</span><br><span class="line">*   The sizes of the arrays are returned as \*returnColumnSizes array.</span><br><span class="line">*   Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().</span><br><span class="line">    /</span><br><span class="line">    typedef struct nums&#123;//结构体</span><br><span class="line">    int left;//水平下标</span><br><span class="line">    int right;//垂直下标</span><br><span class="line">    int val;//树节点值</span><br><span class="line">    &#125;nums;</span><br><span class="line">    //递归遍历每一个树节点</span><br><span class="line">    void dfs(struct TreeNode \* root, int \* inode, nums \* ans, int left, int right)</span><br><span class="line">    &#123;</span><br><span class="line">    if(root == NULL)</span><br><span class="line">    &#123;</span><br><span class="line">    return;</span><br><span class="line">    &#125;</span><br><span class="line">    ans\[(inode)].val = root-&gt;val;//保存对应值和下标</span><br><span class="line">    ans\[(inode)].left = left;</span><br><span class="line">    ans\[(inode)].right = right;</span><br><span class="line">    (inode)++;</span><br><span class="line">    dfs(root-&gt;left, inode, ans, left - 1, right + 1);//遍历左子节点</span><br><span class="line">    dfs(root-&gt;right, inode, ans, left + 1, right + 1);//遍历右子节点</span><br><span class="line">    return;</span><br><span class="line">    &#125;</span><br><span class="line">    //用于结构体的三级排序</span><br><span class="line">    int cmp(const nums* a, const nums b) &#123;</span><br><span class="line">    // 先排left，再排right，最后排val</span><br><span class="line">    if (a-&gt;left != b-&gt;left) &#123;</span><br><span class="line">    return a-&gt;left - b-&gt;left;</span><br><span class="line">    &#125; else if (a-&gt;right != b-&gt;right)&#123;</span><br><span class="line">    return a-&gt;right - b-&gt;right;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    return a-&gt;val - b-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int verticalTraversal(struct TreeNode root, int returnSize, int\*\* returnColumnSizes)&#123;</span><br><span class="line">    nums ans\[1001];//申请结构体数组</span><br><span class="line">    int inode = 0;//初始化结构体下标</span><br><span class="line">    dfs(root, \&amp;inode, ans, 0, 0);//更新结构体</span><br><span class="line">    qsort(ans,inode,sizeof(struct nums),cmp);//排序</span><br><span class="line">    int n = ans\[inode-1].left - ans\[0].left + 1;//确定垂序遍历序列的行数</span><br><span class="line">    int \*\* res = malloc(sizeof(int \*) \* n);//申请空间</span><br><span class="line">    \*returnSize = n;</span><br><span class="line">    \*returnColumnSizes = malloc(sizeof(int) \* n);</span><br><span class="line"></span><br><span class="line">    int l = 0;</span><br><span class="line">    int inod = 0;</span><br><span class="line">    int i = 0;</span><br><span class="line">    ans\[inode++].left = INT\_MAX;//构造一个坏点，使最后一个元素可以被访问</span><br><span class="line">    for(i = 0; i &lt; inode-1; i++)//遍历结构体数组</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">         if(ans[i].left == ans[i+1].left)//是同一水平下标</span><br><span class="line">         &#123;</span><br><span class="line">             continue;</span><br><span class="line">         &#125;</span><br><span class="line">         int max = i - l + 1;//不是同一水平下标了，存入垂序遍历序列</span><br><span class="line">         res[inod] = malloc(sizeof(int) * max);//初始化垂序遍历序列的列长</span><br><span class="line">         (*returnColumnSizes)[inod] = max;</span><br><span class="line">         int j = 0;</span><br><span class="line">         while(l &lt;= i &amp;&amp; j &lt; max)//存入垂序遍历序列</span><br><span class="line">         &#123;</span><br><span class="line">             res[inod][j++] = ans[l].val;//直接存就好了，因为快速排序的时候，已经对数组进行处理了</span><br><span class="line">             l++;</span><br><span class="line">         &#125;</span><br><span class="line">         inod++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/2-13learn/" data-id="clsk78itt0000rifygbtr2924" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/2-13learn/" data-id="clsk8ae8r0000uvfy8csg6q2w" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -234,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/Myr-First-Post4444/" data-id="clsk769g50000r6fyfwq295vq" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/Myr-First-Post4444/" data-id="clsk8ae8t0001uvfy1yxm5lnx" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -273,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/Myr-First-Post_%E5%89%AF%E6%9C%AC/" data-id="clsk769g70001r6fyafq7es74" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/Myr-First-Post_%E5%89%AF%E6%9C%AC/" data-id="clsk8ae8u0002uvfy105ohr3x" data-title="Myr First Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -324,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/hello-world/" data-id="clsk769g80002r6fy36i426x4" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/hello-world/" data-id="clsk8ae8u0003uvfy6dmi1xxe" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
