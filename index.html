@@ -91,11 +91,70 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>#题目：<br>给你二叉树的根节点 root ，返回其节点值的 锯齿形层序遍历 。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。</p>
+<p>#示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg"></p>
+<p>输入：root &#x3D; [3,9,20,null,null,15,7]</p>
+<p>输出：[[3],[20,9],[15,7]]</p>
+<p>#示例 2：</p>
+<p>输入：root &#x3D; [1]</p>
+<p>输出：[[1]]</p>
+<p>#示例 3：</p>
+<p>输入：root &#x3D; []</p>
+<p>输出：[]</p>
+<p>#提示：</p>
+<p>树中节点数目在范围 [0, 2000] 内</p>
+<p>-100 &lt;&#x3D; Node.val &lt;&#x3D; 100</p>
+<p>#解题：</p>
+<pre><code>#define N 2000
+
+int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) &#123;
+    *returnSize = 0;
+    if (root == NULL) &#123;
+        return NULL;
+    &#125;
+    int** ans = malloc(sizeof(int*) * N);
+    *returnColumnSizes = malloc(sizeof(int) * N);
+    struct TreeNode* nodeQueue[N];
+    int left = 0, right = 0;
+    nodeQueue[right++] = root;
+    bool isOrderLeft = true;
+
+    while (left &lt; right) &#123;
+        int levelList[N * 2];
+        int front = N, rear = N;
+        int size = right - left;
+        for (int i = 0; i &lt; size; ++i) &#123;
+            struct TreeNode* node = nodeQueue[left++];
+            if (isOrderLeft) &#123;
+                levelList[rear++] = node-&gt;val;
+            &#125; else &#123;
+                levelList[--front] = node-&gt;val;
+            &#125;
+            if (node-&gt;left) &#123;
+                nodeQueue[right++] = node-&gt;left;
+            &#125;
+            if (node-&gt;right) &#123;
+                nodeQueue[right++] = node-&gt;right;
+            &#125;
+        &#125;
+        int* tmp = malloc(sizeof(int) * (rear - front));
+        for (int i = 0; i &lt; rear - front; i++) &#123;
+            tmp[i] = levelList[i + front];
+        &#125;
+        ans[*returnSize] = tmp;
+        (*returnColumnSizes)[*returnSize] = rear - front;
+        (*returnSize)++;
+        isOrderLeft = !isOrderLeft;
+    &#125;
+    return ans;
+&#125; 
+</code></pre>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/16/2-16%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso1u29p0003q9fyawgvhqqi" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/16/2-16%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso2qgmq0003trfygggb8y6a" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -141,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/2-15%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso1u29p0002q9fyb6po73tw" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/15/2-15%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso2qgmp0001trfy63o39mbw" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -223,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/2-14%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso1u29o0001q9fy33m69kbw" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/2-14%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso2qgmq0002trfy99q3d55d" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -297,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clso1u29p0004q9fyf8qqhnc5" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clso2qgmr0004trfyca0b23vr" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -341,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clso1u29q0005q9fyb2uah3zv" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clso2qgmr0005trfyduxl0cfy" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -396,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/2-13%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso1u29l0000q9fy7h985cce" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/2-13%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clso2qgmn0000trfyc88uh10w" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
