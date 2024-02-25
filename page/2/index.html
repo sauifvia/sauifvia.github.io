@@ -69,6 +69,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2-15二叉从上到下树层序遍历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="article-date">
+  <time class="dt-published" datetime="2024-02-15T06:26:21.000Z" itemprop="datePublished">2024-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">2-15学习记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#题目：<br>给你二叉树的根节点 root ，返回其节点值 自底向上的层序遍历 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</p>
+<p>#示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg"></p>
+<p>输入：root &#x3D; [3,9,20,null,null,15,7]<br>输出：[[15,7],[9,20],[3]]<br>#示例 2：</p>
+<p>输入：root &#x3D; [1]<br>输出：[[1]]<br>#示例 3：</p>
+<p>输入：root &#x3D; []<br>输出：[]<br>#思路：</p>
+<p>#题解：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">int** levelOrderBottom(struct TreeNode* root, int* returnSize, int** returnColumnSizes) &#123;</span><br><span class="line">    int** levelOrder = malloc(sizeof(int*) * 2001);</span><br><span class="line">    *returnColumnSizes = malloc(sizeof(int) * 2001);</span><br><span class="line">    *returnSize = 0;</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return levelOrder;</span><br><span class="line">    &#125;</span><br><span class="line">    struct TreeNode** q = malloc(sizeof(struct TreeNode*) * 2001);</span><br><span class="line">    int left = 0, right = 0;</span><br><span class="line">    q[right++] = root;</span><br><span class="line">    while (left &lt; right) &#123;</span><br><span class="line">        int len = right - left;</span><br><span class="line">        int* level = malloc(sizeof(int) * len);</span><br><span class="line">        (*returnColumnSizes)[*returnSize] = len;</span><br><span class="line">        for (int i = 0; i &lt; len; ++i) &#123;</span><br><span class="line">            struct TreeNode* node = q[left++];</span><br><span class="line">            level[i] = node-&gt;val;</span><br><span class="line">            if (node-&gt;left != NULL) &#123;</span><br><span class="line">                q[right++] = node-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            if (node-&gt;right != NULL) &#123;</span><br><span class="line">                q[right++] = node-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        levelOrder[(*returnSize)++] = level;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; 2 * i &lt; *returnSize; ++i) &#123;</span><br><span class="line">        int* tmp1 = levelOrder[i];</span><br><span class="line">        levelOrder[i] = levelOrder[(*returnSize) - i - 1];</span><br><span class="line">        levelOrder[(*returnSize) - i - 1] = tmp1;</span><br><span class="line">        int tmp2 = (*returnColumnSizes)[i];</span><br><span class="line">        (*returnColumnSizes)[i] = (*returnColumnSizes)[(*returnSize) - i - 1];</span><br><span class="line">        (*returnColumnSizes)[(*returnSize) - i - 1] = tmp2;</span><br><span class="line">    &#125;</span><br><span class="line">    return levelOrder;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clt1adgig000235o7cigw1sxj" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-2-14二叉树从左到右层序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" class="article-date">
@@ -139,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" data-id="clt0284t70001mvo7bzplavoh" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" data-id="clt1adgif000135o71mvkdzik" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -213,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clt0284t80006mvo7glxa4bmu" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clt1adgih000835o74d1sbyxx" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -257,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clt0284ta000cmvo7fyz31q7h" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clt1adgij000d35o79c20bfbe" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -312,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/2-13%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clt0284t50000mvo75n4mf55n" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/2-13%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clt1adgid000035o753dq03h1" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -360,6 +406,10 @@
       <ul>
         
           <li>
+            <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">2-26二叉搜索树的最近公共祖先</a>
+          </li>
+        
+          <li>
             <a href="/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/">二叉搜索树最近节点查询树</a>
           </li>
         
@@ -373,10 +423,6 @@
         
           <li>
             <a href="/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">从中序与后序遍历序列构造二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">从前序与中序遍历序列构造二叉树</a>
           </li>
         
       </ul>
