@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>统计树中的合法路径数目先 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：给你一棵 n 个节点的无向树，节点编号为 1 到 n 。给你一个整数 n 和一个长度为 n - 1 的二维整数数组 edges ，其中 edges[i] &#x3D; [ui, vi] 表示节点 ui 和 vi 在树中有一条边。 请你返回树中的 合法路径数目 。 如果在节点 a 到节点 b 之间 恰好有一个 节点的编号是质数，那么我们称路径 (a, b) 是 合法的 。 注意： 路径 (a,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计树中的合法路径数目先">
+<meta property="og:url" content="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：给你一棵 n 个节点的无向树，节点编号为 1 到 n 。给你一个整数 n 和一个长度为 n - 1 的二维整数数组 edges ，其中 edges[i] &#x3D; [ui, vi] 表示节点 ui 和 vi 在树中有一条边。 请你返回树中的 合法路径数目 。 如果在节点 a 到节点 b 之间 恰好有一个 节点的编号是质数，那么我们称路径 (a, b) 是 合法的 。 注意： 路径 (a,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/08/27/example1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2023/08/27/example2.png">
+<meta property="article:published_time" content="2024-02-27T15:20:08.000Z">
+<meta property="article:modified_time" content="2024-02-27T15:28:16.650Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2023/08/27/example1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-统计树中的合法路径数目先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" class="article-date">
+  <time class="dt-published" datetime="2024-02-27T15:20:08.000Z" itemprop="datePublished">2024-02-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      统计树中的合法路径数目先
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一棵 n 个节点的无向树，节点编号为 1 到 n 。给你一个整数 n 和一个长度为 n - 1 的二维整数数组 edges ，其中 edges[i] &#x3D; [ui, vi] 表示节点 ui 和 vi 在树中有一条边。</p>
+<p>请你返回树中的 合法路径数目 。</p>
+<p>如果在节点 a 到节点 b 之间 恰好有一个 节点的编号是质数，那么我们称路径 (a, b) 是 合法的 。</p>
+<p>注意：</p>
+<p>路径 (a, b) 指的是一条从节点 a 开始到节点 b 结束的一个节点序列，序列中的节点 互不相同 ，且相邻节点之间在树上有一条边。<br>路径 (a, b) 和路径 (b, a) 视为 同一条 路径，且只计入答案 一次 。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2023/08/27/example1.png"></p>
+<p>输入：n &#x3D; 5, edges &#x3D; [[1,2],[1,3],[2,4],[2,5]]</p>
+<p>输出：4</p>
+<p>解释：恰好有一个质数编号的节点路径有：</p>
+<ul>
+<li><p>(1, 2) 因为路径 1 到 2 只包含一个质数 2 。</p>
+</li>
+<li><p>(1, 3) 因为路径 1 到 3 只包含一个质数 3 。</p>
+</li>
+<li><p>(1, 4) 因为路径 1 到 4 只包含一个质数 2 。</p>
+</li>
+<li><p>(2, 4) 因为路径 2 到 4 只包含一个质数 2 。</p>
+</li>
+</ul>
+<p>只有 4 条合法路径。</p>
+<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2023/08/27/example2.png"></p>
+<p>输入：n &#x3D; 6, edges &#x3D; [[1,2],[1,3],[2,4],[3,5],[3,6]]</p>
+<p>输出：6</p>
+<p>解释：恰好有一个质数编号的节点路径有：</p>
+<ul>
+<li><p>(1, 2) 因为路径 1 到 2 只包含一个质数 2 。</p>
+</li>
+<li><p>(1, 3) 因为路径 1 到 3 只包含一个质数 3 。</p>
+</li>
+<li><p>(1, 4) 因为路径 1 到 4 只包含一个质数 2 。</p>
+</li>
+<li><p>(1, 6) 因为路径 1 到 6 只包含一个质数 3 。</p>
+</li>
+<li><p>(2, 4) 因为路径 2 到 4 只包含一个质数 2 。</p>
+</li>
+<li><p>(3, 6) 因为路径 3 到 6 只包含一个质数 3 。</p>
+</li>
+</ul>
+<p>只有 6 条合法路径。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 105</p>
+<p>edges.length &#x3D;&#x3D; n - 1</p>
+<p>edges[i].length &#x3D;&#x3D; 2</p>
+<p>1 &lt;&#x3D; ui, vi &lt;&#x3D; n</p>
+<p>输入保证 edges 形成一棵合法的树。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">int* isP;</span><br><span class="line">bool* v;</span><br><span class="line">int* last;</span><br><span class="line">int* next;</span><br><span class="line">int* sum;</span><br><span class="line">long long countPaths(int n, int** edges, int edgesSize, int* edgesColSize) &#123;</span><br><span class="line">    //埃氏筛</span><br><span class="line">    //n以内的质数至多有n/2 + 1个</span><br><span class="line">    isP = malloc(sizeof(int) * (n + 1));</span><br><span class="line">    memset(isP, 0, sizeof(int) * (n + 1));</span><br><span class="line">    isP[0] = isP[1] = -1;</span><br><span class="line">    int* p = malloc(sizeof(int) * ((n + 1) &gt;&gt; 1));</span><br><span class="line">    int s = 0;</span><br><span class="line">    for(int i = 2; i &lt;= n; i ++)&#123;</span><br><span class="line">        //记录质数位置</span><br><span class="line">        if(!isP[i]) p[isP[i] = s++] = i;</span><br><span class="line">        for(int j = 0; j &lt; s &amp;&amp; i * p[j] &lt;= n; j ++)&#123;</span><br><span class="line">            isP[i * p[j]] = -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    long long res = 0;</span><br><span class="line">    v = malloc(sizeof(bool) * (n + 1));</span><br><span class="line">    memset(v, false, sizeof(bool) * (n + 1));</span><br><span class="line">    //因map键值确定[1,n]</span><br><span class="line">    //且元素个数也确定2 * (n - 1)</span><br><span class="line">    //可以直接使用数组来构建map</span><br><span class="line">    next = malloc(sizeof(int) * ((n - 1) &lt;&lt; 1));</span><br><span class="line">    last = malloc(sizeof(int) * (n + 1));</span><br><span class="line">    sum = malloc(sizeof(int) * s);</span><br><span class="line">    memset(last, -1, sizeof(int) * (n + 1));</span><br><span class="line">    memset(sum, 0, sizeof(int) * s);</span><br><span class="line">    for(int i = 0, j = 0; i &lt; n - 1; i ++)&#123;</span><br><span class="line">        next[j] = last[edges[i][1]];</span><br><span class="line">        last[edges[i][1]] = j ++;</span><br><span class="line">        next[j] = last[edges[i][0]];</span><br><span class="line">        last[edges[i][0]] = j ++;</span><br><span class="line">    &#125;</span><br><span class="line">    //质数队列</span><br><span class="line">    int * de = malloc(sizeof(int) * s);</span><br><span class="line">    //元素队列,最坏情况,只有一个root结点,其余全为叶子结点</span><br><span class="line">    //需要占用n - s个格子</span><br><span class="line">    int * _item = malloc(sizeof(int) * (n - s));</span><br><span class="line">    int i_r = 1, cnt, de_r, _i_r, _i_l;</span><br><span class="line">    while(i_r &lt;= n)&#123;</span><br><span class="line">        if(v[i_r ++] || isP[i_r - 1] != -1) continue;</span><br><span class="line">        int x = i_r - 1;</span><br><span class="line">        v[i_r - 1] = true;</span><br><span class="line">        _i_l = _i_r = de_r = 0;</span><br><span class="line">        cnt = 1;//自身算一个</span><br><span class="line">        _item[_i_r ++] = x;</span><br><span class="line">        while(_i_l != _i_r)&#123;</span><br><span class="line">            int y = _item[_i_l ++];</span><br><span class="line">            int k = last[y];</span><br><span class="line">            while(k != -1)&#123;</span><br><span class="line">                //指向点</span><br><span class="line">                int tp = edges[k &gt;&gt; 1][k &amp; 1];</span><br><span class="line">                k = next[k];</span><br><span class="line">                if(v[tp]) continue;</span><br><span class="line">                if(isP[tp] != -1)&#123;</span><br><span class="line">                    de[de_r ++] = tp;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    cnt ++;</span><br><span class="line">                    v[tp] = true;</span><br><span class="line">                    _item[_i_r ++] = tp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; de_r; i ++)&#123;</span><br><span class="line">            //printf(&quot;(%d,%d)&quot;, de[i], cnt);</span><br><span class="line">            int x = de[i];</span><br><span class="line">            res += sum[isP[x]] * cnt + cnt;</span><br><span class="line">            sum[isP[x]] += cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(isP);</span><br><span class="line">    free(p);</span><br><span class="line">    free(v);</span><br><span class="line">    free(last);</span><br><span class="line">    free(next);</span><br><span class="line">    free(sum);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="clt4ivnca000f8uo70f1pfw1z" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2-26二叉搜索树的最近公共祖先</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/">统计树中的合法路径数目先</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">2-26二叉搜索树的最近公共祖先</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/">二叉搜索树最近节点查询树</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/">二叉树中的第 K 大层和树</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/">根据前序和后序遍历构造二叉树树</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
