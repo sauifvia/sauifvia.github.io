@@ -69,6 +69,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-用队列实现栈" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" class="article-date">
+  <time class="dt-published" datetime="2024-03-03T14:14:53.000Z" itemprop="datePublished">2024-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">用队列实现栈</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>请你仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的全部四种操作（push、top、pop 和 empty）。</p>
+<p>实现 MyStack 类：</p>
+<p>void push(int x) 将元素 x 压入栈顶。<br>int pop() 移除并返回栈顶元素。<br>int top() 返回栈顶元素。<br>boolean empty() 如果栈是空的，返回 true ；否则，返回 false 。</p>
+<p>注意：</p>
+<p>你只能使用队列的基本操作 —— 也就是 push to back、peek&#x2F;pop from front、size 和 is empty 这些操作。<br>你所使用的语言也许不支持队列。 你可以使用 list （列表）或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。</p>
+<p>示例：</p>
+<p>输入：<br>[“MyStack”, “push”, “push”, “top”, “pop”, “empty”]<br>[[], [1], [2], [], [], []]<br>输出：<br>[null, null, null, 2, 2, false]</p>
+<p>解释：<br>MyStack myStack &#x3D; new MyStack();<br>myStack.push(1);<br>myStack.push(2);<br>myStack.top(); &#x2F;&#x2F; 返回 2<br>myStack.pop(); &#x2F;&#x2F; 返回 2<br>myStack.empty(); &#x2F;&#x2F; 返回 False</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; x &lt;&#x3D; 9<br>最多调用100 次 push、pop、top 和 empty<br>每次调用 pop 和 top 都保证栈不为空</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">#define LEN 20</span><br><span class="line">typedef struct queue &#123;</span><br><span class="line">    int *data;</span><br><span class="line">    int head;</span><br><span class="line">    int rear;</span><br><span class="line">    int size;</span><br><span class="line">&#125; Queue;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    Queue *queue1, *queue2;</span><br><span class="line">&#125; MyStack;</span><br><span class="line"></span><br><span class="line">Queue *initQueue(int k) &#123;</span><br><span class="line">    Queue *obj = (Queue *)malloc(sizeof(Queue));</span><br><span class="line">    obj-&gt;data = (int *)malloc(k * sizeof(int));</span><br><span class="line">    obj-&gt;head = -1;</span><br><span class="line">    obj-&gt;rear = -1;</span><br><span class="line">    obj-&gt;size = k;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void enQueue(Queue *obj, int e) &#123;</span><br><span class="line">    if (obj-&gt;head == -1) &#123;</span><br><span class="line">        obj-&gt;head = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    obj-&gt;rear = (obj-&gt;rear + 1) % obj-&gt;size;</span><br><span class="line">    obj-&gt;data[obj-&gt;rear] = e;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int deQueue(Queue *obj) &#123;</span><br><span class="line">    int a = obj-&gt;data[obj-&gt;head];</span><br><span class="line">    if (obj-&gt;head == obj-&gt;rear) &#123;</span><br><span class="line">        obj-&gt;rear = -1;</span><br><span class="line">        obj-&gt;head = -1;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    obj-&gt;head = (obj-&gt;head + 1) % obj-&gt;size;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int isEmpty(Queue *obj) &#123;</span><br><span class="line">    return obj-&gt;head == -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStack *myStackCreate() &#123;</span><br><span class="line">    MyStack *obj = (MyStack *)malloc(sizeof(MyStack));</span><br><span class="line">    obj-&gt;queue1 = initQueue(LEN);</span><br><span class="line">    obj-&gt;queue2 = initQueue(LEN);</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void myStackPush(MyStack *obj, int x) &#123;</span><br><span class="line">    if (isEmpty(obj-&gt;queue1)) &#123;</span><br><span class="line">        enQueue(obj-&gt;queue2, x);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        enQueue(obj-&gt;queue1, x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int myStackPop(MyStack *obj) &#123;</span><br><span class="line">    if (isEmpty(obj-&gt;queue1)) &#123;</span><br><span class="line">        while (obj-&gt;queue2-&gt;head != obj-&gt;queue2-&gt;rear) &#123;</span><br><span class="line">            enQueue(obj-&gt;queue1, deQueue(obj-&gt;queue2));</span><br><span class="line">        &#125;</span><br><span class="line">        return deQueue(obj-&gt;queue2);</span><br><span class="line">    &#125;</span><br><span class="line">    while (obj-&gt;queue1-&gt;head != obj-&gt;queue1-&gt;rear) &#123;</span><br><span class="line">        enQueue(obj-&gt;queue2, deQueue(obj-&gt;queue1));</span><br><span class="line">    &#125;</span><br><span class="line">    return deQueue(obj-&gt;queue1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int myStackTop(MyStack *obj) &#123;</span><br><span class="line">    if (isEmpty(obj-&gt;queue1)) &#123;</span><br><span class="line">        return obj-&gt;queue2-&gt;data[obj-&gt;queue2-&gt;rear];</span><br><span class="line">    &#125;</span><br><span class="line">    return obj-&gt;queue1-&gt;data[obj-&gt;queue1-&gt;rear];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool myStackEmpty(MyStack *obj) &#123;</span><br><span class="line">    if (obj-&gt;queue1-&gt;head == -1 &amp;&amp; obj-&gt;queue2-&gt;head == -1) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void myStackFree(MyStack *obj) &#123;</span><br><span class="line">    free(obj-&gt;queue1-&gt;data);</span><br><span class="line">    obj-&gt;queue1-&gt;data = NULL;</span><br><span class="line">    free(obj-&gt;queue1);</span><br><span class="line">    obj-&gt;queue1 = NULL;</span><br><span class="line">    free(obj-&gt;queue2-&gt;data);</span><br><span class="line">    obj-&gt;queue2-&gt;data = NULL;</span><br><span class="line">    free(obj-&gt;queue2);</span><br><span class="line">    obj-&gt;queue2 = NULL;</span><br><span class="line">    free(obj);</span><br><span class="line">    obj = NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>作者：力扣官方题解<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-stack-using-queues/solutions/432204/yong-dui-lie-shi-xian-zhan-by-leetcode-solution/">https://leetcode.cn/problems/implement-stack-using-queues/solutions/432204/yong-dui-lie-shi-xian-zhan-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="cltblmhei000gqko75aty2ae2" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-统计可能的树根数目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" class="article-date">
@@ -132,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clt72n2du000grvo797ls48tf" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="cltblmhei000hqko7cvzb2z1q" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -200,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="clt72n2du000drvo7bins1yej" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="cltblmheh000dqko7g0s94fuk" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -283,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="clt72n2dv000hrvo70u3zd57x" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="cltblmhei000iqko7dl8j068a" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -337,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="clt72n2ds0007rvo70cna3c5q" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="cltblmheg0007qko78xii4hnr" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -402,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="clt72n2dt0009rvo7dkaybo2p" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="cltblmheg0009qko7df2q1f7d" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -468,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" data-id="clt72n2dt000arvo7f5lr19hu" data-title="二叉树中的第 K 大层和树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" data-id="cltblmheh000aqko73obigvuy" data-title="二叉树中的第 K 大层和树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -521,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/" data-id="clt72n2du000frvo70omaa9yk" data-title="根据前序和后序遍历构造二叉树树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/" data-id="cltblmhei000fqko78md0fqyl" data-title="根据前序和后序遍历构造二叉树树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -574,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="clt72n2du000brvo7hurw3w52" data-title="从中序与后序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cltblmheh000bqko70hzyartu" data-title="从中序与后序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -629,61 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="clt72n2du000crvo7fjfbbo6d" data-title="从前序与中序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2-19N叉树的后序遍历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" class="article-date">
-  <time class="dt-published" datetime="2024-02-19T09:13:25.000Z" itemprop="datePublished">2024-02-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/">2-19N叉树的后序遍历</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目：N叉树的后序遍历"><a href="#题目：N叉树的后序遍历" class="headerlink" title="题目：N叉树的后序遍历"></a>题目：N叉树的后序遍历</h1><p>给定一个 n 叉树的根节点 root ，返回 其节点值的 后序遍历 。</p>
-<p>n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 null 分隔（请参见示例）。</p>
-<p>示例 1：</p>
-<p><img src="https://assets.leetcode.com/uploads/2018/10/12/narytreeexample.png"><br>输入：root &#x3D; [1,null,3,2,4,null,5,6]</p>
-<p>输出：[5,6,3,2,4,1]</p>
-<p>示例2：</p>
-<p><img src="https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png"></p>
-<p>输入：root &#x3D; [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]</p>
-<p>输出：[2,6,14,11,7,3,12,8,4,13,9,10,5,1]</p>
-<p>提示：</p>
-<p>节点总数在范围 [0, 104] 内</p>
-<p>0 &lt;&#x3D; Node.val &lt;&#x3D; 104</p>
-<p>n 叉树的高度小于或等于 1000</p>
-<p>#解题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">#define MAX_NODE_SIZE 10000</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    void * key;</span><br><span class="line">    int val;</span><br><span class="line">    UT_hash_handle hh; </span><br><span class="line">&#125; HashItem;</span><br><span class="line"></span><br><span class="line">void freeHash(HashItem ** obj) &#123;</span><br><span class="line">    HashItem * curr = NULL, * next = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, next) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);</span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int* postorder(struct Node* root, int* returnSize) &#123;</span><br><span class="line">    if (NULL == root) &#123;</span><br><span class="line">        *returnSize = 0;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    int * res = (int *)malloc(sizeof(int) * MAX_NODE_SIZE);</span><br><span class="line">    struct Node ** stack = (struct Node **)malloc(sizeof(struct Node *) * MAX_NODE_SIZE);</span><br><span class="line">    int pos = 0, top = 0;  </span><br><span class="line"></span><br><span class="line">    struct Node * node = root;</span><br><span class="line">    HashItem * cnt = NULL;</span><br><span class="line">    HashItem * pEntry = NULL;</span><br><span class="line">    while (top != 0 || node != NULL) &#123;</span><br><span class="line">        while (node != NULL) &#123;</span><br><span class="line">            stack[top++] = node;</span><br><span class="line">            if (node-&gt;numChildren &gt; 0) &#123;</span><br><span class="line">                pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">                pEntry-&gt;key = node;</span><br><span class="line">                pEntry-&gt;val = 0;</span><br><span class="line">                HASH_ADD_PTR(cnt, key, pEntry);</span><br><span class="line">                node = node-&gt;children[0];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                node = NULL;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        node = stack[top - 1];</span><br><span class="line">        int index = 0;</span><br><span class="line">        HASH_FIND_PTR(cnt, &amp;node, pEntry);</span><br><span class="line">        if (pEntry != NULL) &#123;</span><br><span class="line">            index = pEntry-&gt;val + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index &lt; node-&gt;numChildren) &#123;</span><br><span class="line">            pEntry-&gt;val++;</span><br><span class="line">            node = node-&gt;children[index];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            top--;</span><br><span class="line">            res[pos++] = node-&gt;val;</span><br><span class="line">            if (pEntry != NULL) &#123;</span><br><span class="line">                HASH_DEL(cnt, pEntry);</span><br><span class="line">            &#125;</span><br><span class="line">            node = NULL;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(stack);</span><br><span class="line">    freeHash(&amp;cnt);</span><br><span class="line">    *returnSize = pos;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clt72n2ds0006rvo7f8kuht7k" data-title="2-19N叉树的后序遍历" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cltblmheh000cqko729m0e9c8" data-title="从前序与中序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -718,7 +714,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
     </div>
   </div>
 
@@ -729,6 +725,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">用队列实现栈</a>
+          </li>
         
           <li>
             <a href="/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/">统计可能的树根数目</a>
@@ -744,10 +744,6 @@
         
           <li>
             <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">2-26二叉搜索树的最近公共祖先</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/">二叉搜索树最近节点查询树</a>
           </li>
         
       </ul>
