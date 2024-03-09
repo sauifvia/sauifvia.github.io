@@ -69,6 +69,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-根据前序和后序遍历构造二叉树树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/" class="article-date">
+  <time class="dt-published" datetime="2024-02-22T07:32:23.000Z" itemprop="datePublished">2024-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/">根据前序和后序遍历构造二叉树树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目：给定两个整数数组，preorder-和-postorder-，其中-preorder-是一个具有-无重复-值的二叉树的前序遍历，postorder-是同一棵树的后序遍历，重构并返回二叉树。"><a href="#题目：给定两个整数数组，preorder-和-postorder-，其中-preorder-是一个具有-无重复-值的二叉树的前序遍历，postorder-是同一棵树的后序遍历，重构并返回二叉树。" class="headerlink" title="题目：给定两个整数数组，preorder 和 postorder ，其中 preorder 是一个具有 无重复 值的二叉树的前序遍历，postorder 是同一棵树的后序遍历，重构并返回二叉树。"></a>题目：给定两个整数数组，preorder 和 postorder ，其中 preorder 是一个具有 无重复 值的二叉树的前序遍历，postorder 是同一棵树的后序遍历，重构并返回二叉树。</h1><p>如果存在多个答案，您可以返回其中 任何 一个。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode.com/uploads/2021/07/24/lc-prepost.jpg"></p>
+<p>输入：preorder &#x3D; [1,2,4,5,3,6,7], postorder &#x3D; [4,5,2,6,7,3,1]</p>
+<p>输出：[1,2,3,4,5,6,7]</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><p>输入: preorder &#x3D; [1], postorder &#x3D; [1]</p>
+<p>输出: [1]</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; preorder.length &lt;&#x3D; 30</p>
+<p>1 &lt;&#x3D; preorder[i] &lt;&#x3D; preorder.length</p>
+<p>preorder 中所有值都 不同</p>
+<p>postorder.length &#x3D;&#x3D; preorder.length</p>
+<p>1 &lt;&#x3D; postorder[i] &lt;&#x3D; postorder.length</p>
+<p>postorder 中所有值都 不同</p>
+<p>保证 preorder 和 postorder 是同一棵二叉树的前序遍历和后序遍历</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int key;</span><br><span class="line">    int val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashItem; </span><br><span class="line"></span><br><span class="line">HashItem *hashFindItem(HashItem **obj, int key) &#123;</span><br><span class="line">    HashItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashAddItem(HashItem **obj, int key, int val) &#123;</span><br><span class="line">    if (hashFindItem(obj, key)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    HashItem *pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">    pEntry-&gt;key = key;</span><br><span class="line">    pEntry-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(*obj, key, pEntry);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int hashGetItem(HashItem **obj, int key, int defaultVal) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        return defaultVal;</span><br><span class="line">    &#125;</span><br><span class="line">    return pEntry-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashFree(HashItem **obj) &#123;</span><br><span class="line">    HashItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct TreeNode *createTreeNode(int val, struct TreeNode *left, struct TreeNode *right) &#123;</span><br><span class="line">    struct TreeNode *obj = (struct TreeNode *)malloc(sizeof(struct TreeNode));</span><br><span class="line">    obj-&gt;val = val;</span><br><span class="line">    obj-&gt;left = left;</span><br><span class="line">    obj-&gt;right = right;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct TreeNode* dfs(int preLeft, int preRight, int postLeft, int postRight, int* preorder, HashItem *postMap) &#123;</span><br><span class="line">    if (preLeft &gt; preRight) &#123;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    int leftCount = 0;</span><br><span class="line">    if (preLeft &lt; preRight) &#123;</span><br><span class="line">        leftCount = hashGetItem(&amp;postMap, preorder[preLeft + 1], 0) - postLeft + 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return createTreeNode(preorder[preLeft], \</span><br><span class="line">        dfs(preLeft + 1, preLeft + leftCount, postLeft, postLeft + leftCount - 1, preorder, postMap), \</span><br><span class="line">        dfs(preLeft + leftCount + 1, preRight, postLeft + leftCount, postRight - 1, preorder, postMap));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct TreeNode* constructFromPrePost(int* preorder, int preorderSize, int* postorder, int postorderSize) &#123;</span><br><span class="line">    int n = postorderSize;</span><br><span class="line">    HashItem *postMap = NULL;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        hashAddItem(&amp;postMap, postorder[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    struct TreeNode* root = dfs(0, n - 1, 0, n - 1, preorder, postMap);</span><br><span class="line">    hashFree(&amp;postMap);</span><br><span class="line">    return root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/" data-id="cltk60zav000ihwo7e6bu6w2l" data-title="根据前序和后序遍历构造二叉树树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-从中序与后序遍历序列构造二叉树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
@@ -110,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="clthan4nn000d5jo70suc897m" data-title="从中序与后序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cltk60zav000ehwo74epscmio" data-title="从中序与后序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -165,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="clthan4nn000e5jo77y8ag4lj" data-title="从前序与中序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cltk60zav000fhwo7304hgy7n" data-title="从前序与中序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -219,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clthan4nl00065jo7h7o6asc6" data-title="2-19N叉树的后序遍历" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cltk60zat0006hwo7c7i9g7zo" data-title="2-19N叉树的后序遍历" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -271,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/18/2-18%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clthan4nl00055jo7d3jg0ay7" data-title="2-18学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/18/2-18%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="cltk60zat0005hwo78qy1czgn" data-title="2-18学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -323,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clthan4nl00045jo706edexaf" data-title="2-17学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cltk60zas0004hwo78227aixk" data-title="2-17学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -420,7 +473,7 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" data-id="clthan4nk00035jo7bz95de4d" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" data-id="cltk60zas0003hwo7b135g0zp" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -466,7 +519,7 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clthan4nj00015jo712xadztz" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cltk60zas0002hwo7gsez57yo" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -548,7 +601,7 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" data-id="clthan4nk00025jo71emi0zbm" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" data-id="cltk60zar0001hwo7b0ochxdm" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -622,51 +675,7 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clthan4nm000a5jo7gj8hc84j" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-如何创建新博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2024-02-13T09:35:07.000Z" itemprop="datePublished">2024-02-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/">如何创建新博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>创建Hexo项目<br>初始化一个新的Hexo项目：hexo init your-blog-name<br>进入项目目录：cd your-blog-name<br>部署你的博客: 在你的 Hexo 博客目录中，运行以下命令来部署你的博客到 GitHub Pages：</p>
-<ul>
-<li>1.hexo clean </li>
-<li>2.hexo generate</li>
-<li>3.hexo deploy</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clthan4no000i5jo76ov3eyg3" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="cltk60zau000bhwo7fopv45m1" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -714,6 +723,10 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       <ul>
         
           <li>
+            <a href="/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/">3-9找出数组的第 K 大和</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/">3-7找出字符串的可整除数组</a>
           </li>
         
@@ -727,10 +740,6 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
         
           <li>
             <a href="/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/">统计可能的树根数目</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/">使二叉树所有路径值相等的最小代价先</a>
           </li>
         
       </ul>
