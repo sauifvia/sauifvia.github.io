@@ -69,6 +69,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-11将标题首字母大写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" class="article-date">
+  <time class="dt-published" datetime="2024-03-11T13:41:36.000Z" itemprop="datePublished">2024-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/">3-11将标题首字母大写</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个字符串 title ，它由单个空格连接一个或多个单词组成，每个单词都只包含英文字母。请你按以下规</p>
+<p>则将每个单词的首字母 大写 ：</p>
+<p>如果单词的长度为 1 或者 2 ，所有字母变成小写。</p>
+<p>否则，将单词首字母大写，剩余字母变成小写。</p>
+<p>请你返回 大写后 的 title 。</p>
+<p>示例 1：</p>
+<p>输入：title &#x3D; “capiTalIze tHe titLe”</p>
+<p>输出：”Capitalize The Title”</p>
+<p>解释：</p>
+<p>由于所有单词的长度都至少为 3 ，将每个单词首字母大写，剩余字母变为小写。</p>
+<p>示例 2：</p>
+<p>输入：title &#x3D; “First leTTeR of EACH Word”</p>
+<p>输出：”First Letter of Each Word”</p>
+<p>解释：</p>
+<p>单词 “of” 长度为 2 ，所以它保持完全小写。</p>
+<p>其他单词长度都至少为 3 ，所以其他单词首字母大写，剩余字母小写。</p>
+<p>示例 3：</p>
+<p>输入：title &#x3D; “i lOve leetcode”</p>
+<p>输出：”i Love Leetcode”</p>
+<p>解释：</p>
+<p>单词 “i” 长度为 1 ，所以它保留小写。</p>
+<p>其他单词长度都至少为 3 ，所以其他单词首字母大写，剩余字母小写。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; title.length &lt;&#x3D; 100</p>
+<p>title 由单个空格隔开的单词组成，且不含有任何前导或后缀空格。</p>
+<p>每个单词由大写和小写英文字母组成，且都是 非空 的。</p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">char* capitalizeTitle(char* title) &#123;</span><br><span class="line">    int n = strlen(title);</span><br><span class="line">    int l = 0, r = 0;   // 单词左右边界（左闭右开）</span><br><span class="line">    while (r &lt; n) &#123;</span><br><span class="line">        while (r &lt; n &amp;&amp; title[r] != &#x27; &#x27;) &#123;</span><br><span class="line">            ++r;</span><br><span class="line">        &#125;</span><br><span class="line">        // 对于每个单词按要求处理</span><br><span class="line">        if (r - l &gt; 2) &#123;</span><br><span class="line">            title[l++] = toupper(title[l]);</span><br><span class="line">        &#125;</span><br><span class="line">        while (l &lt; r) &#123;</span><br><span class="line">            title[l++] = tolower(title[l]);</span><br><span class="line">        &#125;</span><br><span class="line">        l = ++r;</span><br><span class="line">    &#125;</span><br><span class="line">    return title;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/capitalize-the-title/solutions/1202029/jiang-biao-ti-shou-zi-mu-da-xie-by-leetc-lhn7/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="cltn05mpm0008r5o7g98u44ut" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-9找出数组的第-K-大和" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" class="article-date">
@@ -117,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="cltk60zau000ahwo75i442y50" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="cltn05mpn000br5o77obif92v" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -162,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="cltk60zau0009hwo7cgug2uld" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="cltn05mpm000ar5o7bqi6fz0m" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -230,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="cltk60zat0008hwo70hva84im" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="cltn05mpm0009r5o70z3f2abx" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -280,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="cltk60zaw000jhwo7e40r85gl" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="cltn05mpo000kr5o7fiy556ay" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -355,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="cltk60zaw000khwo719fdd8po" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="cltn05mpp000lr5o7f6ja3ta8" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -423,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="cltk60zav000ghwo74woz2p24" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="cltn05mpo000hr5o76peq0wnp" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -506,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="cltk60zaw000lhwo76gw4aff5" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="cltn05mpp000mr5o73pl48rmy" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -560,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="cltk60zat0007hwo75tsqce10" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="cltn05mpm0007r5o7gintfh8b" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -625,73 +689,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="cltk60zau000chwo73jgwhhh6" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-二叉树中的第-K-大层和树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2024-02-23T08:46:39.000Z" itemprop="datePublished">2024-02-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/">二叉树中的第 K 大层和树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目：二叉树中的第-K-大层和"><a href="#题目：二叉树中的第-K-大层和" class="headerlink" title="题目：二叉树中的第 K 大层和"></a>题目：二叉树中的第 K 大层和</h1><p>给你一棵二叉树的根节点 root 和一个正整数 k 。</p>
-<p>树中的 层和 是指 同一层 上节点值的总和。</p>
-<p>返回树中第 k 大的层和（不一定不同）。如果树少于 k 层，则返回 -1 。</p>
-<p>注意，如果两个节点与根节点的距离相同，则认为它们在同一层。</p>
-<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode.com/uploads/2022/12/14/binaryytreeedrawio-2.png"></p>
-<p>输入：root &#x3D; [5,8,9,2,1,3,7,4,6], k &#x3D; 2</p>
-<p>输出：13</p>
-<p>解释：树中每一层的层和分别是：</p>
-<ul>
-<li><p>Level 1: 5</p>
-</li>
-<li><p>Level 2: 8 + 9 &#x3D; 17</p>
-</li>
-<li><p>Level 3: 2 + 1 + 3 + 7 &#x3D; 13</p>
-</li>
-<li><p>Level 4: 4 + 6 &#x3D; 10</p>
-</li>
-</ul>
-<p>第 2 大的层和等于 13 。</p>
-<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p><img src="https://assets.leetcode.com/uploads/2022/12/14/treedrawio-3.png"></p>
-<p>输入：root &#x3D; [1,2,null,3], k &#x3D; 1</p>
-<p>输出：3</p>
-<p>解释：最大的层和是 3 。</p>
-<p>提示：</p>
-<p>树中的节点数为 n</p>
-<p>2 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>1 &lt;&#x3D; Node.val &lt;&#x3D; 106</p>
-<p>1 &lt;&#x3D; k &lt;&#x3D; n、</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#define MAX_NODE_SIZE 100000</span><br><span class="line"></span><br><span class="line">static long long cmp(const void *a, const void *b) &#123;</span><br><span class="line">    long long sub = *(long long *)a - *(long long *)b;</span><br><span class="line">    return sub &lt; 0 ? -1 : 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long kthLargestLevelSum(struct TreeNode* root, int k) &#123;</span><br><span class="line">    struct TreeNode **q = (struct TreeNode **)malloc(sizeof(struct TreeNode *) * MAX_NODE_SIZE);</span><br><span class="line">    long long *levelSumArray = (long long *)malloc(sizeof(long long) * MAX_NODE_SIZE);</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    int pos = 0;</span><br><span class="line">    q[tail++] = root;</span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        long long levelSum = 0, size = tail - head;</span><br><span class="line">        for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">            struct TreeNode *node = q[head];</span><br><span class="line">            head++;</span><br><span class="line">            levelSum += node-&gt;val;</span><br><span class="line">            if (node-&gt;left) &#123;</span><br><span class="line">                q[tail++] = node-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            if (node-&gt;right) &#123;</span><br><span class="line">                q[tail++] = node-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        levelSumArray[pos++] = levelSum;</span><br><span class="line">    &#125;</span><br><span class="line">    if (pos &lt; k) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    qsort(levelSumArray, pos, sizeof(long long), cmp);</span><br><span class="line">    return levelSumArray[pos - k];</span><br><span class="line">&#125;</span><br><span class="line">。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" data-id="cltk60zav000dhwo71u60czso" data-title="二叉树中的第 K 大层和树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="cltn05mpn000dr5o72y7sce0s" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -739,6 +737,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/">3-11将标题首字母大写</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/">3-9找出数组的第 K 大和</a>
           </li>
         
@@ -752,10 +754,6 @@
         
           <li>
             <a href="/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">用队列实现栈</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/">统计可能的树根数目</a>
           </li>
         
       </ul>
