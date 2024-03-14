@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>3-14合并后数组中的最大元素 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：给你一个下标从 0 开始、由正整数组成的数组 nums 。 你可以在数组上执行下述操作 任意 次： 选中一个同时满足 0 &lt;&#x3D; i &lt; nums.length - 1 和 nums[i] &lt;&#x3D;  nums[i + 1] 的整数 i 。将元素 nums[i + 1] 替换为 nums[i]   nums[i + 1] ，并从数组中删除元素 nums[i]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3-14合并后数组中的最大元素">
+<meta property="og:url" content="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：给你一个下标从 0 开始、由正整数组成的数组 nums 。 你可以在数组上执行下述操作 任意 次： 选中一个同时满足 0 &lt;&#x3D; i &lt; nums.length - 1 和 nums[i] &lt;&#x3D;  nums[i + 1] 的整数 i 。将元素 nums[i + 1] 替换为 nums[i]   nums[i + 1] ，并从数组中删除元素 nums[i]">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-14T07:55:26.000Z">
+<meta property="article:modified_time" content="2024-03-14T11:14:20.803Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-3-14合并后数组中的最大元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-14T07:55:26.000Z" itemprop="datePublished">2024-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      3-14合并后数组中的最大元素
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始、由正整数组成的数组 nums 。</p>
+<p>你可以在数组上执行下述操作 任意 次：</p>
+<p>选中一个同时满足 0 &lt;&#x3D; i &lt; nums.length - 1 和 nums[i] &lt;&#x3D; </p>
+<p>nums[i + 1] 的整数 i 。将元素 nums[i + 1] 替换为 nums[i] </p>
+<ul>
+<li>nums[i + 1] ，并从数组中删除元素 nums[i] 。</li>
+</ul>
+<p>返回你可以从最终数组中获得的 最大 元素的值。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p>输入：nums &#x3D; [2,3,7,9,3]</p>
+<p>输出：21</p>
+<p>解释：我们可以在数组上执行下述操作：</p>
+<ul>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [5,7,9,3] 。</p>
+</li>
+<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,16,3] 。</p>
+</li>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [21,3] 。</p>
+</li>
+</ul>
+<p>最终数组中的最大元素是 21 。可以证明我们无法获得更大的元素。</p>
+<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p>输入：nums &#x3D; [5,3,3]</p>
+<p>输出：11</p>
+<p>解释：我们可以在数组上执行下述操作：</p>
+<ul>
+<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,6] 。</p>
+</li>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [11] 。</p>
+</li>
+</ul>
+<p>最终数组中只有一个元素，即 11 。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 106</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">long long maxArrayValue(int* nums, int numsSize)&#123;</span><br><span class="line">    long long sum = nums[numsSize - 1];</span><br><span class="line">    for (int i = numsSize - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">        sum = nums[i] &lt;= sum ? nums[i] + sum : nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/largest-element-in-an-array-after-merge-operations/solutions/2679835/he-bing-hou-shu-zu-zhong-de-zui-da-yuan-s2b5o/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="cltr4uuuz000awao7dw2q2ymr" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">3-12在受污染的二叉树中查找元素</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/">3-14合并后数组中的最大元素</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/">3-12在受污染的二叉树中查找元素</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/">3-11将标题首字母大写</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/">3-9找出数组的第 K 大和</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/">3-7找出字符串的可整除数组</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
