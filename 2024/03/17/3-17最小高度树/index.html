@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>3-17最小高度树 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：树是一个无向图，其中任何两个顶点只通过一条路径连接。 换句话说，一个任何没有简单环路的连通图都是一棵树。 给你一棵包含 n 个节点的树，标记为 0 到 n - 1 。给定数字 n 和一个有 n - 1 条无向边的 edges 列表（每一个边都是一对标签），其中 edges[i] &#x3D; [ai, bi] 表示树中节点 ai 和 bi 之间存在一条无向边。 可选择树中任何一个节点作为根。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3-17最小高度树">
+<meta property="og:url" content="http://example.com/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：树是一个无向图，其中任何两个顶点只通过一条路径连接。 换句话说，一个任何没有简单环路的连通图都是一棵树。 给你一棵包含 n 个节点的树，标记为 0 到 n - 1 。给定数字 n 和一个有 n - 1 条无向边的 edges 列表（每一个边都是一对标签），其中 edges[i] &#x3D; [ai, bi] 表示树中节点 ai 和 bi 之间存在一条无向边。 可选择树中任何一个节点作为根。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/09/01/e1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/09/01/e2.jpg">
+<meta property="article:published_time" content="2024-03-17T09:26:51.000Z">
+<meta property="article:modified_time" content="2024-03-17T09:29:56.685Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2020/09/01/e1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-3-17最小高度树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/" class="article-date">
+  <time class="dt-published" datetime="2024-03-17T09:26:51.000Z" itemprop="datePublished">2024-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      3-17最小高度树
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>树是一个无向图，其中任何两个顶点只通过一条路径连接。 换句话说，一个任何没有简单环路的连通图都是一棵树。</p>
+<p>给你一棵包含 n 个节点的树，标记为 0 到 n - 1 。给定数字 n 和一个有 n - 1 条无向边的 edges 列表（每一个边都是一对标签），其中 edges[i] &#x3D; [ai, bi] 表示树中节点 ai 和 bi 之间存在一条无向边。</p>
+<p>可选择树中任何一个节点作为根。当选择节点 x 作为根节点时，设结果树的高度为 h 。在所有可能的树中，具有最小高度的树（即，min(h)）被称为 最小高度树 。</p>
+<p>请你找到所有的 最小高度树 并按 任意顺序 返回它们的根节点标签列表。</p>
+<p>树的 高度 是指根节点和叶子节点之间最长向下路径上边的数量。</p>
+<p>示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2020/09/01/e1.jpg"></p>
+<p>输入：n &#x3D; 4, edges &#x3D; [[1,0],[1,2],[1,3]]</p>
+<p>输出：[1]</p>
+<p>解释：如图所示，当根是标签为 1 的节点时，树的高度是 1 ，这是唯一的最小高度树。</p>
+<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2020/09/01/e2.jpg"></p>
+<p>输入：n &#x3D; 6, edges &#x3D; [[3,0],[3,1],[3,2],[3,4],[5,4]]</p>
+<p>输出：[3,4]</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 2 * 104</p>
+<p>edges.length &#x3D;&#x3D; n - 1</p>
+<p>0 &lt;&#x3D; ai, bi &lt; n</p>
+<p>ai !&#x3D; bi</p>
+<p>所有 (ai, bi) 互不相同</p>
+<p>给定的输入 保证 是一棵树，并且 不会有重复的边<br>#解题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">int findLongestNode(int u, int * parent, const struct ListNode ** adj, int n) &#123;</span><br><span class="line">    int * queue = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    bool * visit = (bool *)malloc(sizeof(bool) * n);</span><br><span class="line">    memset(visit, 0, sizeof(bool) * n);</span><br><span class="line">    queue[tail++] = u;</span><br><span class="line">    visit[u] = true;</span><br><span class="line">    int res = -1;</span><br><span class="line"></span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        int curr = queue[head++];</span><br><span class="line">        res = curr;</span><br><span class="line">        struct ListNode * node = adj[curr];</span><br><span class="line">        while (node) &#123;</span><br><span class="line">            if (!visit[node-&gt;val]) &#123;</span><br><span class="line">                visit[node-&gt;val] = true;</span><br><span class="line">                parent[node-&gt;val] = curr;</span><br><span class="line">                queue[tail++] = node-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(queue);</span><br><span class="line">    free(visit);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int* findMinHeightTrees(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize)&#123;</span><br><span class="line">    int * res = NULL;</span><br><span class="line">    if (n == 1) &#123;</span><br><span class="line">        res = (int *)malloc(sizeof(int));</span><br><span class="line">        *res = 0;</span><br><span class="line">        *returnSize = 1;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct ListNode ** adj = (struct ListNode *)malloc(sizeof(struct ListNode *) * n);</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        adj[i] = NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; edgesSize; i++) &#123;</span><br><span class="line">        int u = edges[i][0];</span><br><span class="line">        int v = edges[i][1];</span><br><span class="line">        struct ListNode * node = (struct ListNode *)malloc(sizeof(struct ListNode));</span><br><span class="line">        node-&gt;val = u;</span><br><span class="line">        node-&gt;next = adj[v];</span><br><span class="line">        adj[v] = node;</span><br><span class="line">        node = (struct ListNode *)malloc(sizeof(struct ListNode));</span><br><span class="line">        node-&gt;val = v;</span><br><span class="line">        node-&gt;next = adj[u];</span><br><span class="line">        adj[u] = node;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int * parent = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    /* 找到与节点 0 最远的节点 x */</span><br><span class="line">    int x = findLongestNode(0, parent, adj, n);</span><br><span class="line">    /* 找到与节点 x 最远的节点 y */</span><br><span class="line">    int y = findLongestNode(x, parent, adj, n);</span><br><span class="line">    /* 求出节点 x 到节点 y 的路径 */</span><br><span class="line">    int * path = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    int pos = 0;</span><br><span class="line">    parent[x] = -1;</span><br><span class="line">    while (y != -1) &#123;</span><br><span class="line">        path[pos++] = y;</span><br><span class="line">        y = parent[y];</span><br><span class="line">    &#125;</span><br><span class="line">    if (pos % 2 == 0) &#123;</span><br><span class="line">        res = (int *)malloc(sizeof(int) * 2);</span><br><span class="line">        res[0] = path[pos / 2 - 1];</span><br><span class="line">        res[1] = path[pos / 2];</span><br><span class="line">        *returnSize = 2;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        res = (int *)malloc(sizeof(int));</span><br><span class="line">        *res = path[pos / 2];</span><br><span class="line">        *returnSize = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    free(path);</span><br><span class="line">    free(parent);</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        struct ListNode * node = adj[i];</span><br><span class="line">        while (node) &#123;</span><br><span class="line">            struct ListNode * curr = node;</span><br><span class="line">            node = curr-&gt;next;</span><br><span class="line">            free(curr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(adj);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/minimum-height-trees/solutions/1395249/zui-xiao-gao-du-shu-by-leetcode-solution-6v6f/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/" data-id="cltvbgbjm000d96o7edy52o0e" data-title="3-17最小高度树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">3-16矩阵中移动的最大次数块</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/">3-17最小高度树</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/">3-16矩阵中移动的最大次数块</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/">3-15-卖木头块</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/">3-14合并后数组中的最大元素</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/">3-12在受污染的二叉树中查找元素</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
