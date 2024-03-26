@@ -69,6 +69,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-16矩阵中移动的最大次数块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2024-03-17T08:57:00.000Z" itemprop="datePublished">2024-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/">3-16矩阵中移动的最大次数块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始、大小为 m x n 的矩阵 grid ，矩阵由若干 正 整数组成。</p>
+<p>你可以从矩阵第一列中的 任一 单元格出发，按以下方式遍历 grid ：</p>
+<p>从单元格 (row, col) 可以移动到 (row - 1, col + 1)、(row, col + 1) 和 (row + 1, col + 1) </p>
+<p>三个单元格中任一满足值 严格 大于当前单元格的单元格。</p>
+<p>返回你在矩阵中能够 移动 的 最大 次数。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2023/04/11/yetgriddrawio-10.png"></p>
+<p>输入：grid &#x3D; [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]</p>
+<p>输出：3</p>
+<p>解释：可以从单元格 (0, 0) 开始并且按下面的路径移动：</p>
+<ul>
+<li><p>(0, 0) -&gt; (0, 1).</p>
+</li>
+<li><p>(0, 1) -&gt; (1, 2).</p>
+</li>
+<li><p>(1, 2) -&gt; (2, 3).</p>
+</li>
+</ul>
+<p>可以证明这是能够移动的最大次数。</p>
+<p>示例 2：</p>
+<p><img src="https://assets.leetcode.com/uploads/2023/04/12/yetgrid4drawio.png"></p>
+<p>输入：grid &#x3D; [[3,2,4],[2,1,9],[1,1,7]]</p>
+<p>输出：0</p>
+<p>解释：从第一列的任一单元格开始都无法移动。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxMoves(self, grid: List[List[int]]) -&gt; int:</span><br><span class="line">        m, n = len(grid), len(grid[0])</span><br><span class="line">        q = set(range(m))</span><br><span class="line">        for j in range(1, n):</span><br><span class="line">            q2 = set()</span><br><span class="line">            for i in q:</span><br><span class="line">                for i2 in [i - 1, i, i + 1]:</span><br><span class="line">                    if 0 &lt;= i2 &lt; m and grid[i][j - 1] &lt; grid[i2][j]:</span><br><span class="line">                        q2.add(i2)</span><br><span class="line">            q = q2</span><br><span class="line">            if not q:</span><br><span class="line">                return j - 1</span><br><span class="line">        return n - 1</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/maximum-number-of-moves-in-a-grid/solutions/2684036/ju-zhen-zhong-yi-dong-de-zui-da-ci-shu-b-b7jx/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" data-id="clu7t716a000chlo7ctd1fbi9" data-title="3-16矩阵中移动的最大次数块" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-15-卖木头块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" class="article-date">
@@ -138,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" data-id="clu6y2xtb000ayao70v8hg1r5" data-title="3-15-卖木头块" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" data-id="clu7t716a000bhlo72fcjd15s" data-title="3-15-卖木头块" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -209,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="clu6y2xtb000byao7gbzn00e8" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="clu7t716a000ahlo7acfkd4qs" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -300,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="clu6y2xta0009yao7eickhkio" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="clu7t71690009hlo7d9xt476h" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -364,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="clu6y2xta0008yao7gu9m3xig" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="clu7t71690008hlo79j4zcdsj" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -424,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="clu6y2xtd000nyao747ro4pio" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="clu7t716c000phlo7dvs294z9" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -469,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="clu6y2xtd000oyao7dw0dhlzn" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="clu7t716c000ohlo755iqeit3" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -537,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clu6y2xtd000myao7h271cyug" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clu7t716c000nhlo7f8magxe9" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -587,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="clu6y2xte000xyao7e40s4711" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="clu7t716e000yhlo78sbk5xic" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -662,75 +723,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clu6y2xtf000yyao7evatbxop" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-使二叉树所有路径值相等的最小代价先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" class="article-date">
-  <time class="dt-published" datetime="2024-02-28T14:53:01.000Z" itemprop="datePublished">2024-02-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/">使二叉树所有路径值相等的最小代价先</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数 n 表示一棵 满二叉树 里面节点的数目，节点编号从 1 到 n 。根节点编号为 1 ，树中每个非叶子节点 i 都有两个孩子，分别是左孩子 2 * i 和右孩子 2 * i + 1 。</p>
-<p>树中每个节点都有一个值，用下标从 0 开始、长度为 n 的整数数组 cost 表示，其中 cost[i] 是第 i + 1 个节点的值。每次操作，你可以将树中 任意 节点的值 增加 1 。你可以执行操作 任意 次。</p>
-<p>你的目标是让根到每一个 叶子结点 的路径值相等。请你返回 最少 需要执行增加操作多少次。</p>
-<p>注意：</p>
-<p>满二叉树 指的是一棵树，它满足树中除了叶子节点外每个节点都恰好有 2 个子节点，且所有叶子节点距离根节点距离相同。<br>路径值 指的是路径上所有节点的值之和。</p>
-<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode.com/uploads/2023/04/04/binaryytreeedrawio-4.png"></p>
-<p>输入：n &#x3D; 7, cost &#x3D; [1,5,2,2,3,3,1]</p>
-<p>输出：6</p>
-<p>解释：我们执行以下的增加操作：</p>
-<ul>
-<li><p>将节点 4 的值增加一次。</p>
-</li>
-<li><p>将节点 3 的值增加三次。</p>
-</li>
-<li><p>将节点 7 的值增加两次。</p>
-</li>
-</ul>
-<p>从根到叶子的每一条路径值都为 9 。</p>
-<p>总共增加次数为 1 + 3 + 2 &#x3D; 6 。</p>
-<p>这是最小的答案。</p>
-<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p><img src="https://assets.leetcode.com/uploads/2023/04/04/binaryytreee2drawio.png"></p>
-<p>输入：n &#x3D; 3, cost &#x3D; [5,3,3]</p>
-<p>输出：0</p>
-<p>解释：两条路径已经有相等的路径值，所以不需要执行任何增加操作。</p>
-<p>提示：</p>
-<p>3 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>n + 1 是 2 的幂</p>
-<p>cost.length &#x3D;&#x3D; n</p>
-<p>1 &lt;&#x3D; cost[i] &lt;&#x3D; 104</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#define MAX(a, b) ((a) &lt; (b) ? (b) : (a))</span><br><span class="line">#define ABS(a) ((a) &lt; 0 ? -(a) : (a))</span><br><span class="line">int minIncrements(int n, int* cost, int costSize)&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    for (int i = n / 2; i &gt; 0; i--) &#123;</span><br><span class="line">        ans += ABS(cost[i * 2 - 1] - cost[i * 2]);</span><br><span class="line">        cost[i - 1] += MAX(cost[i * 2 - 1], cost[i * 2]);</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="clu6y2xte000uyao7dqgrdcz4" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clu7t716e000zhlo7hmgu0qqv" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -778,6 +771,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/26/3-26%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E6%B1%82%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E5%9B%BE%E7%B1%BB/">3-26设计可以求最短路径的图类</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/25/3-25%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-II%E6%95%B0/">3-25零钱兑换 II数</a>
           </li>
         
@@ -791,10 +788,6 @@
         
           <li>
             <a href="/2024/03/25/3-22%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%B0%91%E8%AE%BF%E9%97%AE%E7%9A%84%E6%A0%BC%E5%AD%90%E6%95%B0%E6%A0%91/">3-22网格图中最少访问的格子数树</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/25/3-21%E9%A2%91%E7%8E%87%E8%B7%9F%E8%B8%AA%E5%99%A8%E6%A0%91/">3-21频率跟踪器树</a>
           </li>
         
       </ul>
