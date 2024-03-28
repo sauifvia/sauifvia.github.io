@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>3-28访问完所有房间的第一天数 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：你需要访问 n 个房间，房间从 0 到 n - 1 编号。同时，每一天都有一个日期编号，从 0 开始，依天数递增。你每天都会访问一个房间。 最开始的第 0 天，你访问 0 号房间。给你一个长度为 n 且 下标从 0 开始 的数组 nextVisit 。在接下来的几天中，你访问房间的 次序 将根据下面的 规则 决定： 假设某一天，你访问 i 号房间。 如果算上本次访问，访问 i 号房间的次数为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3-28访问完所有房间的第一天数">
+<meta property="og:url" content="http://example.com/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：你需要访问 n 个房间，房间从 0 到 n - 1 编号。同时，每一天都有一个日期编号，从 0 开始，依天数递增。你每天都会访问一个房间。 最开始的第 0 天，你访问 0 号房间。给你一个长度为 n 且 下标从 0 开始 的数组 nextVisit 。在接下来的几天中，你访问房间的 次序 将根据下面的 规则 决定： 假设某一天，你访问 i 号房间。 如果算上本次访问，访问 i 号房间的次数为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-28T09:35:49.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:43:38.845Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-3-28访问完所有房间的第一天数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-28T09:35:49.000Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      3-28访问完所有房间的第一天数
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>你需要访问 n 个房间，房间从 0 到 n - 1 编号。同时，每一天都有一个日期编号，从 0 开始，依天数递增。你每天都会访问一个房间。</p>
+<p>最开始的第 0 天，你访问 0 号房间。给你一个长度为 n 且 下标从 0 开始 的数组 nextVisit 。在接下来的几天中，你访问房间的 次序 将根据下面的 规则 决定：</p>
+<p>假设某一天，你访问 i 号房间。</p>
+<p>如果算上本次访问，访问 i 号房间的次数为 奇数 ，那么 第二天 需要访问 nextVisit[i] 所指定的房间，</p>
+<p>其中 0 &lt;&#x3D; nextVisit[i] &lt;&#x3D; i 。</p>
+<p>如果算上本次访问，访问 i 号房间的次数为 偶数 ，那么 第二天 需要访问 (i + 1) mod n 号房间。</p>
+<p>请返回你访问完所有房间的第一天的日期编号。题目数据保证总是存在这样的一天。由于答案可能很大，返回对 109 + 7 取余后的结果。</p>
+<p>示例 1：</p>
+<p>输入：nextVisit &#x3D; [0,0]</p>
+<p>输出：2</p>
+<p>解释：</p>
+<ul>
+<li><p>第 0 天，你访问房间 0 。访问 0 号房间的总次数为 1 ，次数为奇数。<br>下一天你需要访问房间的编号是 nextVisit[0] &#x3D; 0</p>
+</li>
+<li><p>第 1 天，你访问房间 0 。访问 0 号房间的总次数为 2 ，次数为偶数。<br>下一天你需要访问房间的编号是 (0 + 1) mod 2 &#x3D; 1</p>
+</li>
+<li><p>第 2 天，你访问房间 1 。这是你第一次完成访问所有房间的那天。<br>示例 2：</p>
+</li>
+</ul>
+<p>输入：nextVisit &#x3D; [0,0,2]</p>
+<p>输出：6</p>
+<p>解释：</p>
+<p>你每天访问房间的次序是 [0,0,1,0,0,1,2,…] 。</p>
+<p>第 6 天是你访问完所有房间的第一天。</p>
+<p>示例 3：</p>
+<p>输入：nextVisit &#x3D; [0,1,2,0]</p>
+<p>输出：6</p>
+<p>解释：</p>
+<p>你每天访问房间的次序是 [0,0,1,1,2,2,3,…] 。</p>
+<p>第 6 天是你访问完所有房间的第一天。</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; nextVisit.length</p>
+<p>2 &lt;&#x3D; n &lt;&#x3D; 105</p>
+<p>0 &lt;&#x3D; nextVisit[i] &lt;&#x3D; i</p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const int MOD = 1e9 + 7;</span><br><span class="line"></span><br><span class="line">int firstDayBeenInAllRooms(int* nextVisit, int nextVisitSize) &#123;</span><br><span class="line">    int dp[nextVisitSize ];</span><br><span class="line">    memset(dp, 0, sizeof(dp));</span><br><span class="line"></span><br><span class="line">    // 初始化原地待一天+访问下一个房间一天</span><br><span class="line">    dp[0] = 2; </span><br><span class="line">    for (int i = 1; i &lt; nextVisitSize; i++) &#123;</span><br><span class="line">        int to = nextVisit[i];</span><br><span class="line">        dp[i] = 2 + dp[i - 1];</span><br><span class="line">        if (to) &#123;</span><br><span class="line">            // 避免负数</span><br><span class="line">            dp[i] = (dp[i] - dp[to - 1] + MOD) % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[i] = (dp[i] + dp[i - 1]) % MOD;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[nextVisitSize - 2]; //题目保证n &gt;= 2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/first-day-where-you-have-been-in-all-the-rooms/solutions/2710218/fang-wen-wan-suo-you-fang-jian-de-di-yi-p7fc2/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/" data-id="club1rz4q000oxjo7cwg67p00" data-title="3-28访问完所有房间的第一天数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">3-27统计将重叠区间合并成组的方案数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/">3-28访问完所有房间的第一天数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">3-27统计将重叠区间合并成组的方案数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/26/3-26%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E6%B1%82%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E5%9B%BE%E7%B1%BB/">3-26设计可以求最短路径的图类</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/25/3-25%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-II%E6%95%B0/">3-25零钱兑换 II数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/25/3-24-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2%E6%95%B0/">3-24 零钱兑换数</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
