@@ -69,6 +69,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2-26二叉搜索树的最近公共祖先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="article-date">
+  <time class="dt-published" datetime="2024-02-25T08:54:47.000Z" itemprop="datePublished">2024-02-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">2-26二叉搜索树的最近公共祖先</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目：给定一个二叉搜索树-找到该树中两个指定节点的最近公共祖先。"><a href="#题目：给定一个二叉搜索树-找到该树中两个指定节点的最近公共祖先。" class="headerlink" title="题目：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。"></a>题目：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</h1><p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>例如，给定如下二叉搜索树:  root &#x3D; [6,2,8,0,4,7,9,null,null,3,5]</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png"></p>
+<p>示例 1:</p>
+<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8</p>
+<p>输出: 6 </p>
+<p>解释: 节点 2 和节点 8 的最近公共祖先是 6。</p>
+<p>示例 2:</p>
+<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 4</p>
+<p>输出: 2</p>
+<p>解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。</p>
+<p>说明:</p>
+<p>所有节点的值都是唯一的。</p>
+<p>p、q 为不同节点且均存在于给定的二叉搜索树中。</p>
+<p>#解题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">struct TreeNode** getPath(struct TreeNode* root, struct TreeNode* target, int* num) &#123;</span><br><span class="line">    struct TreeNode** path = malloc(sizeof(struct TreeNode*) * 2001);</span><br><span class="line">    struct TreeNode* node = root;</span><br><span class="line">    while (node != target) &#123;</span><br><span class="line">        path[(*num)++] = node;</span><br><span class="line">        if (target-&gt;val &lt; node-&gt;val) &#123;</span><br><span class="line">            node = node-&gt;left;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            node = node-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    path[(*num)++] = node;</span><br><span class="line">    return path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) &#123;</span><br><span class="line">    int num_p = 0, num_q = 0;</span><br><span class="line">    struct TreeNode** path_p = getPath(root, p, &amp;num_p);</span><br><span class="line">    struct TreeNode** path_q = getPath(root, q, &amp;num_q);</span><br><span class="line">    struct TreeNode* ancestor;</span><br><span class="line">    for (int i = 0; i &lt; num_p &amp;&amp; i &lt; num_q; ++i) &#123;</span><br><span class="line">        if (path_p[i] == path_q[i]) &#123;</span><br><span class="line">            ancestor = path_p[i];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ancestor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="cluvbp4ah00071zo71sl0dzjc" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-二叉搜索树最近节点查询树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" class="article-date">
@@ -122,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="cluvblk5f000y12o77xp29ryb" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="cluvbp4an000y1zo76npi2ld9" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -188,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" data-id="cluvblk5g000z12o781bmb3zl" data-title="二叉树中的第 K 大层和树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" data-id="cluvbp4an00101zo7d3yycwji" data-title="二叉树中的第 K 大层和树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -241,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/" data-id="cluvblk5g001512o7biz0fwro" data-title="根据前序和后序遍历构造二叉树树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/22/%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A0%91/" data-id="cluvbp4ao00151zo7c8tigxqm" data-title="根据前序和后序遍历构造二叉树树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -294,7 +348,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cluvblk5g001012o7e8t99smf" data-title="从中序与后序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/21/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cluvbp4ao00121zo73i36fy8r" data-title="从中序与后序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -349,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cluvblk5g001112o76jmffenc" data-title="从前序与中序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/20/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" data-id="cluvbp4an00111zo75fcl5ce1" data-title="从前序与中序遍历序列构造二叉树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -403,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cluvblk5b000612o7cs7rgzol" data-title="2-19N叉树的后序遍历" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/19/2-19N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cluvbp4ah00061zo7do7ufemf" data-title="2-19N叉树的后序遍历" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -455,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/18/2-18%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="cluvblk5a000512o79nem23im" data-title="2-18学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/18/2-18%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="cluvbp4ah00051zo722pnftxq" data-title="2-18学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -507,7 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cluvblk5a000412o75o1rffgx" data-title="2-17学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cluvbp4ag00031zo7grcbavj4" data-title="2-17学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -604,53 +658,7 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" data-id="cluvblk5a000312o7239idqj8" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2-15二叉从上到下树层序遍历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="article-date">
-  <time class="dt-published" datetime="2024-02-15T06:26:21.000Z" itemprop="datePublished">2024-02-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">2-15学习记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#题目：<br>给你二叉树的根节点 root ，返回其节点值 自底向上的层序遍历 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</p>
-<p>#示例 1：</p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg"></p>
-<p>输入：root &#x3D; [3,9,20,null,null,15,7]<br>输出：[[15,7],[9,20],[3]]<br>#示例 2：</p>
-<p>输入：root &#x3D; [1]<br>输出：[[1]]<br>#示例 3：</p>
-<p>输入：root &#x3D; []<br>输出：[]<br>#思路：</p>
-<p>#题解：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">int** levelOrderBottom(struct TreeNode* root, int* returnSize, int** returnColumnSizes) &#123;</span><br><span class="line">    int** levelOrder = malloc(sizeof(int*) * 2001);</span><br><span class="line">    *returnColumnSizes = malloc(sizeof(int) * 2001);</span><br><span class="line">    *returnSize = 0;</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return levelOrder;</span><br><span class="line">    &#125;</span><br><span class="line">    struct TreeNode** q = malloc(sizeof(struct TreeNode*) * 2001);</span><br><span class="line">    int left = 0, right = 0;</span><br><span class="line">    q[right++] = root;</span><br><span class="line">    while (left &lt; right) &#123;</span><br><span class="line">        int len = right - left;</span><br><span class="line">        int* level = malloc(sizeof(int) * len);</span><br><span class="line">        (*returnColumnSizes)[*returnSize] = len;</span><br><span class="line">        for (int i = 0; i &lt; len; ++i) &#123;</span><br><span class="line">            struct TreeNode* node = q[left++];</span><br><span class="line">            level[i] = node-&gt;val;</span><br><span class="line">            if (node-&gt;left != NULL) &#123;</span><br><span class="line">                q[right++] = node-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            if (node-&gt;right != NULL) &#123;</span><br><span class="line">                q[right++] = node-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        levelOrder[(*returnSize)++] = level;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; 2 * i &lt; *returnSize; ++i) &#123;</span><br><span class="line">        int* tmp1 = levelOrder[i];</span><br><span class="line">        levelOrder[i] = levelOrder[(*returnSize) - i - 1];</span><br><span class="line">        levelOrder[(*returnSize) - i - 1] = tmp1;</span><br><span class="line">        int tmp2 = (*returnColumnSizes)[i];</span><br><span class="line">        (*returnColumnSizes)[i] = (*returnColumnSizes)[(*returnSize) - i - 1];</span><br><span class="line">        (*returnColumnSizes)[(*returnSize) - i - 1] = tmp2;</span><br><span class="line">    &#125;</span><br><span class="line">    return levelOrder;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="cluvblk59000212o75qj76rk0" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" data-id="cluvbp4ag00021zo70l6g27he" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -698,6 +706,10 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
       <ul>
         
           <li>
+            <a href="/2024/04/11/4-5%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BCI/">4-5节点与其祖先之间的最大差值I</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/">4-4有向无环图中一个节点的所有祖先I</a>
           </li>
         
@@ -711,10 +723,6 @@ int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColum
         
           <li>
             <a href="/2024/04/07/4-1%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86I/">4-1检查数组是否存在有效划分I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/">3-29元素和最小的山形三元组 I</a>
           </li>
         
       </ul>

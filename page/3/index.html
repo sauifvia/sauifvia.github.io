@@ -69,6 +69,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-14合并后数组中的最大元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-14T07:55:26.000Z" itemprop="datePublished">2024-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/">3-14合并后数组中的最大元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始、由正整数组成的数组 nums 。</p>
+<p>你可以在数组上执行下述操作 任意 次：</p>
+<p>选中一个同时满足 0 &lt;&#x3D; i &lt; nums.length - 1 和 nums[i] &lt;&#x3D; </p>
+<p>nums[i + 1] 的整数 i 。将元素 nums[i + 1] 替换为 nums[i] </p>
+<ul>
+<li>nums[i + 1] ，并从数组中删除元素 nums[i] 。</li>
+</ul>
+<p>返回你可以从最终数组中获得的 最大 元素的值。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p>输入：nums &#x3D; [2,3,7,9,3]</p>
+<p>输出：21</p>
+<p>解释：我们可以在数组上执行下述操作：</p>
+<ul>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [5,7,9,3] 。</p>
+</li>
+<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,16,3] 。</p>
+</li>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [21,3] 。</p>
+</li>
+</ul>
+<p>最终数组中的最大元素是 21 。可以证明我们无法获得更大的元素。</p>
+<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p>输入：nums &#x3D; [5,3,3]</p>
+<p>输出：11</p>
+<p>解释：我们可以在数组上执行下述操作：</p>
+<ul>
+<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,6] 。</p>
+</li>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [11] 。</p>
+</li>
+</ul>
+<p>最终数组中只有一个元素，即 11 。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 106</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">long long maxArrayValue(int* nums, int numsSize)&#123;</span><br><span class="line">    long long sum = nums[numsSize - 1];</span><br><span class="line">    for (int i = numsSize - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">        sum = nums[i] &lt;= sum ? nums[i] + sum : nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/largest-element-in-an-array-after-merge-operations/solutions/2679835/he-bing-hou-shu-zu-zhong-de-zui-da-yuan-s2b5o/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="cluvbp4ai000a1zo7bx7mardt" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-12在受污染的二叉树中查找元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" class="article-date">
@@ -148,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="cluvblk5b000912o7b42wdfgq" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="cluvbp4ai00091zo74zyh6icm" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -212,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="cluvblk5b000812o72ocm1ub7" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="cluvbp4ah00081zo74mmd032h" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -272,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="cluvblk5f000s12o7dv4e9583" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="cluvbp4am000s1zo75ol3er48" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -317,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="cluvblk5f000r12o7eqitfs6f" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="cluvbp4am000r1zo70kj84wwq" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -385,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="cluvblk5e000q12o7gksx5am5" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="cluvbp4am000q1zo75pvl9uhm" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -435,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="cluvblk5g001412o73hxr8ssk" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="cluvbp4ao00161zo723jqdk9x" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -510,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="cluvblk5g001612o7496idrcb" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="cluvbp4ao00171zo79hanehnq" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -578,7 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="cluvblk5g001212o75l13ahi8" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="cluvbp4ao00131zo7ewu8cmrs" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -661,61 +732,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="cluvblk5h001712o7h0o6c7gs" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2-26二叉搜索树的最近公共祖先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="article-date">
-  <time class="dt-published" datetime="2024-02-25T08:54:47.000Z" itemprop="datePublished">2024-02-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">2-26二叉搜索树的最近公共祖先</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目：给定一个二叉搜索树-找到该树中两个指定节点的最近公共祖先。"><a href="#题目：给定一个二叉搜索树-找到该树中两个指定节点的最近公共祖先。" class="headerlink" title="题目：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。"></a>题目：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</h1><p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-<p>例如，给定如下二叉搜索树:  root &#x3D; [6,2,8,0,4,7,9,null,null,3,5]</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png"></p>
-<p>示例 1:</p>
-<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8</p>
-<p>输出: 6 </p>
-<p>解释: 节点 2 和节点 8 的最近公共祖先是 6。</p>
-<p>示例 2:</p>
-<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 4</p>
-<p>输出: 2</p>
-<p>解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。</p>
-<p>说明:</p>
-<p>所有节点的值都是唯一的。</p>
-<p>p、q 为不同节点且均存在于给定的二叉搜索树中。</p>
-<p>#解题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">struct TreeNode** getPath(struct TreeNode* root, struct TreeNode* target, int* num) &#123;</span><br><span class="line">    struct TreeNode** path = malloc(sizeof(struct TreeNode*) * 2001);</span><br><span class="line">    struct TreeNode* node = root;</span><br><span class="line">    while (node != target) &#123;</span><br><span class="line">        path[(*num)++] = node;</span><br><span class="line">        if (target-&gt;val &lt; node-&gt;val) &#123;</span><br><span class="line">            node = node-&gt;left;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            node = node-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    path[(*num)++] = node;</span><br><span class="line">    return path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) &#123;</span><br><span class="line">    int num_p = 0, num_q = 0;</span><br><span class="line">    struct TreeNode** path_p = getPath(root, p, &amp;num_p);</span><br><span class="line">    struct TreeNode** path_q = getPath(root, q, &amp;num_q);</span><br><span class="line">    struct TreeNode* ancestor;</span><br><span class="line">    for (int i = 0; i &lt; num_p &amp;&amp; i &lt; num_q; ++i) &#123;</span><br><span class="line">        if (path_p[i] == path_q[i]) &#123;</span><br><span class="line">            ancestor = path_p[i];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ancestor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="cluvblk5b000712o729we6u4r" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="cluvbp4ao00181zo707md2etv" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -763,6 +780,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/11/4-5%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BCI/">4-5节点与其祖先之间的最大差值I</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/">4-4有向无环图中一个节点的所有祖先I</a>
           </li>
         
@@ -776,10 +797,6 @@
         
           <li>
             <a href="/2024/04/07/4-1%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86I/">4-1检查数组是否存在有效划分I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/">3-29元素和最小的山形三元组 I</a>
           </li>
         
       </ul>

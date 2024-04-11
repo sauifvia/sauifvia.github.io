@@ -69,6 +69,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-24-零钱兑换数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/25/3-24-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-25T12:37:53.000Z" itemprop="datePublished">2024-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/25/3-24-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2%E6%95%B0/">3-24 零钱兑换数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。</p>
+<p>计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<p>示例 1：</p>
+<p>输入：coins &#x3D; [1, 2, 5], amount &#x3D; 11</p>
+<p>输出：3 </p>
+<p>解释：11 &#x3D; 5 + 5 + 1</p>
+<p>示例 2：</p>
+<p>输入：coins &#x3D; [2], amount &#x3D; 3</p>
+<p>输出：-1</p>
+<p>示例 3：</p>
+<p>输入：coins &#x3D; [1], amount &#x3D; 0</p>
+<p>输出：0</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def coinChange(self, coins: List[int], amount: int) -&gt; int:</span><br><span class="line">        @lru_cache(None)</span><br><span class="line">        def dfs(remain):</span><br><span class="line">            return min(dfs(remain - c) for c in coins) + 1 if remain &gt; 0 else (0 if not remain else inf)</span><br><span class="line">        </span><br><span class="line">        return -1 if (ans := dfs(amount)) == inf else ans</span><br><span class="line"></span><br><span class="line">作者：Benhao</span><br><span class="line">链接：https://leetcode.cn/problems/coin-change/solutions/2705016/python-ji-yi-hua-sou-suo-er-jin-zhi-bfs-d3sd6/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/25/3-24-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2%E6%95%B0/" data-id="cluvbp4al000k1zo78rm2aw1l" data-title="3-24 零钱兑换数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-23统计桌面上的不同数字数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/25/3-23%E7%BB%9F%E8%AE%A1%E6%A1%8C%E9%9D%A2%E4%B8%8A%E7%9A%84%E4%B8%8D%E5%90%8C%E6%95%B0%E5%AD%97%E6%95%B0/" class="article-date">
@@ -117,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/25/3-23%E7%BB%9F%E8%AE%A1%E6%A1%8C%E9%9D%A2%E4%B8%8A%E7%9A%84%E4%B8%8D%E5%90%8C%E6%95%B0%E5%AD%97%E6%95%B0/" data-id="cluvblk5d000j12o79z3ofm5i" data-title="3-23统计桌面上的不同数字数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/25/3-23%E7%BB%9F%E8%AE%A1%E6%A1%8C%E9%9D%A2%E4%B8%8A%E7%9A%84%E4%B8%8D%E5%90%8C%E6%95%B0%E5%AD%97%E6%95%B0/" data-id="cluvbp4al000j1zo7cf3f75yt" data-title="3-23统计桌面上的不同数字数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -175,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/25/3-22%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%B0%91%E8%AE%BF%E9%97%AE%E7%9A%84%E6%A0%BC%E5%AD%90%E6%95%B0%E6%A0%91/" data-id="cluvblk5d000i12o7bww71nvu" data-title="3-22网格图中最少访问的格子数树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/25/3-22%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%B0%91%E8%AE%BF%E9%97%AE%E7%9A%84%E6%A0%BC%E5%AD%90%E6%95%B0%E6%A0%91/" data-id="cluvbp4aj000i1zo75l3n2roy" data-title="3-22网格图中最少访问的格子数树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -265,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/25/3-21%E9%A2%91%E7%8E%87%E8%B7%9F%E8%B8%AA%E5%99%A8%E6%A0%91/" data-id="cluvblk5d000h12o7fqc1cwn0" data-title="3-21频率跟踪器树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/25/3-21%E9%A2%91%E7%8E%87%E8%B7%9F%E8%B8%AA%E5%99%A8%E6%A0%91/" data-id="cluvbp4aj000h1zo76cl216ij" data-title="3-21频率跟踪器树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -323,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/20/3-20-%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E6%9C%80%E5%B0%8F%E9%9D%9E%E9%9B%B6%E4%B9%98%E7%A7%AF%E6%A0%91/" data-id="cluvblk5d000g12o76klo7gz8" data-title="3-20 数组元素的最小非零乘积树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/20/3-20-%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E6%9C%80%E5%B0%8F%E9%9D%9E%E9%9B%B6%E4%B9%98%E7%A7%AF%E6%A0%91/" data-id="cluvbp4aj000g1zo78lguh2o2" data-title="3-20 数组元素的最小非零乘积树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -377,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/19/3-19%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0%E6%A0%91/" data-id="cluvblk5d000f12o7419c0jr3" data-title="3-19好子数组的最大分数树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/19/3-19%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0%E6%A0%91/" data-id="cluvbp4aj000f1zo7digg2g0r" data-title="3-19好子数组的最大分数树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -437,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/19/3-18%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%A0%91/" data-id="cluvblk5c000e12o77de66yx2" data-title="3-18区域和检索 - 数组不可变树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/19/3-18%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%A0%91/" data-id="cluvbp4aj000e1zo79m9cc5r2" data-title="3-18区域和检索 - 数组不可变树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -495,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/" data-id="cluvblk5c000c12o73bwk2orz" data-title="3-17最小高度树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/" data-id="cluvbp4ai000d1zo7bixnhb3h" data-title="3-17最小高度树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -556,7 +607,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" data-id="cluvblk5c000d12o7bv7j1vgu" data-title="3-16矩阵中移动的最大次数块" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" data-id="cluvbp4ai000c1zo7c1c54pkz" data-title="3-16矩阵中移动的最大次数块" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -637,78 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" data-id="cluvblk5c000b12o7gk8t4w2q" data-title="3-15-卖木头块" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-3-14合并后数组中的最大元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-14T07:55:26.000Z" itemprop="datePublished">2024-03-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/">3-14合并后数组中的最大元素</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始、由正整数组成的数组 nums 。</p>
-<p>你可以在数组上执行下述操作 任意 次：</p>
-<p>选中一个同时满足 0 &lt;&#x3D; i &lt; nums.length - 1 和 nums[i] &lt;&#x3D; </p>
-<p>nums[i + 1] 的整数 i 。将元素 nums[i + 1] 替换为 nums[i] </p>
-<ul>
-<li>nums[i + 1] ，并从数组中删除元素 nums[i] 。</li>
-</ul>
-<p>返回你可以从最终数组中获得的 最大 元素的值。</p>
-<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p>输入：nums &#x3D; [2,3,7,9,3]</p>
-<p>输出：21</p>
-<p>解释：我们可以在数组上执行下述操作：</p>
-<ul>
-<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [5,7,9,3] 。</p>
-</li>
-<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,16,3] 。</p>
-</li>
-<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [21,3] 。</p>
-</li>
-</ul>
-<p>最终数组中的最大元素是 21 。可以证明我们无法获得更大的元素。</p>
-<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p>输入：nums &#x3D; [5,3,3]</p>
-<p>输出：11</p>
-<p>解释：我们可以在数组上执行下述操作：</p>
-<ul>
-<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,6] 。</p>
-</li>
-<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [11] 。</p>
-</li>
-</ul>
-<p>最终数组中只有一个元素，即 11 。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105</p>
-<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 106</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">long long maxArrayValue(int* nums, int numsSize)&#123;</span><br><span class="line">    long long sum = nums[numsSize - 1];</span><br><span class="line">    for (int i = numsSize - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">        sum = nums[i] &lt;= sum ? nums[i] + sum : nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/largest-element-in-an-array-after-merge-operations/solutions/2679835/he-bing-hou-shu-zu-zhong-de-zui-da-yuan-s2b5o/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="cluvblk5c000a12o7etj464cj" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" data-id="cluvbp4ai000b1zo7h29a6qqg" data-title="3-15-卖木头块" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -756,6 +736,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/11/4-5%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BCI/">4-5节点与其祖先之间的最大差值I</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/">4-4有向无环图中一个节点的所有祖先I</a>
           </li>
         
@@ -769,10 +753,6 @@
         
           <li>
             <a href="/2024/04/07/4-1%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86I/">4-1检查数组是否存在有效划分I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/">3-29元素和最小的山形三元组 I</a>
           </li>
         
       </ul>
