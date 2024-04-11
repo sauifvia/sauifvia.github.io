@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>4-4有向无环图中一个节点的所有祖先I | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：给你一个正整数 n ，它表示一个 有向无环图 中节点的数目，节点编号为 0 到 n - 1 （包括两者）。 给你一个二维整数数组 edges ，其中 edges[i] &#x3D; [fromi, toi] 表示图中一条从 fromi 到 toi 的单向边。 请你返回一个数组 answer，其中 answer[i]是第 i 个节点的所有 祖先 ，这些祖先节点 升序 排序。 如果 u 通过一系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-4有向无环图中一个节点的所有祖先I">
+<meta property="og:url" content="http://example.com/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：给你一个正整数 n ，它表示一个 有向无环图 中节点的数目，节点编号为 0 到 n - 1 （包括两者）。 给你一个二维整数数组 edges ，其中 edges[i] &#x3D; [fromi, toi] 表示图中一条从 fromi 到 toi 的单向边。 请你返回一个数组 answer，其中 answer[i]是第 i 个节点的所有 祖先 ，这些祖先节点 升序 排序。 如果 u 通过一系">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2019/12/12/e1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2019/12/12/e2.png">
+<meta property="article:published_time" content="2024-04-11T12:51:22.000Z">
+<meta property="article:modified_time" content="2024-04-11T14:13:49.752Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2019/12/12/e1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-4-4有向无环图中一个节点的所有祖先I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/" class="article-date">
+  <time class="dt-published" datetime="2024-04-11T12:51:22.000Z" itemprop="datePublished">2024-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      4-4有向无环图中一个节点的所有祖先I
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个正整数 n ，它表示一个 有向无环图 中节点的数目，节点编号为 0 到 n - 1 （包括两者）。</p>
+<p>给你一个二维整数数组 edges ，其中 edges[i] &#x3D; [fromi, toi] 表示图中一条从 fromi 到 toi 的单向边。</p>
+<p>请你返回一个数组 answer，其中 answer[i]是第 i 个节点的所有 祖先 ，这些祖先节点 升序 排序。</p>
+<p>如果 u 通过一系列边，能够到达 v ，那么我们称节点 u 是节点 v 的 祖先 节点。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode.com/uploads/2019/12/12/e1.png"></p>
+<p>输入：n &#x3D; 8, edgeList &#x3D; [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]</p>
+<p>输出：[[],[],[],[0,1],[0,2],[0,1,3],[0,1,2,3,4],[0,1,2,3]]</p>
+<p>解释：</p>
+<p>上图为输入所对应的图。</p>
+<ul>
+<li><p>节点 0 ，1 和 2 没有任何祖先。</p>
+</li>
+<li><p>节点 3 有 2 个祖先 0 和 1 。</p>
+</li>
+<li><p>节点 4 有 2 个祖先 0 和 2 。</p>
+</li>
+<li><p>节点 5 有 3 个祖先 0 ，1 和 3 。</p>
+</li>
+<li><p>节点 6 有 5 个祖先 0 ，1 ，2 ，3 和 4 。</p>
+</li>
+<li><p>节点 7 有 4 个祖先 0 ，1 ，2 和 3 。</p>
+</li>
+</ul>
+<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p><img src="https://assets.leetcode.com/uploads/2019/12/12/e2.png"></p>
+<p>输入：n &#x3D; 5, edgeList &#x3D; [[0,1],[0,2],[0,3],[0,4],</p>
+<p>[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]</p>
+<p>输出：[[],[0],[0,1],[0,1,2],[0,1,2,3]]</p>
+<p>解释：</p>
+<p>上图为输入所对应的图。</p>
+<ul>
+<li><p>节点 0 没有任何祖先。</p>
+</li>
+<li><p>节点 1 有 1 个祖先 0 。</p>
+</li>
+<li><p>节点 2 有 2 个祖先 0 和 1 。</p>
+</li>
+<li><p>节点 3 有 3 个祖先 0 ，1 和 2 。</p>
+</li>
+<li><p>节点 4 有 4 个祖先 0 ，1 ，2 和 3 。</p>
+</li>
+</ul>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 1000</p>
+<p>0 &lt;&#x3D; edges.length &lt;&#x3D; min(2000, n * (n - 1) &#x2F; 2)</p>
+<p>edges[i].length &#x3D;&#x3D; 2</p>
+<p>0 &lt;&#x3D; fromi, toi &lt;&#x3D; n - 1</p>
+<p>fromi !&#x3D; toi</p>
+<p>图中不会有重边。</p>
+<p>图是 有向 且 无环 的。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int key;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashItem; </span><br><span class="line"></span><br><span class="line">HashItem *hashFindItem(HashItem **obj, int key) &#123;</span><br><span class="line">    HashItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashAddItem(HashItem **obj, int key) &#123;</span><br><span class="line">    if (hashFindItem(obj, key)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    HashItem *pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">    pEntry-&gt;key = key;</span><br><span class="line">    HASH_ADD_INT(*obj, key, pEntry);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashFree(HashItem **obj) &#123;</span><br><span class="line">    HashItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct ListNode *creatListNode(int val) &#123;</span><br><span class="line">    struct ListNode *obj = (struct ListNode *)malloc(sizeof(struct ListNode));</span><br><span class="line">    obj-&gt;val = val;</span><br><span class="line">    obj-&gt;next = NULL;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int cmp(const void *a, const void *b) &#123;</span><br><span class="line">    return *(int *)a - *(int *)b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void freeList(struct ListNode *list) &#123;</span><br><span class="line">    while (list) &#123;</span><br><span class="line">        struct ListNode *p = list;</span><br><span class="line">        list = list-&gt;next;</span><br><span class="line">        free(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int** getAncestors(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize, int** returnColumnSizes) &#123;</span><br><span class="line">    HashItem *anc[n]; // 存储每个节点祖先的辅助数组</span><br><span class="line">    struct ListNode *e[n]; // 邻接表</span><br><span class="line">    int indeg[n]; // 入度表</span><br><span class="line"></span><br><span class="line">    // 预处理</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        anc[i] = NULL;</span><br><span class="line">        e[i] = NULL;</span><br><span class="line">        indeg[i] = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt;edgesSize; i++) &#123;</span><br><span class="line">        int x = edges[i][0], y = edges[i][1];</span><br><span class="line">        struct ListNode *node = creatListNode(y);</span><br><span class="line">        node-&gt;next = e[x];</span><br><span class="line">        e[x] = node;</span><br><span class="line">        ++indeg[y];</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    // 广度优先搜索求解拓扑排序</span><br><span class="line">    int queue[n];</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">        if (!indeg[i]) &#123;</span><br><span class="line">            queue[tail++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        int u = queue[head++];</span><br><span class="line">        for (struct ListNode *p = e[u]; p; p = p-&gt;next) &#123;</span><br><span class="line">            int v = p-&gt;val;</span><br><span class="line">            // 更新子节点的祖先哈希表</span><br><span class="line">            hashAddItem(&amp;anc[v], u);</span><br><span class="line">            for (HashItem *pEntry = anc[u]; pEntry != NULL; pEntry = pEntry-&gt;hh.next) &#123;</span><br><span class="line">                int i = pEntry-&gt;key;</span><br><span class="line">                hashAddItem(&amp;anc[v], i);</span><br><span class="line">            &#125;</span><br><span class="line">            --indeg[v];</span><br><span class="line">            if (!indeg[v]) &#123;</span><br><span class="line">                queue[tail++] = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 转化为答案数组</span><br><span class="line">    *returnSize = n;</span><br><span class="line">    int **res = (int *)malloc(sizeof(int *) * n);</span><br><span class="line">    *returnColumnSizes = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">        int m = HASH_COUNT(anc[i]);</span><br><span class="line">        int pos = 0;</span><br><span class="line">        (*returnColumnSizes)[i] = m;</span><br><span class="line">        res[i] = (int *)malloc(sizeof(int) * m);</span><br><span class="line">        for (HashItem *pEntry = anc[i]; pEntry != NULL; pEntry = pEntry-&gt;hh.next) &#123;</span><br><span class="line">            res[i][pos++] = pEntry-&gt;key;</span><br><span class="line">        &#125;</span><br><span class="line">        qsort(res[i], m, sizeof(int), cmp);</span><br><span class="line">        hashFree(&amp;anc[i]);</span><br><span class="line">        freeList(e[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/" data-id="cluvblk5f000w12o793d6d96b" data-title="4-4有向无环图中一个节点的所有祖先I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/11/4-3%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88I/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4-3用队列实现栈I</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/">4-4有向无环图中一个节点的所有祖先I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/11/4-3%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88I/">4-3用队列实现栈I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/10/4-2%E5%8F%97%E9%99%90%E6%9D%A1%E4%BB%B6%E4%B8%8B%E5%8F%AF%E5%88%B0%E8%BE%BE%E8%8A%82%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AEI/">4-2受限条件下可到达节点的数目I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/07/4-1%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86I/">4-1检查数组是否存在有效划分I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/">3-29元素和最小的山形三元组 I</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
