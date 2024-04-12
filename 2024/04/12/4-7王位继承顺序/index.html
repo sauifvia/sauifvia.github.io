@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>4-7王位继承顺序 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：一个王国里住着国王、他的孩子们、他的孙子们等等。每一个时间点，这个家庭里有人出生也有人死亡。 这个王国有一个明确规定的王位继承顺序，第一继承人总是国王自己。我们定义递归函数 Successor(x, curOrder) ，给定一个人 x 和当前的继承顺序，该函数返回 x 的下一继承人。 Successor(x, curOrder): 如果 x 没有孩子或者所有 x 的孩子都在 curOrde">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-7王位继承顺序">
+<meta property="og:url" content="http://example.com/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：一个王国里住着国王、他的孩子们、他的孙子们等等。每一个时间点，这个家庭里有人出生也有人死亡。 这个王国有一个明确规定的王位继承顺序，第一继承人总是国王自己。我们定义递归函数 Successor(x, curOrder) ，给定一个人 x 和当前的继承顺序，该函数返回 x 的下一继承人。 Successor(x, curOrder): 如果 x 没有孩子或者所有 x 的孩子都在 curOrde">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-12T13:04:01.000Z">
+<meta property="article:modified_time" content="2024-04-12T13:06:20.037Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-4-7王位继承顺序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2024-04-12T13:04:01.000Z" itemprop="datePublished">2024-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      4-7王位继承顺序
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>一个王国里住着国王、他的孩子们、他的孙子们等等。每一个时间点，这个家庭里有人出生也有人死亡。</p>
+<p>这个王国有一个明确规定的王位继承顺序，第一继承人总是国王自己。我们定义递归函数 Successor(x, curOrder) ，给定一个人 x 和当前的继承顺序，该函数返回 x 的下一继承人。</p>
+<p>Successor(x, curOrder):</p>
+<pre><code>如果 x 没有孩子或者所有 x 的孩子都在 curOrder 中：
+    如果 x 是国王，那么返回 null
+    否则，返回 Successor(x 的父亲, curOrder)
+否则，返回 x 不在 curOrder 中最年长的孩子
+</code></pre>
+<p>比方说，假设王国由国王，他的孩子 Alice 和 Bob （Alice 比 Bob 年长）和 Alice 的孩子 Jack 组成。</p>
+<p>一开始， curOrder 为 [“king”].</p>
+<p>调用 Successor(king, curOrder) ，返回 Alice ，所以我们将 Alice 放入 curOrder 中，得到 [“king”, “Alice”] 。</p>
+<p>调用 Successor(Alice, curOrder) ，返回 Jack ，所以我们将 Jack 放入 curOrder 中，得到 [“king”, “Alice”, “Jack”] 。</p>
+<p>调用 Successor(Jack, curOrder) ，返回 Bob ，所以我们将 Bob 放入 curOrder 中，得到 [“king”, “Alice”, “Jack”, “Bob”] 。</p>
+<p>调用 Successor(Bob, curOrder) ，返回 null 。最终得到继承顺序为 [“king”, “Alice”, “Jack”, “Bob”] 。</p>
+<p>通过以上的函数，我们总是能得到一个唯一的继承顺序。</p>
+<p>请你实现 ThroneInheritance 类：</p>
+<p>ThroneInheritance(string kingName) 初始化一个 ThroneInheritance 类的对象。国王的名字作为构造函数的参数传入。</p>
+<p>void birth(string parentName, string childName) 表示 parentName 新拥有了一个名为 childName 的孩子。</p>
+<p>void death(string name) 表示名为 name 的人死亡。一个人的死亡不会影响 Successor 函数，也不会影响当前的继承顺序。你可以只将这个人标记为死亡状态。</p>
+<p>string[] getInheritanceOrder() 返回 除去 死亡人员的当前继承顺序列表。</p>
+<p>示例：</p>
+<p>输入：</p>
+<p>[“ThroneInheritance”, “birth”, “birth”, “birth”, “birth”, “birth”, “birth”, “getInheritanceOrder”, “death”, “getInheritanceOrder”]</p>
+<p>[[“king”], [“king”, “andy”], [“king”, “bob”], [“king”, “catherine”], [“andy”, “matthew”], [“bob”, “alex”], [“bob”, “asha”], [null], [“bob”], [null]]</p>
+<p>输出：</p>
+<p>[null, null, null, null, null, null, null, [“king”, “andy”, “matthew”, “bob”, “alex”, “asha”, “catherine”], null, [“king”, “andy”, “matthew”, “alex”, “asha”, “catherine”]]</p>
+<p>解释：</p>
+<p>ThroneInheritance t&#x3D; new ThroneInheritance(“king”); &#x2F;&#x2F; 继承顺序：king</p>
+<p>t.birth(“king”, “andy”); &#x2F;&#x2F; 继承顺序：king &gt; andy</p>
+<p>t.birth(“king”, “bob”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; bob</p>
+<p>t.birth(“king”, “catherine”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; bob &gt; catherine</p>
+<p>t.birth(“andy”, “matthew”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob &gt; catherine</p>
+<p>t.birth(“bob”, “alex”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob &gt; alex &gt; catherine</p>
+<p>t.birth(“bob”, “asha”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob &gt; alex &gt; asha &gt;<br>catherine</p>
+<p>t.getInheritanceOrder(); &#x2F;&#x2F; 返回 [“king”, “andy”, “matthew”, “bob”, “alex”, “asha”,<br>“catherine”]</p>
+<p>t.death(“bob”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob（已经去世）&gt; alex &gt; asha &gt; catherine</p>
+<p>t.getInheritanceOrder(); &#x2F;&#x2F; 返回 [“king”, “andy”, “matthew”, “alex”, “asha”, “catherine”]</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; kingName.length, parentName.length, childName.length, name.length &lt;&#x3D; 15</p>
+<p>kingName，parentName， childName 和 name 仅包含小写英文字母。</p>
+<p>所有的参数 childName 和 kingName 互不相同。</p>
+<p>所有 death 函数中的死亡名字 name 要么是国王，要么是已经出生了的人员名字。</p>
+<p>每次调用 birth(parentName, childName) 时，测试用例都保证 parentName 对应的人员是活着的。</p>
+<p>最多调用 105 次birth 和 death 。</p>
+<p>最多调用 10 次 getInheritanceOrder 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class ThroneInheritance:</span><br><span class="line"></span><br><span class="line">    def __init__(self, kingName: str):</span><br><span class="line">        self.edges = defaultdict(list)</span><br><span class="line">        self.dead = set()</span><br><span class="line">        self.king = kingName</span><br><span class="line"></span><br><span class="line">    def birth(self, parentName: str, childName: str) -&gt; None:</span><br><span class="line">        self.edges[parentName].append(childName)</span><br><span class="line"></span><br><span class="line">    def death(self, name: str) -&gt; None:</span><br><span class="line">        self.dead.add(name)</span><br><span class="line"></span><br><span class="line">    def getInheritanceOrder(self) -&gt; List[str]:</span><br><span class="line">        ans = list()</span><br><span class="line"></span><br><span class="line">        def preorder(name: str) -&gt; None:</span><br><span class="line">            if name not in self.dead:</span><br><span class="line">                ans.append(name)</span><br><span class="line">            if name in self.edges:</span><br><span class="line">                for childName in self.edges[name]:</span><br><span class="line">                    preorder(childName)</span><br><span class="line"></span><br><span class="line">        preorder(self.king)</span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" data-id="cluwoqxux000zmlo74xrx3cjh" data-title="4-7王位继承顺序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          4-8使数组连续的最少操作数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4-6树节点的第 K 个祖先I</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/">4-8使数组连续的最少操作数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/">4-7王位继承顺序</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/">4-6树节点的第 K 个祖先I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/11/4-5%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BCI/">4-5节点与其祖先之间的最大差值I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/">4-4有向无环图中一个节点的所有祖先I</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
