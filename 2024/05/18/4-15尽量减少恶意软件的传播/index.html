@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>4-15尽量减少恶意软件的传播 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：给出了一个由 n 个节点组成的网络，用 n × n 个邻接矩阵图 graph 表示。在节点网络中，当 graph[i][j] &#x3D; 1 时，表示节点 i 能够直接连接到另一个节点 j。  一些节点 initial 最初被恶意软件感染。只要两个节点直接连接，且其中至少一个节点受到恶意软件的感染，那么两个节点都将被恶意软件感染。这种恶意软件的传播将继续，直到没有更多的节点可以被这种方式感">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-15尽量减少恶意软件的传播">
+<meta property="og:url" content="http://example.com/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：给出了一个由 n 个节点组成的网络，用 n × n 个邻接矩阵图 graph 表示。在节点网络中，当 graph[i][j] &#x3D; 1 时，表示节点 i 能够直接连接到另一个节点 j。  一些节点 initial 最初被恶意软件感染。只要两个节点直接连接，且其中至少一个节点受到恶意软件的感染，那么两个节点都将被恶意软件感染。这种恶意软件的传播将继续，直到没有更多的节点可以被这种方式感">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-18T13:45:18.000Z">
+<meta property="article:modified_time" content="2024-05-18T13:47:12.529Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-4-15尽量减少恶意软件的传播" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" class="article-date">
+  <time class="dt-published" datetime="2024-05-18T13:45:18.000Z" itemprop="datePublished">2024-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      4-15尽量减少恶意软件的传播
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给出了一个由 n 个节点组成的网络，用 n × n 个邻接矩阵图 graph 表示。在节点网络中，当 graph[i][j] &#x3D; 1 时，表示节点 i 能够直接连接到另一个节点 j。 </p>
+<p>一些节点 initial 最初被恶意软件感染。只要两个节点直接连接，且其中至少一个节点受到恶意软件的感染，那么两个节点都将被恶意软件感染。这种恶意软件的传播将继续，直到没有更多的节点可以被这种方式感染。</p>
+<p>假设 M(initial) 是在恶意软件停止传播之后，整个网络中感染恶意软件的最终节点数。</p>
+<p>如果从 initial 中移除某一节点能够最小化 M(initial)， 返回该节点。如果有多个节点满足条件，就返回索引最小的节点。</p>
+<p>请注意，如果某个节点已从受感染节点的列表 initial 中删除，它以后仍有可能因恶意软件传播而受到感染。</p>
+<p>示例 1：</p>
+<p>输入：graph &#x3D; [[1,1,0],[1,1,0],[0,0,1]], initial &#x3D; [0,1]<br>输出：0<br>示例 2：</p>
+<p>输入：graph &#x3D; [[1,0,0],[0,1,0],[0,0,1]], initial &#x3D; [0,2]<br>输出：0<br>示例 3：</p>
+<p>输入：graph &#x3D; [[1,1,1],[1,1,1],[1,1,1]], initial &#x3D; [1,2]<br>输出：1</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; graph.length<br>n &#x3D;&#x3D; graph[i].length<br>2 &lt;&#x3D; n &lt;&#x3D; 300<br>graph[i][j] &#x3D;&#x3D; 0 或 1.<br>graph[i][j] &#x3D;&#x3D; graph[j][i]<br>graph[i][i] &#x3D;&#x3D; 1<br>1 &lt;&#x3D; initial.length &lt;&#x3D; n<br>0 &lt;&#x3D; initial[i] &lt;&#x3D; n - 1<br>initial 中所有整数均不重复</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">int minMalwareSpread(int** graph, int graphSize, int* graphColSize, int* initial, int initialSize) &#123;</span><br><span class="line">    int n = graphSize;</span><br><span class="line">    int ids[n + 1], idToSize[n + 1];</span><br><span class="line">    memset(ids, 0, sizeof(ids));</span><br><span class="line">    memset(idToSize, 0, sizeof(idToSize));</span><br><span class="line">    int id = 0;</span><br><span class="line">    for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">        if (!ids[i]) &#123;</span><br><span class="line">            id++;</span><br><span class="line">            ids[i] = id;</span><br><span class="line">            int size = 1;</span><br><span class="line">            int q[n];</span><br><span class="line">            int front = 0, rear = 0;</span><br><span class="line">            q[rear++] = i;</span><br><span class="line">            while (front &lt; rear) &#123;</span><br><span class="line">                int u = q[front++];</span><br><span class="line">                for (int v = 0; v &lt; n; ++v) &#123;</span><br><span class="line">                    if (!ids[v] &amp;&amp; graph[u][v] == 1) &#123;</span><br><span class="line">                        size++;</span><br><span class="line">                        ids[v] = id;</span><br><span class="line">                        q[rear++] = v;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            idToSize[id] = size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int idToInitials[n + 1];</span><br><span class="line">    memset(idToInitials, 0, sizeof(idToInitials));</span><br><span class="line">    for (int i = 0; i &lt; initialSize; i++) &#123;</span><br><span class="line">        int u = initial[i];</span><br><span class="line">        idToInitials[ids[u]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = n + 1, ansRemoved = 0;</span><br><span class="line">    for (int i = 0; i &lt; initialSize; i++) &#123;</span><br><span class="line">        int u = initial[i];</span><br><span class="line">        int removed = idToInitials[ids[u]] == 1 ? idToSize[ids[u]] : 0;</span><br><span class="line">        if (removed &gt; ansRemoved || (removed == ansRemoved &amp;&amp; u &lt; ans)) &#123;</span><br><span class="line">            ans = u;</span><br><span class="line">            ansRemoved = removed;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" data-id="clwc6687b000yjslxd23dgzl4" data-title="4-15尽量减少恶意软件的传播" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          4-16设计哈希映射
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4-14设计哈希集合I</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/">4-17尽量减少恶意软件的传播 II</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/">4-16设计哈希映射</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/">4-15尽量减少恶意软件的传播</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/">4-14设计哈希集合I</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/">4-13找到冠军2I</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
