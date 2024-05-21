@@ -69,6 +69,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-8使数组连续的最少操作数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-04-12T13:07:37.000Z" itemprop="datePublished">2024-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/">4-8使数组连续的最少操作数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数数组 nums 。每一次操作中，你可以将 nums 中 任意 一个元素替换成 任意 整数。</p>
+<p>如果 nums 满足以下条件，那么它是 连续的 ：</p>
+<p>nums 中所有元素都是 互不相同 的。</p>
+<p>nums 中 最大 元素与 最小 元素的差等于 nums.length - 1 。</p>
+<p>比方说，nums &#x3D; [4, 2, 5, 3] 是 连续的 ，但是 nums &#x3D; [1, 2, 3, 5, 6] 不是连续的 。</p>
+<p>请你返回使 nums 连续 的 最少 操作次数。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [4,2,5,3]</p>
+<p>输出：0</p>
+<p>解释：nums 已经是连续的了。</p>
+<p>示例 2：</p>
+<p>输入：nums &#x3D; [1,2,3,5,6]</p>
+<p>输出：1</p>
+<p>解释：一个可能的解是将最后一个元素变为 4 。</p>
+<p>结果数组为 [1,2,3,5,4] ，是连续数组。</p>
+<p>示例 3：</p>
+<p>输入：nums &#x3D; [1,10,100,1000]</p>
+<p>输出：3</p>
+<p>解释：一个可能的解是：</p>
+<ul>
+<li><p>将第二个元素变为 2 。</p>
+</li>
+<li><p>将第三个元素变为 3 。</p>
+</li>
+<li><p>将第四个元素变为 4 。</p>
+</li>
+</ul>
+<p>结果数组为 [1,2,3,4] ，是连续数组。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 109</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">static int cmp(const void *a, const void *b) &#123;</span><br><span class="line">    return *(int *)a - *(int *)b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int minOperations(int* nums, int numsSize) &#123;</span><br><span class="line">    qsort(nums, numsSize, sizeof(int), cmp);</span><br><span class="line">    int sortedUniqueNums[numsSize];</span><br><span class="line">    sortedUniqueNums[0] = nums[0];</span><br><span class="line">    int pos = 1;</span><br><span class="line">    for (int i = 1; i &lt; numsSize; i++) &#123;</span><br><span class="line">        if (nums[i] != nums[i - 1]) &#123;</span><br><span class="line">            sortedUniqueNums[pos++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int res = numsSize, j = 0;</span><br><span class="line">    for (int i = 0; i &lt; pos; i++) &#123;</span><br><span class="line">        int right = sortedUniqueNums[i] + numsSize - 1;</span><br><span class="line">        while (j &lt; pos &amp;&amp; sortedUniqueNums[j] &lt;= right) &#123;</span><br><span class="line">            res = fmin(res, numsSize - (j - i + 1));</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;      </span><br><span class="line"></span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/" data-id="clwgi2t8600197klxh9b96s3u" data-title="4-8使数组连续的最少操作数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-4-7王位继承顺序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" class="article-date">
@@ -140,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" data-id="clwc6687c0017jslxe3hc30q4" data-title="4-7王位继承顺序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" data-id="clwgi2t8600187klx2dnm7g0d" data-title="4-7王位继承顺序" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -202,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/" data-id="clwc6687c0016jslxd0jod1ad" data-title="4-6树节点的第 K 个祖先I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/" data-id="clwgi2t8600177klxft5z9vrq" data-title="4-6树节点的第 K 个祖先I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -259,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/11/4-5%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BCI/" data-id="clwc6687c0015jslx2htrcx98" data-title="4-5节点与其祖先之间的最大差值I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/11/4-5%E8%8A%82%E7%82%B9%E4%B8%8E%E5%85%B6%E7%A5%96%E5%85%88%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BCI/" data-id="clwgi2t8500157klx139f2w29" data-title="4-5节点与其祖先之间的最大差值I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -346,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/" data-id="clwc6687c0014jslx8fud26m0" data-title="4-4有向无环图中一个节点的所有祖先I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/11/4-4%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88I/" data-id="clwgi2t8600167klx36my7scw" data-title="4-4有向无环图中一个节点的所有祖先I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -411,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/11/4-3%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88I/" data-id="clwc6687c0013jslxbny1di8e" data-title="4-3用队列实现栈I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/11/4-3%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88I/" data-id="clwgi2t8500147klx07fha5gq" data-title="4-3用队列实现栈I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -474,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/10/4-2%E5%8F%97%E9%99%90%E6%9D%A1%E4%BB%B6%E4%B8%8B%E5%8F%AF%E5%88%B0%E8%BE%BE%E8%8A%82%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AEI/" data-id="clwc6687c0012jslxhpavbas1" data-title="4-2受限条件下可到达节点的数目I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/10/4-2%E5%8F%97%E9%99%90%E6%9D%A1%E4%BB%B6%E4%B8%8B%E5%8F%AF%E5%88%B0%E8%BE%BE%E8%8A%82%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AEI/" data-id="clwgi2t8500137klx5x0mg5n2" data-title="4-2受限条件下可到达节点的数目I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -529,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/07/4-1%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86I/" data-id="clwc6687b0011jslx94o95t87" data-title="4-1检查数组是否存在有效划分I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/07/4-1%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86I/" data-id="clwgi2t8500127klx4nbkdgyl" data-title="4-1检查数组是否存在有效划分I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -599,7 +668,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/" data-id="clwc6687a000pjslx6eb0c9dz" data-title="3-29元素和最小的山形三元组 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/" data-id="clwgi2t83000q7klxdvv1cc08" data-title="3-29元素和最小的山形三元组 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -671,85 +740,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/" data-id="clwc6687a000ojslx9aita5bv" data-title="3-28访问完所有房间的第一天数" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-3-27统计将重叠区间合并成组的方案数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-28T09:25:29.000Z" itemprop="datePublished">2024-03-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">3-27统计将重叠区间合并成组的方案数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>给你一个二维整数数组 ranges ，其中 ranges[i] &#x3D; [starti, endi] 表示 starti 到 endi 之间（包括二者）的所有整数都包含在第 i 个区间中。</p>
-<p>你需要将 ranges 分成 两个 组（可以为空），满足：</p>
-<p>每个区间只属于一个组。</p>
-<p>两个有 交集 的区间必须在 同一个 组内。</p>
-<p>如果两个区间有至少 一个 公共整数，那么这两个区间是 有交集 的。</p>
-<p>比方说，区间 [1, 3] 和 [2, 5] 有交集，因为 2 和 3 在两个区间中都被包含。</p>
-<p>请你返回将 ranges 划分成两个组的 总方案数 。由于答案可能很大，将它对 109 + 7 取余 后返回。</p>
-<p>示例 1：</p>
-<p>输入：ranges &#x3D; [[6,10],[5,15]]</p>
-<p>输出：2</p>
-<p>解释：</p>
-<p>两个区间有交集，所以它们必须在同一个组内。</p>
-<p>所以有两种方案：</p>
-<ul>
-<li><p>将两个区间都放在第 1 个组中。</p>
-</li>
-<li><p>将两个区间都放在第 2 个组中。</p>
-</li>
-</ul>
-<p>示例 2：</p>
-<p>输入：ranges &#x3D; [[1,3],[10,20],[2,5],[4,8]]</p>
-<p>输出：4</p>
-<p>解释：</p>
-<p>区间 [1,3] 和 [2,5] 有交集，所以它们必须在同一个组中。</p>
-<p>同理，区间 [2,5] 和 [4,8] 也有交集，所以它们也必须在同一个组中。</p>
-<p>所以总共有 4 种分组方案：</p>
-<ul>
-<li><p>所有区间都在第 1 组。</p>
-</li>
-<li><p>所有区间都在第 2 组。</p>
-</li>
-<li><p>区间 [1,3] ，[2,5] 和 [4,8] 在第 1 个组中，[10,20] 在第 2 个组中。</p>
-</li>
-<li><p>区间 [1,3] ，[2,5] 和 [4,8] 在第 2 个组中，[10,20] 在第 1 个组中。</p>
-</li>
-</ul>
-<p>提示：</p>
-<p>1 &lt;&#x3D; ranges.length &lt;&#x3D; 105</p>
-<p>ranges[i].length &#x3D;&#x3D; 2</p>
-<p>0 &lt;&#x3D; starti &lt;&#x3D; endi &lt;&#x3D; 109</p>
-<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const int mod = 1e9 + 7;</span><br><span class="line"></span><br><span class="line">int cmp(const void *a, const void *b) &#123;</span><br><span class="line">    return (*(int **)a)[0] - (*(int **)b)[0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int countWays(int** ranges, int rangesSize, int* rangesColSize) &#123;</span><br><span class="line">    qsort(ranges, rangesSize, sizeof(int *), cmp);</span><br><span class="line">    long long res = 1;</span><br><span class="line">    for (int i = 0; i &lt; rangesSize; ) &#123;</span><br><span class="line">        int r = ranges[i][1];</span><br><span class="line">        int j = i + 1;</span><br><span class="line">        while (j &lt; rangesSize &amp;&amp; ranges[j][0] &lt;= r) &#123;</span><br><span class="line">            r = fmax(r, ranges[j][1]);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        res = res * 2 % mod;</span><br><span class="line">        i = j;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/solutions/2706464/tong-ji-jiang-zhong-die-qu-jian-he-bing-be3bs/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clwc66879000njslx0659g7fa" data-title="3-27统计将重叠区间合并成组的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/" data-id="clwgi2t83000o7klxhtelgxo5" data-title="3-28访问完所有房间的第一天数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -797,6 +788,10 @@
       <ul>
         
           <li>
+            <a href="/2024/05/21/4-18%E4%BB%8E%E5%8F%8C%E5%80%8D%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%98%E5%8E%9F%E5%8E%9F%E6%95%B0%E7%BB%84/">4-18从双倍数组中还原原数组</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/">4-17尽量减少恶意软件的传播 II</a>
           </li>
         
@@ -810,10 +805,6 @@
         
           <li>
             <a href="/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/">4-14设计哈希集合I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/">4-13找到冠军2I</a>
           </li>
         
       </ul>
