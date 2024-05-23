@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>4-20组合总和 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目：给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。 candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。  对于给定的输入，保证和为 target 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-20组合总和">
+<meta property="og:url" content="http://example.com/2024/05/21/4-20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。 candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。  对于给定的输入，保证和为 target 的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-21T14:41:21.000Z">
+<meta property="article:modified_time" content="2024-05-21T14:42:41.281Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-4-20组合总和" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/21/4-20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" class="article-date">
+  <time class="dt-published" datetime="2024-05-21T14:41:21.000Z" itemprop="datePublished">2024-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      4-20组合总和
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。</p>
+<p>candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。 </p>
+<p>对于给定的输入，保证和为 target 的不同组合数少于 150 个。</p>
+<p>示例 1：</p>
+<p>输入：candidates &#x3D; [2,3,6,7], target &#x3D; 7</p>
+<p>输出：[[2,2,3],[7]]</p>
+<p>解释：</p>
+<p>2 和 3 可以形成一组候选，2 + 2 + 3 &#x3D; 7 。注意 2 可以使用多次。</p>
+<p>7 也是一个候选， 7 &#x3D; 7 。</p>
+<p>仅有这两种组合。</p>
+<p>示例 2：</p>
+<p>输入: candidates &#x3D; [2,3,5], target &#x3D; 8</p>
+<p>输出: [[2,2,2,2],[2,3,3],[3,5]]</p>
+<p>示例 3：</p>
+<p>输入: candidates &#x3D; [2], target &#x3D; 1</p>
+<p>输出: []</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; candidates.length &lt;&#x3D; 30</p>
+<p>2 &lt;&#x3D; candidates[i] &lt;&#x3D; 40</p>
+<p>candidates 的所有元素 互不相同</p>
+<p>1 &lt;&#x3D; target &lt;&#x3D; 40</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">int candidatesSize_tmp;</span><br><span class="line"></span><br><span class="line">int ansSize;</span><br><span class="line"></span><br><span class="line">int combineSize;</span><br><span class="line"></span><br><span class="line">int* ansColumnSize;</span><br><span class="line"></span><br><span class="line">void dfs(int* candidates, int target, int** ans, int* combine, int idx) &#123;</span><br><span class="line">    if (idx == candidatesSize_tmp) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (target == 0) &#123;</span><br><span class="line">        int* tmp = malloc(sizeof(int) * combineSize);</span><br><span class="line">        for (int i = 0; i &lt; combineSize; ++i) &#123;</span><br><span class="line">            tmp[i] = combine[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans[ansSize] = tmp;</span><br><span class="line">        ansColumnSize[ansSize++] = combineSize;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    // 直接跳过</span><br><span class="line">    dfs(candidates, target, ans, combine, idx + 1);</span><br><span class="line">    // 选择当前数</span><br><span class="line">    if (target - candidates[idx] &gt;= 0) &#123;</span><br><span class="line">        combine[combineSize++] = candidates[idx];</span><br><span class="line">        dfs(candidates, target - candidates[idx], ans, combine, idx);</span><br><span class="line">        combineSize--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int** combinationSum(int* candidates, int candidatesSize, int target, int* returnSize, int** returnColumnSizes) &#123;</span><br><span class="line">    candidatesSize_tmp = candidatesSize;</span><br><span class="line">    ansSize = combineSize = 0;</span><br><span class="line">    int** ans = malloc(sizeof(int*) * 1001);</span><br><span class="line">    ansColumnSize = malloc(sizeof(int) * 1001);</span><br><span class="line">    int combine[2001];</span><br><span class="line">    dfs(candidates, target, ans, combine, 0);</span><br><span class="line">    *returnSize = ansSize;</span><br><span class="line">    *returnColumnSizes = ansColumnSize;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/21/4-20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" data-id="clwjesveo0014rqo76j8p3kax" data-title="4-20组合总和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/05/21/4-21%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-III/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          4-21组合总和 III
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/05/21/4-19%E5%87%86%E6%97%B6%E6%8A%B5%E8%BE%BE%E4%BC%9A%E8%AE%AE%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%9C%80%E5%B0%8F%E8%B7%B3%E8%BF%87%E4%BC%91%E6%81%AF%E6%AC%A1%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4-19准时抵达会议现场的最小跳过休息次数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/">4-29将矩阵按对角线排序</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">4-28负二进制转换</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/23/4-27%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/">4-27查询网格图中每一列的宽度</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/23/4-26%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/">4-26快照数组</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/23/4-25%E6%80%BB%E8%A1%8C%E9%A9%B6%E8%B7%9D%E7%A6%BB/">4-25总行驶距离</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
