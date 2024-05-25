@@ -69,6 +69,244 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-5-6摘樱桃" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/25/5-6%E6%91%98%E6%A8%B1%E6%A1%83/" class="article-date">
+  <time class="dt-published" datetime="2024-05-25T14:03:33.000Z" itemprop="datePublished">2024-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/25/5-6%E6%91%98%E6%A8%B1%E6%A1%83/">5-6摘樱桃</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个 n x n 的网格 grid ，代表一块樱桃地，每个格子由以下三种数字的一种来表示：</p>
+<p>0 表示这个格子是空的，所以你可以穿过它。</p>
+<p>1 表示这个格子里装着一个樱桃，你可以摘到樱桃然后穿过它。</p>
+<p>-1 表示这个格子里有荆棘，挡着你的路。</p>
+<p>请你统计并返回：在遵守下列规则的情况下，能摘到的最多樱桃数：</p>
+<p>从位置 (0, 0) 出发，最后到达 (n - 1, n - 1) ，只能向下或向右走，并且只能穿越有效的格子（即只可以穿过值为 0 或者 1 的格子）；</p>
+<p>当到达 (n - 1, n - 1) 后，你要继续走，直到返回到 (0, 0) ，只能向上或向左走，并且只能穿越有效的格子；</p>
+<p>当你经过一个格子且这个格子包含一个樱桃时，你将摘到樱桃并且这个格子会变成空的（值变为 0 ）；<br>如果在 (0, 0) 和 (n - 1, n - 1) 之间不存在一条可经过的路径，则无法摘到任何一个樱桃。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2020/12/14/grid.jpg"></p>
+<p>输入：grid &#x3D; [[0,1,-1],[1,0,-1],[1,1,1]]</p>
+<p>输出：5</p>
+<p>解释：玩家从 (0, 0) 出发：向下、向下、向右、向右移动至 (2, 2) 。<br>在这一次行程中捡到 4 个樱桃，矩阵变成 [[0,1,-1],[0,0,-1],[0,0,0]] 。</p>
+<p>然后，玩家向左、向上、向上、向左返回起点，再捡到 1 个樱桃。</p>
+<p>总共捡到 5 个樱桃，这是最大可能值。</p>
+<p>示例 2：</p>
+<p>输入：grid &#x3D; [[1,1,-1],[1,-1,1],[-1,1,1]]</p>
+<p>输出：0</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; grid.length</p>
+<p>n &#x3D;&#x3D; grid[i].length</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 50</p>
+<p>grid[i][j] 为 -1、0 或 1</p>
+<p>grid[0][0] !&#x3D; -1</p>
+<p>grid[n - 1][n - 1] !&#x3D; -1</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#define MAX(a, b) ((a) &gt; (b) ? (a) : (b))</span><br><span class="line">#define MIN(a, b) ((a) &lt; (b) ? (a) : (b))</span><br><span class="line"></span><br><span class="line">int cherryPickup(int** grid, int gridSize, int* gridColSize)&#123;</span><br><span class="line">    int n = gridSize;</span><br><span class="line">    int ***f = (int ***)malloc(sizeof(int **) * (n * 2 - 1));</span><br><span class="line">    for (int i = 0; i &lt; n * 2 - 1; ++i) &#123;</span><br><span class="line">        f[i] = (int **)malloc(sizeof(int *) * n);</span><br><span class="line">        for (int j = 0; j &lt; n; ++j) &#123;</span><br><span class="line">            f[i][j] = (int *)malloc(sizeof(int) * n);</span><br><span class="line">            for (int k = 0; k &lt; n; ++k) &#123;</span><br><span class="line">                f[i][j][k] = INT_MIN;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    f[0][0][0] = grid[0][0];</span><br><span class="line">    for (int k = 1; k &lt; n * 2 - 1; ++k) &#123;</span><br><span class="line">        for (int x1 = MAX(k - n + 1, 0); x1 &lt;= MIN(k, n - 1); ++x1) &#123;</span><br><span class="line">            int y1 = k - x1;</span><br><span class="line">            if (grid[x1][y1] == -1) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int x2 = x1; x2 &lt;= MIN(k, n - 1); ++x2) &#123;</span><br><span class="line">                int y2 = k - x2;</span><br><span class="line">                if (grid[x2][y2] == -1) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int res = f[k - 1][x1][x2]; // 都往右</span><br><span class="line">                if (x1) &#123;</span><br><span class="line">                    res = MAX(res, f[k - 1][x1 - 1][x2]); // 往下，往右</span><br><span class="line">                &#125;</span><br><span class="line">                if (x2) &#123;</span><br><span class="line">                    res = MAX(res, f[k - 1][x1][x2 - 1]); // 往右，往下</span><br><span class="line">                &#125;</span><br><span class="line">                if (x1 &amp;&amp; x2) &#123;</span><br><span class="line">                    res = MAX(res, f[k - 1][x1 - 1][x2 - 1]); // 都往下</span><br><span class="line">                &#125;</span><br><span class="line">                res += grid[x1][y1];</span><br><span class="line">                if (x2 != x1) &#123; // 避免重复摘同一个樱桃</span><br><span class="line">                    res += grid[x2][y2];</span><br><span class="line">                &#125;</span><br><span class="line">                f[k][x1][x2] = res;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int ret = MAX(f[n * 2 - 2][n - 1][n - 1], 0);</span><br><span class="line">    for (int i = 0; i &lt; n * 2 - 1; ++i) &#123;</span><br><span class="line">        for (int j = 0; j &lt; n; ++j) &#123;</span><br><span class="line">            free(f[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        free(f[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    free(f);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/25/5-6%E6%91%98%E6%A8%B1%E6%A1%83/" data-id="clwm6nqwc001sz9lx8l7v1su3" data-title="5-6摘樱桃" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-5-5拆炸弹" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/25/5-5%E6%8B%86%E7%82%B8%E5%BC%B9/" class="article-date">
+  <time class="dt-published" datetime="2024-05-25T14:02:20.000Z" itemprop="datePublished">2024-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/25/5-5%E6%8B%86%E7%82%B8%E5%BC%B9/">5-5拆炸弹</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>你有一个炸弹需要拆除，时间紧迫！你的情报员会给你一个长度为 n 的 循环 数组 code 以及一个密钥 k 。</p>
+<p>为了获得正确的密码，你需要替换掉每一个数字。所有数字会 同时 被替换。</p>
+<p>如果 k &gt; 0 ，将第 i 个数字用 接下来 k 个数字之和替换。</p>
+<p>如果 k &lt; 0 ，将第 i 个数字用 之前 k 个数字之和替换。</p>
+<p>如果 k &#x3D;&#x3D; 0 ，将第 i 个数字用 0 替换。</p>
+<p>由于 code 是循环的， code[n-1] 下一个元素是 code[0] ，且 code[0] 前一个元素是 code[n-1] 。</p>
+<p>给你 循环 数组 code 和整数密钥 k ，请你返回解密后的结果来拆除炸弹！</p>
+<p>示例 1：</p>
+<p>输入：code &#x3D; [5,7,1,4], k &#x3D; 3</p>
+<p>输出：[12,10,16,13]</p>
+<p>解释：每个数字都被接下来 3 个数字之和替换。解密后的密码为 [7+1+4, 1+4+5, 4+5+7, 5+7+1]。注意<br>到数组是循环连接的。<br>示例 2：</p>
+<p>输入：code &#x3D; [1,2,3,4], k &#x3D; 0</p>
+<p>输出：[0,0,0,0]</p>
+<p>解释：当 k 为 0 时，所有数字都被 0 替换。</p>
+<p>示例 3：</p>
+<p>输入：code &#x3D; [2,4,9,3], k &#x3D; -2</p>
+<p>输出：[12,5,6,13]</p>
+<p>解释：解密后的密码为 [3+9, 2+3, 4+2, 9+4] 。注意到数组是循环连接的。如果 k 是负数，那么和为 之前 的数字。</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; code.length</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 100</p>
+<p>1 &lt;&#x3D; code[i] &lt;&#x3D; 100</p>
+<p>-(n - 1) &lt;&#x3D; k &lt;&#x3D; n - 1</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">int* decrypt(int* code, int codeSize, int k, int* returnSize) &#123;</span><br><span class="line">    int *newCode = (int *)malloc(sizeof(int) * codeSize * 2);</span><br><span class="line">    memcpy(newCode, code, sizeof(int) * codeSize);</span><br><span class="line">    memcpy(newCode + codeSize, code, sizeof(int) * codeSize);</span><br><span class="line">    int *res = (int *)malloc(sizeof(int) * codeSize);</span><br><span class="line">    memset(res, 0, sizeof(int) * codeSize);</span><br><span class="line">    *returnSize = codeSize;</span><br><span class="line">    code = newCode;</span><br><span class="line">    if (k == 0) &#123;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    int l = k &gt; 0 ? 1 : codeSize + k;</span><br><span class="line">    int r = k &gt; 0 ? k : codeSize - 1;</span><br><span class="line">    int w = 0;</span><br><span class="line">    for (int i = l; i &lt;= r; i++) &#123;</span><br><span class="line">        w += code[i];</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; codeSize; i++) &#123;</span><br><span class="line">        res[i] = w;</span><br><span class="line">        w -= code[l];</span><br><span class="line">        w += code[r + 1];</span><br><span class="line">        l++;</span><br><span class="line">        r++;</span><br><span class="line">    &#125;</span><br><span class="line">    free(code);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/25/5-5%E6%8B%86%E7%82%B8%E5%BC%B9/" data-id="clwm6nqwc001rz9lx8w1lfjzo" data-title="5-5拆炸弹" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-5-4规划兼职工作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/25/5-4%E8%A7%84%E5%88%92%E5%85%BC%E8%81%8C%E5%B7%A5%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2024-05-25T13:59:56.000Z" itemprop="datePublished">2024-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/25/5-4%E8%A7%84%E5%88%92%E5%85%BC%E8%81%8C%E5%B7%A5%E4%BD%9C/">5-4规划兼职工作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>你打算利用空闲时间来做兼职工作赚些零花钱。</p>
+<p>这里有 n 份兼职工作，每份工作预计从 startTime[i] 开始到 endTime[i] 结束，报酬为 profit[i]。</p>
+<p>给你一份兼职工作表，包含开始时间 startTime，结束时间 endTime 和预计报酬 profit 三个数组，请你计算并返回可以获得的最大报酬。</p>
+<p>注意，时间上出现重叠的 2 份工作不能同时进行。</p>
+<p>如果你选择的工作在时间 X 结束，那么你可以立刻进行在时间 X 开始的下一份工作。</p>
+<p>示例 1：</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/10/19/sample1_1584.png"></p>
+<p>示例 2：</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/10/19/sample22_1584.png"></p>
+<p>输入：startTime &#x3D; [1,2,3,4,6], endTime &#x3D; [3,5,10,6,9], profit &#x3D; [20,20,100,70,60]</p>
+<p>输出：150</p>
+<p>解释：</p>
+<p>我们选择第 1，4，5 份工作。 </p>
+<p>共获得报酬 150 &#x3D; 20 + 70 + 60。</p>
+<p>示例 3：</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/10/19/sample3_1584.png"></p>
+<p>输入：startTime &#x3D; [1,1,1], endTime &#x3D; [2,3,4], profit &#x3D; [5,6,4]</p>
+<p>输出：6</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; startTime.length &#x3D;&#x3D; endTime.length &#x3D;&#x3D; profit.length &lt;&#x3D; 5 * 10^4</p>
+<p>1 &lt;&#x3D; startTime[i] &lt; endTime[i] &lt;&#x3D; 10^9</p>
+<p>1 &lt;&#x3D; profit[i] &lt;&#x3D; 10^4</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#define MAX(a, b) ((a) &gt; (b) ? (a) : (b))</span><br><span class="line"></span><br><span class="line">int binarySearch(const int jobs[][3], int right, int target) &#123;</span><br><span class="line">    int left = 0;</span><br><span class="line">    while (left &lt; right) &#123;</span><br><span class="line">        int mid = left + (right - left) / 2;</span><br><span class="line">        if (jobs[mid][1] &gt; target) &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            left = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static inline int cmp(const void *pa, const void *pb) &#123;</span><br><span class="line">    int *a = (int *)pa;</span><br><span class="line">    int *b = (int *)pb;</span><br><span class="line">    return a[1] - b[1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int jobScheduling(int* startTime, int startTimeSize, int* endTime, int endTimeSize, int* profit, int profitSize) &#123;</span><br><span class="line">    int n = startTimeSize;</span><br><span class="line">    int jobs[n][3];</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        jobs[i][0] = startTime[i];</span><br><span class="line">        jobs[i][1] = endTime[i];</span><br><span class="line">        jobs[i][2] = profit[i];</span><br><span class="line">    &#125;</span><br><span class="line">    qsort(jobs, n, sizeof(jobs[0]), cmp);</span><br><span class="line">    int dp[n + 1];</span><br><span class="line">    memset(dp, 0, sizeof(dp));</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        int k = binarySearch(jobs, i - 1, jobs[i - 1][0]);</span><br><span class="line">        dp[i] = MAX(dp[i - 1], dp[k] + jobs[i - 1][2]);</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/25/5-4%E8%A7%84%E5%88%92%E5%85%BC%E8%81%8C%E5%B7%A5%E4%BD%9C/" data-id="clwm6nqwc001qz9lxgo5b8jsh" data-title="5-4规划兼职工作" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-5-3雇佣-K-名工人的最低成本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/" class="article-date">
+  <time class="dt-published" datetime="2024-05-25T13:58:37.000Z" itemprop="datePublished">2024-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/">5-3雇佣 K 名工人的最低成本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>有 n 名工人。 给定两个数组 quality 和 wage ，其中，quality[i] 表示第 i 名工人的工作质量，其最低期望工资为 wage[i] 。</p>
+<p>现在我们想雇佣 k 名工人组成一个 工资组。在雇佣 一组 k 名工人时，我们必须按照下述规则向他们支付工资：</p>
+<p>对工资组中的每名工人，应当按其工作质量与同组其他工人的工作质量的比例来支付工资。</p>
+<p>工资组中的每名工人至少应当得到他们的最低期望工资。</p>
+<p>给定整数 k ，返回 组成满足上述条件的付费群体所需的最小金额 。与实际答案误差相差在 10-5 以内的答案将被接受。</p>
+<p>示例 1：</p>
+<p>输入： quality &#x3D; [10,20,5], wage &#x3D; [70,50,30], k &#x3D; 2</p>
+<p>输出： 105.00000</p>
+<p>解释： 我们向 0 号工人支付 70，向 2 号工人支付 35。</p>
+<p>示例 2：</p>
+<p>输入： quality &#x3D; [3,1,10,10,1], wage &#x3D; [4,8,2,2,7], k &#x3D; 3</p>
+<p>输出： 30.66667</p>
+<p>解释： 我们向 0 号工人支付 4，向 2 号和 3 号分别支付 13.33333。</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; quality.length &#x3D;&#x3D; wage.length</p>
+<p>1 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 104</p>
+<p>1 &lt;&#x3D; quality[i], wage[i] &lt;&#x3D; 104</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -&gt; float:</span><br><span class="line">        pairs = sorted(zip(quality, wage), key=lambda p: p[1] / p[0])</span><br><span class="line">        ans = inf</span><br><span class="line">        totalq = 0</span><br><span class="line">        h = []</span><br><span class="line">        for q, w in pairs[:k - 1]:</span><br><span class="line">            totalq += q</span><br><span class="line">            heappush(h, -q)</span><br><span class="line">        for q, w in pairs[k - 1:]:</span><br><span class="line">            totalq += q</span><br><span class="line">            heappush(h, -q)</span><br><span class="line">            ans = min(ans, w / q * totalq)</span><br><span class="line">            totalq += heappop(h)</span><br><span class="line">        return ans</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/" data-id="clwm6nqwc001pz9lx52oy38ao" data-title="5-3雇佣 K 名工人的最低成本" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-5-2去掉最低工资和最高工资后的工资平均值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" class="article-date">
@@ -132,7 +370,7 @@ return sum / (salarySize - 2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" data-id="clwkqs0x1001o08lxcnag3y1k" data-title="5-2去掉最低工资和最高工资后的工资平均值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" data-id="clwm6nqwb001oz9lx8rp15dey" data-title="5-2去掉最低工资和最高工资后的工资平均值" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -207,7 +445,7 @@ return sum / (salarySize - 2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/" data-id="clwkqs0x0001n08lx1ay46neo" data-title="5-1雇佣 K 位工人的总代价" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/" data-id="clwm6nqwb001nz9lxc4j1goby" data-title="5-1雇佣 K 位工人的总代价" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -274,7 +512,7 @@ return sum / (salarySize - 2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/24/4-30-%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/" data-id="clwkqs0x0001f08lxcpqkefsc" data-title="4-30 满足目标工作时长的员工数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/24/4-30-%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/" data-id="clwm6nqwa001fz9lxgp1ec0dv" data-title="4-30 满足目标工作时长的员工数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -328,7 +566,7 @@ return sum / (salarySize - 2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/" data-id="clwkqs0wz001d08lx00h1f3zt" data-title="4-29将矩阵按对角线排序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/" data-id="clwm6nqwa001dz9lx5jd80jp4" data-title="4-29将矩阵按对角线排序" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -382,7 +620,7 @@ return sum / (salarySize - 2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" data-id="clwkqs0wz001c08lxfc9wcot0" data-title="4-28负二进制转换" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" data-id="clwm6nqwa001cz9lxbi630l7c" data-title="4-28负二进制转换" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -428,247 +666,7 @@ return sum / (salarySize - 2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-27%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/" data-id="clwkqs0wz001b08lx3w0ah8lx" data-title="4-27查询网格图中每一列的宽度" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-26快照数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/23/4-26%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/" class="article-date">
-  <time class="dt-published" datetime="2024-05-23T14:43:20.000Z" itemprop="datePublished">2024-05-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/23/4-26%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/">4-26快照数组</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>实现支持下列接口的「快照数组」- SnapshotArray：</p>
-<p>SnapshotArray(int length) - 初始化一个与指定长度相等的 类数组 的数据结构。初始时，每个元素都等于 0。</p>
-<p>void set(index, val) - 会将指定索引 index 处的元素设置为 val。</p>
-<p>int snap() - 获取该数组的快照，并返回快照的编号 snap_id（快照号是调用 snap() 的总次数减去<br>1）。</p>
-<p>int get(index, snap_id) - 根据指定的 snap_id 选择快照，并返回该快照指定索引 index 的值。</p>
-<p>示例：</p>
-<p>输入：[“SnapshotArray”,”set”,”snap”,”set”,”get”]<br>     [[3],[0,5],[],[0,6],[0,0]]<br>输出：[null,null,0,null,5]</p>
-<p>解释：</p>
-<p>SnapshotArray snapshotArr &#x3D; new SnapshotArray(3); &#x2F;&#x2F; 初始化一个长度为 3 的快照数组</p>
-<p>snapshotArr.set(0,5);  &#x2F;&#x2F; 令 array[0] &#x3D; 5</p>
-<p>snapshotArr.snap();  &#x2F;&#x2F; 获取快照，返回 snap_id &#x3D; 0</p>
-<p>snapshotArr.set(0,6);</p>
-<p>snapshotArr.get(0,0);  &#x2F;&#x2F; 获取 snap_id &#x3D; 0 的快照中 array[0] 的值，返回 5</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; length &lt;&#x3D; 50000</p>
-<p>题目最多进行50000 次set，snap，和 get的调用 。</p>
-<p>0 &lt;&#x3D; index &lt; length</p>
-<p>0 &lt;&#x3D; snap_id &lt; 我们调用 snap() 的总次数</p>
-<p>0 &lt;&#x3D; val &lt;&#x3D; 10^9</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int first;</span><br><span class="line">    int second;</span><br><span class="line">&#125; Element;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    int snap_cnt;</span><br><span class="line">    int length;</span><br><span class="line">    int *colSize;</span><br><span class="line">    int *capability;</span><br><span class="line">    Element **data;</span><br><span class="line">&#125; SnapshotArray;</span><br><span class="line"></span><br><span class="line">#define MIN_ARRAY_SIZE 64</span><br><span class="line"></span><br><span class="line">SnapshotArray* snapshotArrayCreate(int length) &#123;</span><br><span class="line">    SnapshotArray *obj = (SnapshotArray *)malloc(sizeof(SnapshotArray));</span><br><span class="line">    obj-&gt;snap_cnt = 0;</span><br><span class="line">    obj-&gt;length = length;</span><br><span class="line">    obj-&gt;data = (Element **)malloc(sizeof(Element *) * length);</span><br><span class="line">    obj-&gt;colSize = (int *)malloc(sizeof(int) * length);</span><br><span class="line">    obj-&gt;capability = (int *)malloc(sizeof(int) * length);</span><br><span class="line">    for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">        obj-&gt;data[i] = NULL;</span><br><span class="line">        obj-&gt;colSize[i] = 0;</span><br><span class="line">        obj-&gt;capability[i] = MIN_ARRAY_SIZE;</span><br><span class="line">    &#125;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void snapshotArraySet(SnapshotArray* obj, int index, int val) &#123;</span><br><span class="line">    if (obj-&gt;colSize[index] == 0) &#123;</span><br><span class="line">        obj-&gt;data[index] = (Element *)malloc(sizeof(Element) * obj-&gt;capability[index]);</span><br><span class="line">    &#125; else if (obj-&gt;colSize[index] == obj-&gt;capability[index]) &#123;</span><br><span class="line">        obj-&gt;capability[index] *= 2;</span><br><span class="line">        Element *arr = (Element *)malloc(sizeof(Element) * obj-&gt;capability[index]);</span><br><span class="line">        memcpy(arr, obj-&gt;data[index], sizeof(Element) * obj-&gt;colSize[index]);</span><br><span class="line">        free(obj-&gt;data[index]);</span><br><span class="line">        obj-&gt;data[index] = arr;</span><br><span class="line">    &#125;</span><br><span class="line">    obj-&gt;data[index][obj-&gt;colSize[index]].first = obj-&gt;snap_cnt;</span><br><span class="line">    obj-&gt;data[index][obj-&gt;colSize[index]].second = val;</span><br><span class="line">    obj-&gt;colSize[index]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int snapshotArraySnap(SnapshotArray* obj) &#123;</span><br><span class="line">    return obj-&gt;snap_cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int binarySearch(int index, int snap_id, SnapshotArray* obj) &#123;</span><br><span class="line">    int low = 0, high = obj-&gt;colSize[index];</span><br><span class="line">    while (low &lt; high) &#123;</span><br><span class="line">        int mid = low + (high - low) / 2;</span><br><span class="line">        int x = obj-&gt;data[index][mid].first;</span><br><span class="line">        int y = obj-&gt;data[index][mid].second;</span><br><span class="line">        if (x &gt; snap_id + 1 || (x == snap_id + 1 &amp;&amp; y &gt;= 0)) &#123;</span><br><span class="line">            high = mid;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            low = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return low;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int snapshotArrayGet(SnapshotArray* obj, int index, int snap_id) &#123;</span><br><span class="line">    int x = binarySearch(index, snap_id, obj);</span><br><span class="line">    return x == 0 ? 0 : obj-&gt;data[index][x - 1].second;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void snapshotArrayFree(SnapshotArray* obj) &#123;</span><br><span class="line">    for (int i = 0; i &lt; obj-&gt;length; i++) &#123;</span><br><span class="line">        free(obj-&gt;data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    free(obj-&gt;data);</span><br><span class="line">    free(obj-&gt;colSize);</span><br><span class="line">    free(obj-&gt;capability);</span><br><span class="line">    free(obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-26%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/" data-id="clwkqs0wz001a08lxdq263gd9" data-title="4-26快照数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-25总行驶距离" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/23/4-25%E6%80%BB%E8%A1%8C%E9%A9%B6%E8%B7%9D%E7%A6%BB/" class="article-date">
-  <time class="dt-published" datetime="2024-05-23T14:41:22.000Z" itemprop="datePublished">2024-05-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/23/4-25%E6%80%BB%E8%A1%8C%E9%A9%B6%E8%B7%9D%E7%A6%BB/">4-25总行驶距离</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>卡车有两个油箱。给你两个整数，mainTank 表示主油箱中的燃料（以升为单位），additionalTank 表示副油箱中的燃料（以升为单位）。</p>
-<p>该卡车每耗费 1 升燃料都可以行驶 10 km。每当主油箱使用了 5 升燃料时，如果副油箱至少有 1 升燃料，则会将 1 升燃料从副油箱转移到主油箱。</p>
-<p>返回卡车可以行驶的最大距离。</p>
-<p>注意：从副油箱向主油箱注入燃料不是连续行为。这一事件会在每消耗 5 升燃料时突然且立即发生。</p>
-<p>示例 1：</p>
-<p>输入：mainTank &#x3D; 5, additionalTank &#x3D; 10</p>
-<p>输出：60<br>解释：</p>
-<p>在用掉 5 升燃料后，主油箱中燃料还剩下 (5 - 5 + 1) &#x3D; 1 升，行驶距离为 50km 。</p>
-<p>在用掉剩下的 1 升燃料后，没有新的燃料注入到主油箱中，主油箱变为空。</p>
-<p>总行驶距离为 60km 。</p>
-<p>示例 2：</p>
-<p>输入：mainTank &#x3D; 1, additionalTank &#x3D; 2</p>
-<p>输出：10</p>
-<p>解释：</p>
-<p>在用掉 1 升燃料后，主油箱变为空。</p>
-<p>总行驶距离为 10km 。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; mainTank, additionalTank &lt;&#x3D; 100</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int distanceTraveled(int mainTank, int additionalTank)&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    while (mainTank &gt;= 5) &#123;</span><br><span class="line">        mainTank -= 5;</span><br><span class="line">        ans += 50;</span><br><span class="line">        if (additionalTank &gt; 0) &#123;</span><br><span class="line">            additionalTank--;</span><br><span class="line">            mainTank++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans + mainTank * 10;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-25%E6%80%BB%E8%A1%8C%E9%A9%B6%E8%B7%9D%E7%A6%BB/" data-id="clwkqs0wz001908lxes8wfvql" data-title="4-25总行驶距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-24感染二叉树需要的总时间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/22/4-24%E6%84%9F%E6%9F%93%E4%BA%8C%E5%8F%89%E6%A0%91%E9%9C%80%E8%A6%81%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4/" class="article-date">
-  <time class="dt-published" datetime="2024-05-22T14:06:25.000Z" itemprop="datePublished">2024-05-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/22/4-24%E6%84%9F%E6%9F%93%E4%BA%8C%E5%8F%89%E6%A0%91%E9%9C%80%E8%A6%81%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4/">4-24感染二叉树需要的总时间</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一棵二叉树的根节点 root ，二叉树中节点的值 互不相同 。另给你一个整数 start 。在第 0 分钟，感染 将会从值为 start 的节点开始爆发。</p>
-<p>每分钟，如果节点满足以下全部条件，就会被感染：</p>
-<p>节点此前还没有感染。</p>
-<p>节点与一个已感染节点相邻。</p>
-<p>返回感染整棵树需要的分钟数。</p>
-<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2022/06/25/image-20220625231744-1.png"></p>
-<p>输入：root &#x3D; [1,5,3,null,4,10,6,9,2], start &#x3D; 3</p>
-<p>输出：4</p>
-<p>解释：节点按以下过程被感染：</p>
-<ul>
-<li><p>第 0 分钟：节点 3</p>
-</li>
-<li><p>第 1 分钟：节点 1、10、6</p>
-</li>
-<li><p>第 2 分钟：节点5</p>
-</li>
-<li><p>第 3 分钟：节点 4</p>
-</li>
-<li><p>第 4 分钟：节点 9 和 2</p>
-</li>
-</ul>
-<p>感染整棵树需要 4 分钟，所以返回 4 。</p>
-<p>示例 2：</p>
-<p><img src="https://assets.leetcode.com/uploads/2022/06/25/image-20220625231812-2.png"></p>
-<p>输入：root &#x3D; [1], start &#x3D; 1</p>
-<p>输出：0</p>
-<p>解释：第 0 分钟，树中唯一一个节点处于感染状态，返回 0 。</p>
-<p>提示：</p>
-<p>树中节点的数目在范围 [1, 105] 内</p>
-<p>1 &lt;&#x3D; Node.val &lt;&#x3D; 105</p>
-<p>每个节点的值 互不相同</p>
-<p>树中必定存在值为 start 的节点</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int key;</span><br><span class="line">    struct ListNode *val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashMapItem; </span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    int key;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashSetItem; </span><br><span class="line"></span><br><span class="line">struct ListNode* creatListNode(int val) &#123;</span><br><span class="line">    struct ListNode *obj = (struct ListNode*)malloc(sizeof(struct ListNode));</span><br><span class="line">    obj-&gt;val = val;</span><br><span class="line">    obj-&gt;next = NULL;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HashMapItem *hashMapFindItem(HashMapItem **obj, int key) &#123;</span><br><span class="line">    HashMapItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct ListNode* hashMapGetItem(HashMapItem **obj, int key) &#123;</span><br><span class="line">    HashMapItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return pEntry-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashMapAddItem(HashMapItem **obj, int key, int val) &#123;</span><br><span class="line">    HashMapItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    struct ListNode *node = creatListNode(val);</span><br><span class="line">    if (pEntry) &#123;</span><br><span class="line">        node -&gt;next = pEntry-&gt;val;</span><br><span class="line">        pEntry-&gt;val = node;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        pEntry = (HashMapItem *)malloc(sizeof(HashMapItem));</span><br><span class="line">        pEntry-&gt;key = key;</span><br><span class="line">        pEntry-&gt;val = node;</span><br><span class="line">        HASH_ADD_INT(*obj, key, pEntry);</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void freeList(struct ListNode *list) &#123;</span><br><span class="line">    while (list) &#123;</span><br><span class="line">        struct ListNode *p = list;</span><br><span class="line">        list = list-&gt;next;</span><br><span class="line">        free(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashMapFree(HashMapItem **obj) &#123;</span><br><span class="line">    HashMapItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        freeList(curr-&gt;val);</span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HashSetItem *hashSetFindItem(HashSetItem **obj, int key) &#123;</span><br><span class="line">    HashSetItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">void hashSetAddItem(HashSetItem **obj, int key) &#123;</span><br><span class="line">    HashSetItem *pEntry = hashSetFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        pEntry = (HashSetItem *)malloc(sizeof(HashSetItem));</span><br><span class="line">        pEntry-&gt;key = key;</span><br><span class="line">        HASH_ADD_INT(*obj, key, pEntry);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashSetFree(HashSetItem **obj) &#123;</span><br><span class="line">    HashSetItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(struct TreeNode *node, HashMapItem **graph) &#123;</span><br><span class="line">    if (node == NULL) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    struct TreeNode *arr[2] = &#123;node-&gt;left, node-&gt;right&#125;;</span><br><span class="line">    for (int i = 0; i &lt; 2; i++) &#123;</span><br><span class="line">        if (arr[i] != NULL) &#123;</span><br><span class="line">            hashMapAddItem(graph, node-&gt;val, arr[i]-&gt;val);</span><br><span class="line">            hashMapAddItem(graph, arr[i]-&gt;val, node-&gt;val);</span><br><span class="line">            dfs(arr[i], graph);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">typedef struct Pair &#123;</span><br><span class="line">    int node;</span><br><span class="line">    int time;</span><br><span class="line">&#125; Pair;</span><br><span class="line"></span><br><span class="line">int amountOfTime(struct TreeNode *root, int start) &#123;</span><br><span class="line">    HashMapItem *graph = NULL;</span><br><span class="line">    dfs(root, &amp;graph);</span><br><span class="line"></span><br><span class="line">    int nodeSize = HASH_COUNT(graph)  + 1;</span><br><span class="line">    Pair q[nodeSize];</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    q[tail].node = start;</span><br><span class="line">    q[tail].time = 0;</span><br><span class="line">    tail++;</span><br><span class="line"></span><br><span class="line">    HashSetItem *visited = NULL;</span><br><span class="line">    hashSetAddItem(&amp;visited, start);</span><br><span class="line">    int time = 0;</span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        int nodeVal = q[head].node;</span><br><span class="line">        time = q[head].time;</span><br><span class="line">        head++;</span><br><span class="line">        for (struct ListNode *p = hashMapGetItem(&amp;graph, nodeVal); p != NULL; p = p-&gt;next) &#123;</span><br><span class="line">            int childVal = p-&gt;val;</span><br><span class="line">            if (!hashSetFindItem(&amp;visited, childVal)) &#123;</span><br><span class="line">                int childVal = p-&gt;val;</span><br><span class="line">                q[tail].node = childVal;</span><br><span class="line">                q[tail].time = time + 1;</span><br><span class="line">                tail++;</span><br><span class="line">                hashSetAddItem(&amp;visited, childVal);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    hashMapFree(&amp;graph);</span><br><span class="line">    hashSetFree(&amp;visited);</span><br><span class="line">    return time;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/22/4-24%E6%84%9F%E6%9F%93%E4%BA%8C%E5%8F%89%E6%A0%91%E9%9C%80%E8%A6%81%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4/" data-id="clwkqs0wz001808lx10e75i7k" data-title="4-24感染二叉树需要的总时间" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-23爱生气的书店老板" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/" class="article-date">
-  <time class="dt-published" datetime="2024-05-22T14:03:20.000Z" itemprop="datePublished">2024-05-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/">4-23爱生气的书店老板</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>有一个书店老板，他的书店开了 n 分钟。每分钟都有一些顾客进入这家商店。给定一个长度为 n 的整数数组 customers ，其中 customers[i] 是在第 i 分钟开始时进入商店的顾客数量，所有这些顾客在第 i 分钟结束后离开。</p>
-<p>在某些时候，书店老板会生气。 如果书店老板在第 i 分钟生气，那么 grumpy[i] &#x3D; 1，否则 grumpy[i] &#x3D; 0。</p>
-<p>当书店老板生气时，那一分钟的顾客就会不满意，若老板不生气则顾客是满意的。</p>
-<p>书店老板知道一个秘密技巧，能抑制自己的情绪，可以让自己连续 minutes 分钟不生气，但却只能使用一次。</p>
-<p>请你返回 这一天营业下来，最多有多少客户能够感到满意 。</p>
-<p>示例 1：</p>
-<p>输入：customers &#x3D; [1,0,1,2,1,1,7,5], grumpy &#x3D;<br>[0,1,0,1,0,1,0,1], minutes &#x3D; 3</p>
-<p>输出：16</p>
-<p>解释：书店老板在最后 3 分钟保持冷静。</p>
-<p>感到满意的最大客户数量 &#x3D; 1 + 1 + 1 + 1 + 7 + 5 &#x3D; 16.</p>
-<p>示例 2：</p>
-<p>输入：customers &#x3D; [1], grumpy &#x3D; [0], minutes &#x3D; 1</p>
-<p>输出：1</p>
-<p>提示：</p>
-<p>n &#x3D;&#x3D; customers.length &#x3D;&#x3D; grumpy.length</p>
-<p>1 &lt;&#x3D; minutes &lt;&#x3D; n &lt;&#x3D; 2 * 104</p>
-<p>0 &lt;&#x3D; customers[i] &lt;&#x3D; 1000</p>
-<p>grumpy[i] &#x3D;&#x3D; 0 or 1</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize, int minutes) &#123;</span><br><span class="line">    int total = 0;</span><br><span class="line">    int n = customersSize;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        if (grumpy[i] == 0) &#123;</span><br><span class="line">            total += customers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int increase = 0;</span><br><span class="line">    for (int i = 0; i &lt; minutes; i++) &#123;</span><br><span class="line">        increase += customers[i] * grumpy[i];</span><br><span class="line">    &#125;</span><br><span class="line">    int maxIncrease = increase;</span><br><span class="line">    for (int i = minutes; i &lt; n; i++) &#123;</span><br><span class="line">        increase = increase - customers[i - minutes] * grumpy[i - minutes] + customers[i] * grumpy[i];</span><br><span class="line">        maxIncrease = fmax(maxIncrease, increase);</span><br><span class="line">    &#125;</span><br><span class="line">    return total + maxIncrease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/" data-id="clwkqs0wz001708lx39l85wsz" data-title="4-23爱生气的书店老板" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-27%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/" data-id="clwm6nqwa001az9lx3o9ne3cz" data-title="4-27查询网格图中每一列的宽度" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -716,23 +714,23 @@ return sum / (salarySize - 2);
       <ul>
         
           <li>
+            <a href="/2024/05/25/5-6%E6%91%98%E6%A8%B1%E6%A1%83/">5-6摘樱桃</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/25/5-5%E6%8B%86%E7%82%B8%E5%BC%B9/">5-5拆炸弹</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/25/5-4%E8%A7%84%E5%88%92%E5%85%BC%E8%81%8C%E5%B7%A5%E4%BD%9C/">5-4规划兼职工作</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/">5-3雇佣 K 名工人的最低成本</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/">5-2去掉最低工资和最高工资后的工资平均值</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/">5-1雇佣 K 位工人的总代价</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/24/4-30-%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/">4-30 满足目标工作时长的员工数目</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/">4-29将矩阵按对角线排序</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">4-28负二进制转换</a>
           </li>
         
       </ul>

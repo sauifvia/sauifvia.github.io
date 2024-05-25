@@ -69,6 +69,313 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-15-卖木头块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2024-03-17T08:17:02.000Z" itemprop="datePublished">2024-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/">3-15-卖木头块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你两个整数 m 和 n ，分别表示一块矩形木块的高和宽。同时给你一个二维整数数组 prices ，其中 prices[i] &#x3D; [hi, wi, pricei] 表示你可以以 pricei 元的价格卖一块高为 hi 宽为 wi 的矩形木块。</p>
+<p>每一次操作中，你必须按下述方式之一执行切割操作，以得到两块更小的矩形木块：</p>
+<p>沿垂直方向按高度 完全 切割木块，或</p>
+<p>沿水平方向按宽度 完全 切割木块</p>
+<p>在将一块木块切成若干小木块后，你可以根据 prices 卖木块。你可以卖多块同样尺寸的木块。你不需要将所有小</p>
+<p>木块都卖出去。你 不能 旋转切好后木块的高和宽。</p>
+<p>请你返回切割一块大小为 m x n 的木块后，能得到的 最多 钱数。</p>
+<p>注意你可以切割木块任意次。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2022/04/27/ex1.png"></p>
+<p>输入：m &#x3D; 3, n &#x3D; 5, prices &#x3D; [[1,4,2],[2,2,7],[2,1,3]]</p>
+<p>输出：19</p>
+<p>解释：上图展示了一个可行的方案。包括：</p>
+<ul>
+<li><p>2 块 2 x 2 的小木块，售出 2 * 7 &#x3D; 14 元。</p>
+</li>
+<li><p>1 块 2 x 1 的小木块，售出 1 * 3 &#x3D; 3 元。</p>
+</li>
+<li><p>1 块 1 x 4 的小木块，售出 1 * 2 &#x3D; 2 元。</p>
+</li>
+</ul>
+<p>总共售出 14 + 3 + 2 &#x3D; 19 元。</p>
+<p>19 元是最多能得到的钱数。</p>
+<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2022/04/27/ex2new.png"></p>
+<p>输入：m &#x3D; 4, n &#x3D; 6, prices &#x3D; [[3,2,10],[1,4,2],[4,1,3]]</p>
+<p>输出：32</p>
+<p>解释：上图展示了一个可行的方案。包括：</p>
+<ul>
+<li><p>3 块 3 x 2 的小木块，售出 3 * 10 &#x3D; 30 元。</p>
+</li>
+<li><p>1 块 1 x 4 的小木块，售出 1 * 2 &#x3D; 2 元。</p>
+</li>
+</ul>
+<p>总共售出 30 + 2 &#x3D; 32 元。</p>
+<p>32 元是最多能得到的钱数。</p>
+<p>注意我们不能旋转 1 x 4 的木块来得到 4 x 1 的木块。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; m, n &lt;&#x3D; 200</p>
+<p>1 &lt;&#x3D; prices.length &lt;&#x3D; 2 * 104</p>
+<p>prices[i].length &#x3D;&#x3D; 3</p>
+<p>1 &lt;&#x3D; hi &lt;&#x3D; m</p>
+<p>1 &lt;&#x3D; wi &lt;&#x3D; n</p>
+<p>1 &lt;&#x3D; pricei &lt;&#x3D; 106</p>
+<p>所有 (hi, wi) 互不相同 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    long long key;</span><br><span class="line">    long long val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashItem; </span><br><span class="line"></span><br><span class="line">HashItem *hashFindItem(HashItem **obj, long long key) &#123;</span><br><span class="line">    HashItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND(hh, *obj, &amp;key, sizeof(long long), pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashAddItem(HashItem **obj, long long key, long long val) &#123;</span><br><span class="line">    if (hashFindItem(obj, key)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    HashItem *pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">    pEntry-&gt;key = key;</span><br><span class="line">    pEntry-&gt;val = val;</span><br><span class="line">    HASH_ADD(hh, *obj, key, sizeof(key), pEntry);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashSetItem(HashItem **obj, long long key, long long val) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        hashAddItem(obj, key, val);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        pEntry-&gt;val = val;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int hashGetItem(HashItem **obj, long long key, long long defaultVal) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        return defaultVal;</span><br><span class="line">    &#125;</span><br><span class="line">    return pEntry-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashFree(HashItem **obj) &#123;</span><br><span class="line">    HashItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long pairHash(int x, int y) &#123;</span><br><span class="line">    return ((long long) x &lt;&lt; 16) ^ y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long dfs(int x, int y, long long **memo, HashItem **val) &#123;</span><br><span class="line">    if (memo[x][y] != -1) &#123;</span><br><span class="line">        return memo[x][y];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    long long ret = hashGetItem(val, pairHash(x, y), 0LL);</span><br><span class="line">    if (x &gt; 1) &#123;</span><br><span class="line">        for (int i = 1; i &lt; x; ++i) &#123;</span><br><span class="line">            ret = fmax(ret, dfs(i, y, memo, val) + dfs(x - i, y, memo, val));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (y &gt; 1) &#123;</span><br><span class="line">        for (int j = 1; j &lt; y; ++j) &#123;</span><br><span class="line">            ret = fmax(ret, dfs(x, j, memo, val) + dfs(x, y - j, memo, val));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return memo[x][y] = ret;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">long long sellingWood(int m, int n, int** prices, int pricesSize, int* pricesColSize) &#123;</span><br><span class="line">    HashItem *value = NULL;</span><br><span class="line">    long long *memo[m + 1];</span><br><span class="line">    for (int i = 0; i &lt;= m; i++) &#123;</span><br><span class="line">        memo[i] = (long long *)malloc(sizeof(long long) * (n + 1));</span><br><span class="line">        for (int j = 0; j &lt;= n; j++) &#123;</span><br><span class="line">            memo[i][j] = -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; pricesSize; ++i) &#123;</span><br><span class="line">        hashAddItem(&amp;value, pairHash(prices[i][0], prices[i][1]), prices[i][2]);</span><br><span class="line">    &#125;</span><br><span class="line">    long long ret = dfs(m, n, memo, &amp;value);</span><br><span class="line">    for (int i = 0; i &lt;= m; i++) &#123;</span><br><span class="line">        free(memo[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    hashFree(&amp;value);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/selling-pieces-of-wood/solutions/1630619/mai-mu-tou-kuai-by-leetcode-solution-gflg/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" data-id="clwm6nqw5000bz9lx8r8g5ybv" data-title="3-15-卖木头块" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3-14合并后数组中的最大元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-14T07:55:26.000Z" itemprop="datePublished">2024-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/">3-14合并后数组中的最大元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始、由正整数组成的数组 nums 。</p>
+<p>你可以在数组上执行下述操作 任意 次：</p>
+<p>选中一个同时满足 0 &lt;&#x3D; i &lt; nums.length - 1 和 nums[i] &lt;&#x3D; </p>
+<p>nums[i + 1] 的整数 i 。将元素 nums[i + 1] 替换为 nums[i] </p>
+<ul>
+<li>nums[i + 1] ，并从数组中删除元素 nums[i] 。</li>
+</ul>
+<p>返回你可以从最终数组中获得的 最大 元素的值。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p>输入：nums &#x3D; [2,3,7,9,3]</p>
+<p>输出：21</p>
+<p>解释：我们可以在数组上执行下述操作：</p>
+<ul>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [5,7,9,3] 。</p>
+</li>
+<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,16,3] 。</p>
+</li>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [21,3] 。</p>
+</li>
+</ul>
+<p>最终数组中的最大元素是 21 。可以证明我们无法获得更大的元素。</p>
+<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p>输入：nums &#x3D; [5,3,3]</p>
+<p>输出：11</p>
+<p>解释：我们可以在数组上执行下述操作：</p>
+<ul>
+<li><p>选中 i &#x3D; 1 ，得到数组 nums &#x3D; [5,6] 。</p>
+</li>
+<li><p>选中 i &#x3D; 0 ，得到数组 nums &#x3D; [11] 。</p>
+</li>
+</ul>
+<p>最终数组中只有一个元素，即 11 。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 106</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">long long maxArrayValue(int* nums, int numsSize)&#123;</span><br><span class="line">    long long sum = nums[numsSize - 1];</span><br><span class="line">    for (int i = numsSize - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">        sum = nums[i] &lt;= sum ? nums[i] + sum : nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/largest-element-in-an-array-after-merge-operations/solutions/2679835/he-bing-hou-shu-zu-zhong-de-zui-da-yuan-s2b5o/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="clwm6nqw5000az9lx633y72ui" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3-12在受污染的二叉树中查找元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-12T13:17:58.000Z" itemprop="datePublished">2024-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/">3-12在受污染的二叉树中查找元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给出一个满足下述规则的二叉树：</p>
+<p>root.val &#x3D;&#x3D; 0</p>
+<p>如果 treeNode.val &#x3D;&#x3D; x 且 treeNode.left !&#x3D; null，那么 </p>
+<p>treeNode.left.val &#x3D;&#x3D; 2 * x + 1</p>
+<p>如果 treeNode.val &#x3D;&#x3D; x 且 treeNode.right !&#x3D; null，那么 </p>
+<p>treeNode.right.val &#x3D;&#x3D; 2 * x + 2</p>
+<p>现在这个二叉树受到「污染」，所有的 treeNode.val 都变成了 -1。</p>
+<p>请你先还原二叉树，然后实现 FindElements 类：</p>
+<p>FindElements(TreeNode* root) 用受污染的二叉树初始化对象，</p>
+<p>你需要先把它还原。</p>
+<p>bool find(int target) 判断目标值 target 是否存在于还原后的</p>
+<p>二叉树中并返回结果。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/16/untitled-diagram-4-1.jpg"></p>
+<p>输入：</p>
+<p>[“FindElements”,”find”,”find”]</p>
+<p>[[[-1,null,-1]],[1],[2]]</p>
+<p>输出：</p>
+<p>[null,false,true]</p>
+<p>解释：</p>
+<p>FindElements findElements &#x3D; new </p>
+<p>FindElements([-1,null,-1]); </p>
+<p>findElements.find(1); &#x2F;&#x2F; return False </p>
+<p>findElements.find(2); &#x2F;&#x2F; return True </p>
+<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/16/untitled-diagram-4.jpg"></p>
+<p>输入：</p>
+<p>[“FindElements”,”find”,”find”,”find”]</p>
+<p>[[[-1,-1,-1,-1,-1]],[1],[3],[5]]</p>
+<p>输出：</p>
+<p>[null,true,true,false]</p>
+<p>解释：</p>
+<p>FindElements findElements &#x3D; new </p>
+<p>FindElements([-1,-1,-1,-1,-1]);</p>
+<p>findElements.find(1); &#x2F;&#x2F; return True</p>
+<p>findElements.find(3); &#x2F;&#x2F; return True<br>findElements.find(5); &#x2F;&#x2F; return False</p>
+<h2 id="示例-3："><a href="#示例-3：" class="headerlink" title="示例 3："></a>示例 3：</h2><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/16/untitled-diagram-4-1-1.jpg"></p>
+<p>输入：</p>
+<p>[“FindElements”,”find”,”find”,”find”,”find”]</p>
+<p>[[[-1,null,-1,-1,null,-1]],[2],[3],[4],[5]]</p>
+<p>输出：</p>
+<p>[null,true,false,false,true]</p>
+<p>解释：</p>
+<p>FindElements findElements &#x3D; new </p>
+<p>FindElements([-1,null,-1,-1,null,-1]);</p>
+<p>findElements.find(2); &#x2F;&#x2F; return True</p>
+<p>findElements.find(3); &#x2F;&#x2F; return False</p>
+<p>findElements.find(4); &#x2F;&#x2F; return False</p>
+<p>findElements.find(5); &#x2F;&#x2F; return True</p>
+<p>提示：</p>
+<p>TreeNode.val &#x3D;&#x3D; -1</p>
+<p>二叉树的高度不超过 20</p>
+<p>节点的总数在 [1, 10^4] 之间</p>
+<p>调用 find() 的总次数在 [1, 10^4] 之间</p>
+<p>0 &lt;&#x3D; target &lt;&#x3D; 10^6</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int key;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashItem; </span><br><span class="line"></span><br><span class="line">HashItem *hashFindItem(HashItem **obj, int key) &#123;</span><br><span class="line">    HashItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashAddItem(HashItem **obj, int key) &#123;</span><br><span class="line">    if (hashFindItem(obj, key)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    HashItem *pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">    pEntry-&gt;key = key;</span><br><span class="line">    HASH_ADD_INT(*obj, key, pEntry);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashFree(HashItem **obj) &#123;</span><br><span class="line">    HashItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(struct TreeNode *node, int val, HashItem **valSet) &#123;</span><br><span class="line">    if (node == NULL) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    node-&gt;val = val;</span><br><span class="line">    hashAddItem(valSet, val);</span><br><span class="line">    dfs(node-&gt;left, val * 2 + 1, valSet);</span><br><span class="line">    dfs(node-&gt;right, val * 2 + 2, valSet);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/find-elements-in-a-contaminated-binary-tree/solutions/2674238/zai-shou-wu-ran-de-er-cha-shu-zhong-cha-5l56x/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="clwm6nqw40009z9lx3culev3m" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3-11将标题首字母大写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" class="article-date">
+  <time class="dt-published" datetime="2024-03-11T13:41:36.000Z" itemprop="datePublished">2024-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/">3-11将标题首字母大写</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个字符串 title ，它由单个空格连接一个或多个单词组成，每个单词都只包含英文字母。请你按以下规</p>
+<p>则将每个单词的首字母 大写 ：</p>
+<p>如果单词的长度为 1 或者 2 ，所有字母变成小写。</p>
+<p>否则，将单词首字母大写，剩余字母变成小写。</p>
+<p>请你返回 大写后 的 title 。</p>
+<p>示例 1：</p>
+<p>输入：title &#x3D; “capiTalIze tHe titLe”</p>
+<p>输出：”Capitalize The Title”</p>
+<p>解释：</p>
+<p>由于所有单词的长度都至少为 3 ，将每个单词首字母大写，剩余字母变为小写。</p>
+<p>示例 2：</p>
+<p>输入：title &#x3D; “First leTTeR of EACH Word”</p>
+<p>输出：”First Letter of Each Word”</p>
+<p>解释：</p>
+<p>单词 “of” 长度为 2 ，所以它保持完全小写。</p>
+<p>其他单词长度都至少为 3 ，所以其他单词首字母大写，剩余字母小写。</p>
+<p>示例 3：</p>
+<p>输入：title &#x3D; “i lOve leetcode”</p>
+<p>输出：”i Love Leetcode”</p>
+<p>解释：</p>
+<p>单词 “i” 长度为 1 ，所以它保留小写。</p>
+<p>其他单词长度都至少为 3 ，所以其他单词首字母大写，剩余字母小写。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; title.length &lt;&#x3D; 100</p>
+<p>title 由单个空格隔开的单词组成，且不含有任何前导或后缀空格。</p>
+<p>每个单词由大写和小写英文字母组成，且都是 非空 的。</p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">char* capitalizeTitle(char* title) &#123;</span><br><span class="line">    int n = strlen(title);</span><br><span class="line">    int l = 0, r = 0;   // 单词左右边界（左闭右开）</span><br><span class="line">    while (r &lt; n) &#123;</span><br><span class="line">        while (r &lt; n &amp;&amp; title[r] != &#x27; &#x27;) &#123;</span><br><span class="line">            ++r;</span><br><span class="line">        &#125;</span><br><span class="line">        // 对于每个单词按要求处理</span><br><span class="line">        if (r - l &gt; 2) &#123;</span><br><span class="line">            title[l++] = toupper(title[l]);</span><br><span class="line">        &#125;</span><br><span class="line">        while (l &lt; r) &#123;</span><br><span class="line">            title[l++] = tolower(title[l]);</span><br><span class="line">        &#125;</span><br><span class="line">        l = ++r;</span><br><span class="line">    &#125;</span><br><span class="line">    return title;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/capitalize-the-title/solutions/1202029/jiang-biao-ti-shou-zi-mu-da-xie-by-leetc-lhn7/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="clwm6nqw40008z9lxgbvfga8h" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-9找出数组的第-K-大和" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" class="article-date">
@@ -117,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="clwkqs0wx000s08lxaaefan4q" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="clwm6nqw8000sz9lx8vkjhmh9" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -162,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="clwkqs0wx000r08lx5veihlti" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="clwm6nqw8000rz9lx79uwglwg" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -230,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clwkqs0wx000q08lxcmj1b4h5" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clwm6nqw7000qz9lxauqc86s3" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -280,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="clwkqs0x2001w08lx0igebeyd" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="clwm6nqwd0021z9lxg0r65mqk" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -355,7 +662,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clwkqs0x2001y08lxgenre45a" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clwm6nqwd0022z9lxan5ycmdw" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -423,275 +730,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="clwkqs0x1001u08lx9ogngoq9" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-统计树中的合法路径数目先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" class="article-date">
-  <time class="dt-published" datetime="2024-02-27T15:20:08.000Z" itemprop="datePublished">2024-02-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/">统计树中的合法路径数目先</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一棵 n 个节点的无向树，节点编号为 1 到 n 。给你一个整数 n 和一个长度为 n - 1 的二维整数数组 edges ，其中 edges[i] &#x3D; [ui, vi] 表示节点 ui 和 vi 在树中有一条边。</p>
-<p>请你返回树中的 合法路径数目 。</p>
-<p>如果在节点 a 到节点 b 之间 恰好有一个 节点的编号是质数，那么我们称路径 (a, b) 是 合法的 。</p>
-<p>注意：</p>
-<p>路径 (a, b) 指的是一条从节点 a 开始到节点 b 结束的一个节点序列，序列中的节点 互不相同 ，且相邻节点之间在树上有一条边。<br>路径 (a, b) 和路径 (b, a) 视为 同一条 路径，且只计入答案 一次 。</p>
-<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2023/08/27/example1.png"></p>
-<p>输入：n &#x3D; 5, edges &#x3D; [[1,2],[1,3],[2,4],[2,5]]</p>
-<p>输出：4</p>
-<p>解释：恰好有一个质数编号的节点路径有：</p>
-<ul>
-<li><p>(1, 2) 因为路径 1 到 2 只包含一个质数 2 。</p>
-</li>
-<li><p>(1, 3) 因为路径 1 到 3 只包含一个质数 3 。</p>
-</li>
-<li><p>(1, 4) 因为路径 1 到 4 只包含一个质数 2 。</p>
-</li>
-<li><p>(2, 4) 因为路径 2 到 4 只包含一个质数 2 。</p>
-</li>
-</ul>
-<p>只有 4 条合法路径。</p>
-<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2023/08/27/example2.png"></p>
-<p>输入：n &#x3D; 6, edges &#x3D; [[1,2],[1,3],[2,4],[3,5],[3,6]]</p>
-<p>输出：6</p>
-<p>解释：恰好有一个质数编号的节点路径有：</p>
-<ul>
-<li><p>(1, 2) 因为路径 1 到 2 只包含一个质数 2 。</p>
-</li>
-<li><p>(1, 3) 因为路径 1 到 3 只包含一个质数 3 。</p>
-</li>
-<li><p>(1, 4) 因为路径 1 到 4 只包含一个质数 2 。</p>
-</li>
-<li><p>(1, 6) 因为路径 1 到 6 只包含一个质数 3 。</p>
-</li>
-<li><p>(2, 4) 因为路径 2 到 4 只包含一个质数 2 。</p>
-</li>
-<li><p>(3, 6) 因为路径 3 到 6 只包含一个质数 3 。</p>
-</li>
-</ul>
-<p>只有 6 条合法路径。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>edges.length &#x3D;&#x3D; n - 1</p>
-<p>edges[i].length &#x3D;&#x3D; 2</p>
-<p>1 &lt;&#x3D; ui, vi &lt;&#x3D; n</p>
-<p>输入保证 edges 形成一棵合法的树。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">int* isP;</span><br><span class="line">bool* v;</span><br><span class="line">int* last;</span><br><span class="line">int* next;</span><br><span class="line">int* sum;</span><br><span class="line">long long countPaths(int n, int** edges, int edgesSize, int* edgesColSize) &#123;</span><br><span class="line">    //埃氏筛</span><br><span class="line">    //n以内的质数至多有n/2 + 1个</span><br><span class="line">    isP = malloc(sizeof(int) * (n + 1));</span><br><span class="line">    memset(isP, 0, sizeof(int) * (n + 1));</span><br><span class="line">    isP[0] = isP[1] = -1;</span><br><span class="line">    int* p = malloc(sizeof(int) * ((n + 1) &gt;&gt; 1));</span><br><span class="line">    int s = 0;</span><br><span class="line">    for(int i = 2; i &lt;= n; i ++)&#123;</span><br><span class="line">        //记录质数位置</span><br><span class="line">        if(!isP[i]) p[isP[i] = s++] = i;</span><br><span class="line">        for(int j = 0; j &lt; s &amp;&amp; i * p[j] &lt;= n; j ++)&#123;</span><br><span class="line">            isP[i * p[j]] = -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    long long res = 0;</span><br><span class="line">    v = malloc(sizeof(bool) * (n + 1));</span><br><span class="line">    memset(v, false, sizeof(bool) * (n + 1));</span><br><span class="line">    //因map键值确定[1,n]</span><br><span class="line">    //且元素个数也确定2 * (n - 1)</span><br><span class="line">    //可以直接使用数组来构建map</span><br><span class="line">    next = malloc(sizeof(int) * ((n - 1) &lt;&lt; 1));</span><br><span class="line">    last = malloc(sizeof(int) * (n + 1));</span><br><span class="line">    sum = malloc(sizeof(int) * s);</span><br><span class="line">    memset(last, -1, sizeof(int) * (n + 1));</span><br><span class="line">    memset(sum, 0, sizeof(int) * s);</span><br><span class="line">    for(int i = 0, j = 0; i &lt; n - 1; i ++)&#123;</span><br><span class="line">        next[j] = last[edges[i][1]];</span><br><span class="line">        last[edges[i][1]] = j ++;</span><br><span class="line">        next[j] = last[edges[i][0]];</span><br><span class="line">        last[edges[i][0]] = j ++;</span><br><span class="line">    &#125;</span><br><span class="line">    //质数队列</span><br><span class="line">    int * de = malloc(sizeof(int) * s);</span><br><span class="line">    //元素队列,最坏情况,只有一个root结点,其余全为叶子结点</span><br><span class="line">    //需要占用n - s个格子</span><br><span class="line">    int * _item = malloc(sizeof(int) * (n - s));</span><br><span class="line">    int i_r = 1, cnt, de_r, _i_r, _i_l;</span><br><span class="line">    while(i_r &lt;= n)&#123;</span><br><span class="line">        if(v[i_r ++] || isP[i_r - 1] != -1) continue;</span><br><span class="line">        int x = i_r - 1;</span><br><span class="line">        v[i_r - 1] = true;</span><br><span class="line">        _i_l = _i_r = de_r = 0;</span><br><span class="line">        cnt = 1;//自身算一个</span><br><span class="line">        _item[_i_r ++] = x;</span><br><span class="line">        while(_i_l != _i_r)&#123;</span><br><span class="line">            int y = _item[_i_l ++];</span><br><span class="line">            int k = last[y];</span><br><span class="line">            while(k != -1)&#123;</span><br><span class="line">                //指向点</span><br><span class="line">                int tp = edges[k &gt;&gt; 1][k &amp; 1];</span><br><span class="line">                k = next[k];</span><br><span class="line">                if(v[tp]) continue;</span><br><span class="line">                if(isP[tp] != -1)&#123;</span><br><span class="line">                    de[de_r ++] = tp;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    cnt ++;</span><br><span class="line">                    v[tp] = true;</span><br><span class="line">                    _item[_i_r ++] = tp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; de_r; i ++)&#123;</span><br><span class="line">            //printf(&quot;(%d,%d)&quot;, de[i], cnt);</span><br><span class="line">            int x = de[i];</span><br><span class="line">            res += sum[isP[x]] * cnt + cnt;</span><br><span class="line">            sum[isP[x]] += cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(isP);</span><br><span class="line">    free(p);</span><br><span class="line">    free(v);</span><br><span class="line">    free(last);</span><br><span class="line">    free(next);</span><br><span class="line">    free(sum);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="clwkqs0x2001z08lx2fpqf7zy" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2-26二叉搜索树的最近公共祖先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="article-date">
-  <time class="dt-published" datetime="2024-02-25T08:54:47.000Z" itemprop="datePublished">2024-02-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">2-26二叉搜索树的最近公共祖先</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目：给定一个二叉搜索树-找到该树中两个指定节点的最近公共祖先。"><a href="#题目：给定一个二叉搜索树-找到该树中两个指定节点的最近公共祖先。" class="headerlink" title="题目：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。"></a>题目：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</h1><p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-<p>例如，给定如下二叉搜索树:  root &#x3D; [6,2,8,0,4,7,9,null,null,3,5]</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png"></p>
-<p>示例 1:</p>
-<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8</p>
-<p>输出: 6 </p>
-<p>解释: 节点 2 和节点 8 的最近公共祖先是 6。</p>
-<p>示例 2:</p>
-<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 4</p>
-<p>输出: 2</p>
-<p>解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。</p>
-<p>说明:</p>
-<p>所有节点的值都是唯一的。</p>
-<p>p、q 为不同节点且均存在于给定的二叉搜索树中。</p>
-<p>#解题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">struct TreeNode** getPath(struct TreeNode* root, struct TreeNode* target, int* num) &#123;</span><br><span class="line">    struct TreeNode** path = malloc(sizeof(struct TreeNode*) * 2001);</span><br><span class="line">    struct TreeNode* node = root;</span><br><span class="line">    while (node != target) &#123;</span><br><span class="line">        path[(*num)++] = node;</span><br><span class="line">        if (target-&gt;val &lt; node-&gt;val) &#123;</span><br><span class="line">            node = node-&gt;left;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            node = node-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    path[(*num)++] = node;</span><br><span class="line">    return path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) &#123;</span><br><span class="line">    int num_p = 0, num_q = 0;</span><br><span class="line">    struct TreeNode** path_p = getPath(root, p, &amp;num_p);</span><br><span class="line">    struct TreeNode** path_q = getPath(root, q, &amp;num_q);</span><br><span class="line">    struct TreeNode* ancestor;</span><br><span class="line">    for (int i = 0; i &lt; num_p &amp;&amp; i &lt; num_q; ++i) &#123;</span><br><span class="line">        if (path_p[i] == path_q[i]) &#123;</span><br><span class="line">            ancestor = path_p[i];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ancestor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/25/2-26%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-id="clwkqs0wt000708lx3pd23q55" data-title="2-26二叉搜索树的最近公共祖先" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-二叉搜索树最近节点查询树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2024-02-24T12:02:23.000Z" itemprop="datePublished">2024-02-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/">二叉搜索树最近节点查询树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个 二叉搜索树 的根节点 root ，和一个由正整数组成、长度为 n 的数组 queries 。</p>
-<p>请你找出一个长度为 n 的 二维 答案数组 answer ，其中 answer[i] &#x3D; [mini, maxi] ：</p>
-<p>mini 是树中小于等于 queries[i] 的 最大值 。如果不存在这样的值，则使用 -1 代替。</p>
-<p>maxi 是树中大于等于 queries[i] 的 最小值 。如果不存在这样的值，则使用 -1 代替。</p>
-<p>返回数组 answer 。</p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><p><img src="https://assets.leetcode.com/uploads/2022/09/28/bstreeedrawioo.png"></p>
-<p>输入：root &#x3D; [6,2,13,1,4,9,15,null,null,null,null,null,null,14], queries &#x3D; [2,5,16]</p>
-<p>输出：[[2,2],[4,6],[15,-1]]</p>
-<p>解释：按下面的描述找出并返回查询的答案：</p>
-<ul>
-<li><p>树中小于等于 2 的最大值是 2 ，且大于等于 2 的最小值也是 2 。所以第一个查询的答案是 [2,2] 。</p>
-</li>
-<li><p>树中小于等于 5 的最大值是 4 ，且大于等于 5 的最小值是 6 。所以第二个查询的答案是 [4,6] 。</p>
-</li>
-<li><p>树中小于等于 16 的最大值是 15 ，且大于等于 16 的最小值不存在。所以第三个查询的答案是 [15,-1] 。</p>
-</li>
-</ul>
-<h2 id="示例-2-："><a href="#示例-2-：" class="headerlink" title="示例 2 ："></a>示例 2 ：</h2><p><img src="https://assets.leetcode.com/uploads/2022/09/28/bstttreee.png"></p>
-<p>输入：root &#x3D; [4,null,9], queries &#x3D; [3]</p>
-<p>输出：[[-1,4]]</p>
-<p>解释：树中不存在小于等于 3 的最大值，且大于等于 3 的最小值是 4 。所以查询的答案是 [-1,4] 。</p>
-<p>提示：</p>
-<p>树中节点的数目在范围 [2, 105] 内</p>
-<p>1 &lt;&#x3D; Node.val &lt;&#x3D; 106</p>
-<p>n &#x3D;&#x3D; queries.length</p>
-<p>1 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>1 &lt;&#x3D; queries[i] &lt;&#x3D; 106</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">int count(struct TreeNode* root) &#123;</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return 1 + count(root-&gt;left) + count(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(struct TreeNode* root, int *arr, int *pos) &#123;</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root-&gt;left, arr, pos);</span><br><span class="line">    arr[*pos] = root-&gt;val;</span><br><span class="line">    (*pos)++;</span><br><span class="line">    dfs(root-&gt;right, arr, pos);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int binarySearch(const int *arr, int arrSize, int target) &#123;</span><br><span class="line">    int lo = 0, hi = arrSize - 1;</span><br><span class="line">    int ret = arrSize;</span><br><span class="line">    while (lo &lt;= hi) &#123;</span><br><span class="line">        int mid = (lo + hi) &gt;&gt; 1;</span><br><span class="line">        if (arr[mid] &gt;= target) &#123;</span><br><span class="line">            ret = mid;</span><br><span class="line">            hi = mid - 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            lo = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int** closestNodes(struct TreeNode* root, int* queries, int queriesSize, int* returnSize, int** returnColumnSizes) &#123;</span><br><span class="line">    int tot = count(root);</span><br><span class="line">    int *arr = (int *)malloc(sizeof(int) * tot);</span><br><span class="line">    int pos = 0;</span><br><span class="line">    dfs(root, arr, &amp;pos);</span><br><span class="line"></span><br><span class="line">    int **res = (int **)malloc(sizeof(int *) * queriesSize);</span><br><span class="line">    *returnColumnSizes = (int *)malloc(sizeof(int) * queriesSize);</span><br><span class="line">    for (int i = 0; i &lt; queriesSize; i++) &#123;</span><br><span class="line">        res[i] = (int *)malloc(sizeof(int) * 2);</span><br><span class="line">        (*returnColumnSizes)[i] = 2;</span><br><span class="line"></span><br><span class="line">        int val = queries[i];</span><br><span class="line">        int maxVal = -1, minVal = -1;</span><br><span class="line">        int index = binarySearch(arr, tot,  val);</span><br><span class="line">        if (index != tot) &#123;</span><br><span class="line">            maxVal = arr[index];</span><br><span class="line">            if (arr[index] == val) &#123;</span><br><span class="line">                minVal = arr[index];</span><br><span class="line">                res[i][0] = minVal;</span><br><span class="line">                res[i][1] = maxVal;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index != 0) &#123;</span><br><span class="line">            minVal = arr[index - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        res[i][0] = minVal;</span><br><span class="line">        res[i][1] = maxVal;</span><br><span class="line">    &#125;</span><br><span class="line">    *returnSize = queriesSize;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/24/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9C%80%E8%BF%91%E8%8A%82%E7%82%B9%E6%9F%A5%E8%AF%A2%E6%A0%91/" data-id="clwkqs0x1001q08lxci0ycsgs" data-title="二叉搜索树最近节点查询树" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-二叉树中的第-K-大层和树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2024-02-23T08:46:39.000Z" itemprop="datePublished">2024-02-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/">二叉树中的第 K 大层和树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目：二叉树中的第-K-大层和"><a href="#题目：二叉树中的第-K-大层和" class="headerlink" title="题目：二叉树中的第 K 大层和"></a>题目：二叉树中的第 K 大层和</h1><p>给你一棵二叉树的根节点 root 和一个正整数 k 。</p>
-<p>树中的 层和 是指 同一层 上节点值的总和。</p>
-<p>返回树中第 k 大的层和（不一定不同）。如果树少于 k 层，则返回 -1 。</p>
-<p>注意，如果两个节点与根节点的距离相同，则认为它们在同一层。</p>
-<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode.com/uploads/2022/12/14/binaryytreeedrawio-2.png"></p>
-<p>输入：root &#x3D; [5,8,9,2,1,3,7,4,6], k &#x3D; 2</p>
-<p>输出：13</p>
-<p>解释：树中每一层的层和分别是：</p>
-<ul>
-<li><p>Level 1: 5</p>
-</li>
-<li><p>Level 2: 8 + 9 &#x3D; 17</p>
-</li>
-<li><p>Level 3: 2 + 1 + 3 + 7 &#x3D; 13</p>
-</li>
-<li><p>Level 4: 4 + 6 &#x3D; 10</p>
-</li>
-</ul>
-<p>第 2 大的层和等于 13 。</p>
-<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p><img src="https://assets.leetcode.com/uploads/2022/12/14/treedrawio-3.png"></p>
-<p>输入：root &#x3D; [1,2,null,3], k &#x3D; 1</p>
-<p>输出：3</p>
-<p>解释：最大的层和是 3 。</p>
-<p>提示：</p>
-<p>树中的节点数为 n</p>
-<p>2 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>1 &lt;&#x3D; Node.val &lt;&#x3D; 106</p>
-<p>1 &lt;&#x3D; k &lt;&#x3D; n、</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#define MAX_NODE_SIZE 100000</span><br><span class="line"></span><br><span class="line">static long long cmp(const void *a, const void *b) &#123;</span><br><span class="line">    long long sub = *(long long *)a - *(long long *)b;</span><br><span class="line">    return sub &lt; 0 ? -1 : 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long kthLargestLevelSum(struct TreeNode* root, int k) &#123;</span><br><span class="line">    struct TreeNode **q = (struct TreeNode **)malloc(sizeof(struct TreeNode *) * MAX_NODE_SIZE);</span><br><span class="line">    long long *levelSumArray = (long long *)malloc(sizeof(long long) * MAX_NODE_SIZE);</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    int pos = 0;</span><br><span class="line">    q[tail++] = root;</span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        long long levelSum = 0, size = tail - head;</span><br><span class="line">        for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">            struct TreeNode *node = q[head];</span><br><span class="line">            head++;</span><br><span class="line">            levelSum += node-&gt;val;</span><br><span class="line">            if (node-&gt;left) &#123;</span><br><span class="line">                q[tail++] = node-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            if (node-&gt;right) &#123;</span><br><span class="line">                q[tail++] = node-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        levelSumArray[pos++] = levelSum;</span><br><span class="line">    &#125;</span><br><span class="line">    if (pos &lt; k) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    qsort(levelSumArray, pos, sizeof(long long), cmp);</span><br><span class="line">    return levelSumArray[pos - k];</span><br><span class="line">&#125;</span><br><span class="line">。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%B1%82%E5%92%8C%E6%A0%91/" data-id="clwkqs0x1001r08lx3y8nbtlz" data-title="二叉树中的第 K 大层和树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="clwm6nqwd001yz9lx85rgex0a" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -739,23 +778,23 @@
       <ul>
         
           <li>
+            <a href="/2024/05/25/5-6%E6%91%98%E6%A8%B1%E6%A1%83/">5-6摘樱桃</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/25/5-5%E6%8B%86%E7%82%B8%E5%BC%B9/">5-5拆炸弹</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/25/5-4%E8%A7%84%E5%88%92%E5%85%BC%E8%81%8C%E5%B7%A5%E4%BD%9C/">5-4规划兼职工作</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/">5-3雇佣 K 名工人的最低成本</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/">5-2去掉最低工资和最高工资后的工资平均值</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/">5-1雇佣 K 位工人的总代价</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/24/4-30-%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/">4-30 满足目标工作时长的员工数目</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/">4-29将矩阵按对角线排序</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">4-28负二进制转换</a>
           </li>
         
       </ul>
