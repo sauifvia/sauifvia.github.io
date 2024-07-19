@@ -69,6 +69,107 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-7-2质数的最大距离" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/" class="article-date">
+  <time class="dt-published" datetime="2024-07-19T12:18:10.000Z" itemprop="datePublished">2024-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个整数数组 nums。</p>
+<p>返回两个（不一定不同的）质数在 nums 中 下标 的 最大距离。</p>
+<p>示例 1：</p>
+<p>输入： nums &#x3D; [4,2,9,5,3]</p>
+<p>输出： 3</p>
+<p>解释： nums[1]、nums[3] 和 nums[4] 是质数。因此答案是 |4 - 1| &#x3D; 3。</p>
+<p>示例 2：</p>
+<p>输入： nums &#x3D; [4,8,2,8]</p>
+<p>输出： 0</p>
+<p>解释： nums[2] 是质数。因为只有一个质数，所以答案是 |2 - 2| &#x3D; 0。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 105<br>1 &lt;&#x3D; nums[i] &lt;&#x3D; 100<br>输入保证 nums 中至少有一个质数。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/" data-id="clyso5hcw002n3oo781r53ofj" data-title="7-2质数的最大距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-7-1最大化一张图中的路径价值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/" class="article-date">
+  <time class="dt-published" datetime="2024-07-19T09:14:37.000Z" itemprop="datePublished">2024-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/">7-1最大化一张图中的路径价值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一张 无向 图，图中有 n 个节点，节点编号从 0 到 n - 1 （都包括）。同时给你一个下标从 0 开始的整数数组 values ，其中 values[i] 是第 i 个节点的 价值 。同时给你一个下标从 0 开始的二维整数数组 edges ，其中 edges[j] &#x3D; [uj, vj, timej] 表示节点 uj 和 vj 之间有一条需要 timej 秒才能通过的无向边。最后，给你一个整数 maxTime 。</p>
+<p>合法路径 指的是图中任意一条从节点 0 开始，最终回到节点 0 ，且花费的总时间 不超过 maxTime 秒的一条路径。你可以访问一个节点任意次。一条合法路径的 价值 定义为路径中 不同节点 的价值 之和 （每个节点的价值 至多 算入价值总和中一次）。</p>
+<p>请你返回一条合法路径的 最大 价值。</p>
+<p>注意：每个节点 至多 有 四条 边与之相连。</p>
+<p>示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/10/19/ex1drawio.png"></p>
+<p>输入：values &#x3D; [0,32,10,43], edges &#x3D; [[0,1,10],[1,2,15],[0,3,10]], maxTime &#x3D; 49<br>输出：75<br>解释：<br>一条可能的路径为：0 -&gt; 1 -&gt; 0 -&gt; 3 -&gt; 0 。总花费时间为 10 + 10 + 10 + 10 &#x3D; 40 &lt;&#x3D; 49 。<br>访问过的节点为 0 ，1 和 3 ，最大路径价值为 0 + 32 + 43 &#x3D; 75 。<br>示例 2：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/10/19/ex2drawio.png"></p>
+<p>输入：values &#x3D; [5,10,15,20], edges &#x3D; [[0,1,10],[1,2,10],[0,3,10]], maxTime &#x3D; 30<br>输出：25<br>解释：<br>一条可能的路径为：0 -&gt; 3 -&gt; 0 。总花费时间为 10 + 10 &#x3D; 20 &lt;&#x3D; 30 。<br>访问过的节点为 0 和 3 ，最大路径价值为 5 + 20 &#x3D; 25 。<br>示例 3：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/10/19/ex31drawio.png"></p>
+<p>输入：values &#x3D; [1,2,3,4], edges &#x3D; [[0,1,10],[1,2,11],[2,3,12],[1,3,13]], maxTime &#x3D; 50<br>输出：7<br>解释：<br>一条可能的路径为：0 -&gt; 1 -&gt; 3 -&gt; 1 -&gt; 0 。总花费时间为 10 + 13 + 13 + 10 &#x3D; 46 &lt;&#x3D; 50 。<br>访问过的节点为 0 ，1 和 3 ，最大路径价值为 1 + 2 + 4 &#x3D; 7 。<br>示例 4：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/10/21/ex4drawio.png"></p>
+<p>输入：values &#x3D; [0,1,2], edges &#x3D; [[1,2,10]], maxTime &#x3D; 10<br>输出：0<br>解释：<br>唯一一条路径为 0 。总花费时间为 0 。<br>唯一访问过的节点为 0 ，最大路径价值为 0 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maximalPathQuality(self, values: List[int], edges: List[List[int]], maxTime: int) -&gt; int:</span><br><span class="line">        g = defaultdict(list)</span><br><span class="line">        for x, y, z in edges:</span><br><span class="line">            g[x].append((y, z))</span><br><span class="line">            g[y].append((x, z))</span><br><span class="line">        </span><br><span class="line">        visited = &#123;0&#125;</span><br><span class="line">        ans = 0</span><br><span class="line">        </span><br><span class="line">        def dfs(u: int, time: int, value: int) -&gt; None:</span><br><span class="line">            if u == 0:</span><br><span class="line">                nonlocal ans</span><br><span class="line">                ans = max(ans, value)</span><br><span class="line">            for v, dist in g[u]:</span><br><span class="line">                if time + dist &lt;= maxTime:</span><br><span class="line">                    if v not in visited:</span><br><span class="line">                        visited.add(v)</span><br><span class="line">                        dfs(v, time + dist, value + values[v])</span><br><span class="line">                        visited.discard(v)</span><br><span class="line">                    else:</span><br><span class="line">                        dfs(v, time + dist, value)</span><br><span class="line">        </span><br><span class="line">        dfs(0, 0, values[0])</span><br><span class="line">        return ans</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/" data-id="clyso5hcw002m3oo75rblgktt" data-title="7-1最大化一张图中的路径价值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-6-4在带权树网络中统计可连接服务器对数目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/12/6-4%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/" class="article-date">
@@ -104,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/6-4%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/" data-id="clxbjhrst002lg8o72dud2aa3" data-title="6-4在带权树网络中统计可连接服务器对数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/6-4%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/" data-id="clyso5hcw002l3oo75pil7c1g" data-title="6-4在带权树网络中统计可连接服务器对数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -153,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/6-3%E5%88%86%E7%B3%96%E6%9E%9C-II/" data-id="clxbjhrst002kg8o77pd199gs" data-title="6-3分糖果 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/6-3%E5%88%86%E7%B3%96%E6%9E%9C-II/" data-id="clyso5hcw002k3oo7gaf13vr4" data-title="6-3分糖果 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -201,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/" data-id="clxbjhrst002jg8o7dfd65wc9" data-title="6-2分糖果" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/" data-id="clyso5hcw002j3oo72buq5rhq" data-title="6-2分糖果" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -246,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/" data-id="clxbjhrst002ig8o7bknx5hhc" data-title="6-1 给小朋友们分糖果 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/" data-id="clyso5hcv002i3oo77bduh4uf" data-title="6-1 给小朋友们分糖果 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -292,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" data-id="clxbjhrss002bg8o7hatlav5u" data-title="5-31找出缺失和重复的数字" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" data-id="clyso5hcv002a3oo709ae2v6h" data-title="5-31找出缺失和重复的数字" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -340,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/" data-id="clxbjhrss0029g8o7cokv7x3p" data-title="5-30找出出现至少三次的最长特殊子字符串 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/" data-id="clyso5hcu00293oo71cqrhyyq" data-title="5-30找出出现至少三次的最长特殊子字符串 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -388,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/" data-id="clxbjhrss0027g8o71mtuawn3" data-title="5-29找出出现至少三次的最长特殊子字符串 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/" data-id="clyso5hcu00273oo7hxqrb3hf" data-title="5-29找出出现至少三次的最长特殊子字符串 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -435,105 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/" data-id="clxbjhrss0026g8o7de26d3bu" data-title="5-28找出峰值" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-27找出缺失的观测数据" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/09/5-27%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE/" class="article-date">
-  <time class="dt-published" datetime="2024-06-09T02:40:05.000Z" itemprop="datePublished">2024-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/09/5-27%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE/">5-27找出缺失的观测数据</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>现有一份 n + m 次投掷单个 六面 骰子的观测数据，骰子的每个面从 1 到 6 编号。观测数据中缺失了 n 份，你手上只拿到剩余 m 次投掷的数据。幸好你有之前计算过的这 n + m 次投掷数据的 平均值 。</p>
-<p>给你一个长度为 m 的整数数组 rolls ，其中 rolls[i] 是第 i 次观测的值。同时给你两个整数 mean 和 n 。</p>
-<p>返回一个长度为 n 的数组，包含所有缺失的观测数据，且满足这 n + m 次投掷的 平均值 是 mean 。如果存在多组符合要求的答案，只需要返回其中任意一组即可。如果不存在答案，返回一个空数组。</p>
-<p>k 个数字的 平均值 为这些数字求和后再除以 k 。</p>
-<p>注意 mean 是一个整数，所以 n + m 次投掷的总和需要被 n + m 整除。</p>
-<p>示例 1：</p>
-<p>输入：rolls &#x3D; [3,2,4,3], mean &#x3D; 4, n &#x3D; 2<br>输出：[6,6]<br>解释：所有 n + m 次投掷的平均值是 (3 + 2 + 4 + 3 + 6 + 6) &#x2F; 6 &#x3D; 4 。<br>示例 2：</p>
-<p>输入：rolls &#x3D; [1,5,6], mean &#x3D; 3, n &#x3D; 4<br>输出：[2,3,2,2]<br>解释：所有 n + m 次投掷的平均值是 (1 + 5 + 6 + 2 + 3 + 2 + 2) &#x2F; 7 &#x3D; 3 。<br>示例 3：</p>
-<p>输入：rolls &#x3D; [1,2,3,4], mean &#x3D; 6, n &#x3D; 4<br>输出：[]<br>解释：无论丢失的 4 次数据是什么，平均值都不可能是 6 。<br>示例 4：</p>
-<p>输入：rolls &#x3D; [1], mean &#x3D; 3, n &#x3D; 1<br>输出：[5]<br>解释：所有 n + m 次投掷的平均值是 (1 + 5) &#x2F; 2 &#x3D; 3 。</p>
-<p>提示：</p>
-<p>m &#x3D;&#x3D; rolls.length<br>1 &lt;&#x3D; n, m &lt;&#x3D; 105<br>1 &lt;&#x3D; rolls[i], mean &lt;&#x3D; 6</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def missingRolls(self, rolls: List[int], mean: int, n: int) -&gt; List[int]:</span><br><span class="line">        missingSum = mean * (n + len(rolls)) - sum(rolls)</span><br><span class="line">        if not n &lt;= missingSum &lt;= n * 6:</span><br><span class="line">            return []</span><br><span class="line">        quotient, remainder = divmod(missingSum, n)</span><br><span class="line">        return [quotient + 1] * remainder + [quotient] * (n - remainder)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-27%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE/" data-id="clxbjhrsr0025g8o79gdx4nob" data-title="5-27找出缺失的观测数据" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-26找出第-K-大的异或坐标值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/09/5-26%E6%89%BE%E5%87%BA%E7%AC%AC-K-%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2024-06-09T02:38:20.000Z" itemprop="datePublished">2024-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/09/5-26%E6%89%BE%E5%87%BA%E7%AC%AC-K-%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/">5-26找出第 K 大的异或坐标值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个二维矩阵 matrix 和一个整数 k ，矩阵大小为 m x n 由非负整数组成。</p>
-<p>矩阵中坐标 (a, b) 的 目标值 可以通过对所有元素 matrix[i][j] 执行异或运算得到，其中 i 和 j 满足 0 &lt;&#x3D; i &lt;&#x3D; a &lt; m 且 0 &lt;&#x3D; j &lt;&#x3D; b &lt; n（下标从 0 开始计数）。</p>
-<p>请你找出 matrix 的所有坐标中第 k 大的目标值（k 的值从 1 开始计数）。</p>
-<p>示例 1：</p>
-<p>输入：matrix &#x3D; [[5,2],[1,6]], k &#x3D; 1<br>输出：7<br>解释：坐标 (0,1) 的目标值是 5 XOR 2 &#x3D; 7 ，为最大的目标值。<br>示例 2：</p>
-<p>输入：matrix &#x3D; [[5,2],[1,6]], k &#x3D; 2<br>输出：5<br>解释：坐标 (0,0) 的目标值是 5 &#x3D; 5 ，为第 2 大的目标值。<br>示例 3：</p>
-<p>输入：matrix &#x3D; [[5,2],[1,6]], k &#x3D; 3<br>输出：4<br>解释：坐标 (1,0) 的目标值是 5 XOR 1 &#x3D; 4 ，为第 3 大的目标值。<br>示例 4：</p>
-<p>输入：matrix &#x3D; [[5,2],[1,6]], k &#x3D; 4<br>输出：0<br>解释：坐标 (1,1) 的目标值是 5 XOR 2 XOR 1 XOR 6 &#x3D; 0 ，为第 4 大的目标值。</p>
-<p>提示：</p>
-<p>m &#x3D;&#x3D; matrix.length<br>n &#x3D;&#x3D; matrix[i].length<br>1 &lt;&#x3D; m, n &lt;&#x3D; 1000<br>0 &lt;&#x3D; matrix[i][j] &lt;&#x3D; 106<br>1 &lt;&#x3D; k &lt;&#x3D; m * n</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int cmp(int* a, int* b) &#123;</span><br><span class="line">    return *b - *a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int kthLargestValue(int** matrix, int matrixSize, int* matrixColSize, int k) &#123;</span><br><span class="line">    int m = matrixSize, n = matrixColSize[0];</span><br><span class="line">    int pre[m + 1][n + 1];</span><br><span class="line">    memset(pre, 0, sizeof(pre));</span><br><span class="line">    int results[m * n], resultsSize = 0;</span><br><span class="line">    for (int i = 1; i &lt;= m; ++i) &#123;</span><br><span class="line">        for (int j = 1; j &lt;= n; ++j) &#123;</span><br><span class="line">            pre[i][j] = pre[i - 1][j] ^ pre[i][j - 1] ^ pre[i - 1][j - 1] ^ matrix[i - 1][j - 1];</span><br><span class="line">            results[resultsSize++] = pre[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    qsort(results, resultsSize, sizeof(int), cmp);</span><br><span class="line">    return results[k - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-26%E6%89%BE%E5%87%BA%E7%AC%AC-K-%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/" data-id="clxbjhrsr0024g8o7ameibzu0" data-title="5-26找出第 K 大的异或坐标值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/" data-id="clyso5hcu00263oo7egqkdvy9" data-title="5-28找出峰值" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -568,7 +571,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
     </div>
   </div>
 
@@ -581,6 +584,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/">7-1最大化一张图中的路径价值</a>
+          </li>
+        
+          <li>
             <a href="/2024/06/12/6-4%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/">6-4在带权树网络中统计可连接服务器对数目</a>
           </li>
         
@@ -590,14 +601,6 @@
         
           <li>
             <a href="/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/">6-2分糖果</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/">6-1 给小朋友们分糖果 I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/">5-31找出缺失和重复的数字</a>
           </li>
         
       </ul>

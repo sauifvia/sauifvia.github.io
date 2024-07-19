@@ -69,6 +69,129 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-17尽量减少恶意软件的传播-II" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/" class="article-date">
+  <time class="dt-published" datetime="2024-05-18T13:51:59.000Z" itemprop="datePublished">2024-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/">4-17尽量减少恶意软件的传播 II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给定一个由 n 个节点组成的网络，用 n x n 个邻接矩阵 graph 表示。在节点网络中，只有当 graph[i][j] &#x3D; 1 时，节点 i 能够直接连接到另一个节点 j。</p>
+<p>一些节点 initial 最初被恶意软件感染。只要两个节点直接连接，且其中至少一个节点受到恶意软件的感染，那么两个节点都将被恶意软件感染。这种恶意软件的传播将继续，直到没有更多的节点可以被这种方式感染。</p>
+<p>假设 M(initial) 是在恶意软件停止传播之后，整个网络中感染恶意软件的最终节点数。</p>
+<p>我们可以从 initial 中 删除一个节点，并完全移除该节点以及从该节点到任何其他节点的任何连接。</p>
+<p>请返回移除后能够使 M(initial) 最小化的节点。如果有多个节点满足条件，返回索引 最小的节点 。</p>
+<p>示例 1：</p>
+<p>输入：graph &#x3D; [[1,1,0],[1,1,0],[0,0,1]], initial &#x3D; [0,1]</p>
+<p>输出：0</p>
+<p>示例 2：</p>
+<p>输入：graph &#x3D; [[1,1,0],[1,1,1],[0,1,1]], initial &#x3D; [0,1]</p>
+<p>输出：1</p>
+<p>示例 3：</p>
+<p>输入：graph &#x3D; [[1,1,0,0],[1,1,1,0],[0,1,1,1],[0,0,1,1]], initial &#x3D; [0,1]</p>
+<p>输出：1</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; graph.length</p>
+<p>n &#x3D;&#x3D; graph[i].length<br>2 &lt;&#x3D; n &lt;&#x3D; 300</p>
+<p>graph[i][j] 是 0 或 1.</p>
+<p>graph[i][j] &#x3D;&#x3D; graph[j][i]</p>
+<p>graph[i][i] &#x3D;&#x3D; 1</p>
+<p>1 &lt;&#x3D; initial.length &lt; n</p>
+<p>0 &lt;&#x3D; initial[i] &lt;&#x3D; n - 1</p>
+<p> initial 中每个整数都不同</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">void dfs(int **graph, int graphSize, int *initialSet, int *infectedSet, int v) &#123;</span><br><span class="line">    int n = graphSize;</span><br><span class="line">    for (int u = 0; u &lt; n; u++) &#123;</span><br><span class="line">        if (graph[v][u] == 0 || initialSet[u] == 1 || infectedSet[u] == 1) &#123;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        infectedSet[u] = 1;</span><br><span class="line">        dfs(graph, graphSize, initialSet, infectedSet, u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int minMalwareSpread(int** graph, int graphSize, int* graphColSize, int* initial, int initialSize) &#123;</span><br><span class="line">    int n = graphSize;</span><br><span class="line">    int initialSet[n];</span><br><span class="line">    memset(initialSet, 0, sizeof(initialSet));</span><br><span class="line">    for (int i = 0; i &lt; initialSize; i++) &#123;</span><br><span class="line">        int v = initial[i];</span><br><span class="line">        initialSet[v] = 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int infectedBy[n][n];</span><br><span class="line">    int infectedBySize[n];</span><br><span class="line">    memset(infectedBySize, 0, sizeof(infectedBySize));</span><br><span class="line">    for (int i = 0; i &lt; initialSize; i++) &#123;</span><br><span class="line">        int v = initial[i];</span><br><span class="line">        int infectedSet[n];</span><br><span class="line">        memset(infectedSet, 0, sizeof(infectedSet));</span><br><span class="line">        dfs(graph, graphSize, initialSet, infectedSet, v);</span><br><span class="line">        for (int u = 0; u &lt; n; u++) &#123;</span><br><span class="line">            if (infectedSet[u] == 1) &#123;</span><br><span class="line">                infectedBy[u][infectedBySize[u]++] = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int count[n];</span><br><span class="line">    memset(count, 0, sizeof(count));</span><br><span class="line">    for (int u = 0; u &lt; n; u++) &#123;</span><br><span class="line">        if (infectedBySize[u] == 1) &#123;</span><br><span class="line">            count[infectedBy[u][0]]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int res = initial[0];</span><br><span class="line">    for (int i = 0; i &lt; initialSize; i++) &#123;</span><br><span class="line">        int v = initial[i];</span><br><span class="line">        if (count[v] &gt; count[res] || count[v] == count[res] &amp;&amp; v &lt; res) &#123;</span><br><span class="line">            res = v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/" data-id="clyso5hcq00103oo7676fb33c" data-title="4-17尽量减少恶意软件的传播 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-4-16设计哈希映射" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/" class="article-date">
+  <time class="dt-published" datetime="2024-05-18T13:50:16.000Z" itemprop="datePublished">2024-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/">4-16设计哈希映射</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>不使用任何内建的哈希表库设计一个哈希映射（HashMap）。</p>
+<p>实现 MyHashMap 类：</p>
+<p>MyHashMap() 用空映射初始化对象</p>
+<p>void put(int key, int value) 向 HashMap 插入一个键值对 (key, value) 。如果 key 已经存在<br>于映射中，则更新其对应的值 value 。</p>
+<p>int get(int key) 返回特定的 key 所映射的 value ；如果映射中不包含 key 的映射，返回 -1 。</p>
+<p>void remove(key) 如果映射中存在 key 的映射，则移除 key 和它所对应的 value 。</p>
+<p>示例：</p>
+<p>输入：</p>
+<p>[“MyHashMap”, “put”, “put”, “get”, “get”, “put”, “get”, “remove”, “get”]</p>
+<p>[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]</p>
+<p>输出：</p>
+<p>[null, null, null, 1, -1, null, 1, null, -1]</p>
+<p>解释：<br>MyHashMap myHashMap &#x3D; new MyHashMap();</p>
+<p>myHashMap.put(1, 1); &#x2F;&#x2F; myHashMap 现在为 [[1,1]]</p>
+<p>myHashMap.put(2, 2); &#x2F;&#x2F; myHashMap 现在为 [[1,1], [2,2]]</p>
+<p>myHashMap.get(1);    &#x2F;&#x2F; 返回 1 ，myHashMap 现在为 [[1,1], [2,2]]</p>
+<p>myHashMap.get(3);    &#x2F;&#x2F; 返回 -1（未找到），myHashMap 现在为 [[1,1], [2,2]]</p>
+<p>myHashMap.put(2, 1); &#x2F;&#x2F; myHashMap 现在为 [[1,1], [2,1]]（更新已有的值）</p>
+<p>myHashMap.get(2);    &#x2F;&#x2F; 返回 1 ，myHashMap 现在为 [[1,1], [2,1]]</p>
+<p>myHashMap.remove(2); &#x2F;&#x2F; 删除键为 2 的数据，myHashMap 现在为 [[1,1]]</p>
+<p>myHashMap.get(2);    &#x2F;&#x2F; 返回 -1（未找到），myHashMap 现在为 [[1,1]]</p>
+<p>提示：</p>
+<p>0 &lt;&#x3D; key, value &lt;&#x3D; 106</p>
+<p>最多调用 104 次 put、get 和 remove 方法</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">struct List &#123;</span><br><span class="line">    int key;</span><br><span class="line">    int val;</span><br><span class="line">    struct List* next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void listPush(struct List* head, int key, int val) &#123;</span><br><span class="line">    struct List* tmp = malloc(sizeof(struct List));</span><br><span class="line">    tmp-&gt;key = key;</span><br><span class="line">    tmp-&gt;val = val;</span><br><span class="line">    tmp-&gt;next = head-&gt;next;</span><br><span class="line">    head-&gt;next = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void listDelete(struct List* head, int key) &#123;</span><br><span class="line">    for (struct List* it = head; it-&gt;next; it = it-&gt;next) &#123;</span><br><span class="line">        if (it-&gt;next-&gt;key == key) &#123;</span><br><span class="line">            struct List* tmp = it-&gt;next;</span><br><span class="line">            it-&gt;next = tmp-&gt;next;</span><br><span class="line">            free(tmp);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct List* listFind(struct List* head, int key) &#123;</span><br><span class="line">    for (struct List* it = head; it-&gt;next; it = it-&gt;next) &#123;</span><br><span class="line">        if (it-&gt;next-&gt;key == key) &#123;</span><br><span class="line">            return it-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void listFree(struct List* head) &#123;</span><br><span class="line">    while (head-&gt;next) &#123;</span><br><span class="line">        struct List* tmp = head-&gt;next;</span><br><span class="line">        head-&gt;next = tmp-&gt;next;</span><br><span class="line">        free(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const int base = 769;</span><br><span class="line"></span><br><span class="line">int hash(int key) &#123;</span><br><span class="line">    return key % base;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    struct List* data;</span><br><span class="line">&#125; MyHashMap;</span><br><span class="line"></span><br><span class="line">MyHashMap* myHashMapCreate() &#123;</span><br><span class="line">    MyHashMap* ret = malloc(sizeof(MyHashMap));</span><br><span class="line">    ret-&gt;data = malloc(sizeof(struct List) * base);</span><br><span class="line">    for (int i = 0; i &lt; base; i++) &#123;</span><br><span class="line">        ret-&gt;data[i].key = 0;</span><br><span class="line">        ret-&gt;data[i].val = 0;</span><br><span class="line">        ret-&gt;data[i].next = NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void myHashMapPut(MyHashMap* obj, int key, int value) &#123;</span><br><span class="line">    int h = hash(key);</span><br><span class="line">    struct List* rec = listFind(&amp;(obj-&gt;data[h]), key);</span><br><span class="line">    if (rec == NULL) &#123;</span><br><span class="line">        listPush(&amp;(obj-&gt;data[h]), key, value);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        rec-&gt;val = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int myHashMapGet(MyHashMap* obj, int key) &#123;</span><br><span class="line">    int h = hash(key);</span><br><span class="line">    struct List* rec = listFind(&amp;(obj-&gt;data[h]), key);</span><br><span class="line">    if (rec == NULL) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return rec-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void myHashMapRemove(MyHashMap* obj, int key) &#123;</span><br><span class="line">    int h = hash(key);</span><br><span class="line">    listDelete(&amp;(obj-&gt;data[h]), key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void myHashMapFree(MyHashMap* obj) &#123;</span><br><span class="line">    for (int i = 0; i &lt; base; i++) &#123;</span><br><span class="line">        listFree(&amp;(obj-&gt;data[i]));</span><br><span class="line">    &#125;</span><br><span class="line">    free(obj-&gt;data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/" data-id="clyso5hcp000z3oo7b2a2ebj6" data-title="4-16设计哈希映射" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-4-15尽量减少恶意软件的传播" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" class="article-date">
@@ -106,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" data-id="clxbjhrsn000yg8o7fvnv7bbl" data-title="4-15尽量减少恶意软件的传播" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" data-id="clyso5hcp000y3oo7c6u60mdx" data-title="4-15尽量减少恶意软件的传播" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -167,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/" data-id="clxbjhrsn000xg8o74ui53s67" data-title="4-14设计哈希集合I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/" data-id="clyso5hcp000x3oo7e20lbumu" data-title="4-14设计哈希集合I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -231,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/" data-id="clxbjhrsn000wg8o7f61f95qo" data-title="4-13找到冠军2I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/" data-id="clyso5hcp000w3oo76tzr7jmu" data-title="4-13找到冠军2I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -294,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/4-12%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B-I/" data-id="clxbjhrsm000vg8o7e5u50wwp" data-title="找到冠军 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/24/4-12%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B-I/" data-id="clyso5hcp000v3oo72xls87da" data-title="找到冠军 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -349,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/17/4-11%E4%BA%92%E8%B4%A8%E6%A0%91/" data-id="clxbjhrsm000ug8o7dg4b7io7" data-title="4-11互质树" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/17/4-11%E4%BA%92%E8%B4%A8%E6%A0%91/" data-id="clyso5hcp000u3oo7fesxffk1" data-title="4-11互质树" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -409,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/17/4-10%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="clxbjhrsm000tg8o7gn4od4bs" data-title="4-10修改后的最大二进制字符串" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/17/4-10%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="clyso5hcp000t3oo7gckyahz3" data-title="4-10修改后的最大二进制字符串" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -467,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/17/4-9%E6%AD%A3%E6%95%B4%E6%95%B0%E5%92%8C%E8%B4%9F%E6%95%B4%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%AE%A1%E6%95%B0/" data-id="clxbjhrsp001mg8o75xmef6t1" data-title="4-9正整数和负整数的最大计数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/17/4-9%E6%AD%A3%E6%95%B4%E6%95%B0%E5%92%8C%E8%B4%9F%E6%95%B4%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%AE%A1%E6%95%B0/" data-id="clyso5hcs001m3oo77io6bvji" data-title="4-9正整数和负整数的最大计数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -536,152 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/" data-id="clxbjhrsp001lg8o7cq3ua3yy" data-title="4-8使数组连续的最少操作数" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-7王位继承顺序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" class="article-date">
-  <time class="dt-published" datetime="2024-04-12T13:04:01.000Z" itemprop="datePublished">2024-04-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/">4-7王位继承顺序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>一个王国里住着国王、他的孩子们、他的孙子们等等。每一个时间点，这个家庭里有人出生也有人死亡。</p>
-<p>这个王国有一个明确规定的王位继承顺序，第一继承人总是国王自己。我们定义递归函数 Successor(x, curOrder) ，给定一个人 x 和当前的继承顺序，该函数返回 x 的下一继承人。</p>
-<p>Successor(x, curOrder):</p>
-<pre><code>如果 x 没有孩子或者所有 x 的孩子都在 curOrder 中：
-    如果 x 是国王，那么返回 null
-    否则，返回 Successor(x 的父亲, curOrder)
-否则，返回 x 不在 curOrder 中最年长的孩子
-</code></pre>
-<p>比方说，假设王国由国王，他的孩子 Alice 和 Bob （Alice 比 Bob 年长）和 Alice 的孩子 Jack 组成。</p>
-<p>一开始， curOrder 为 [“king”].</p>
-<p>调用 Successor(king, curOrder) ，返回 Alice ，所以我们将 Alice 放入 curOrder 中，得到 [“king”, “Alice”] 。</p>
-<p>调用 Successor(Alice, curOrder) ，返回 Jack ，所以我们将 Jack 放入 curOrder 中，得到 [“king”, “Alice”, “Jack”] 。</p>
-<p>调用 Successor(Jack, curOrder) ，返回 Bob ，所以我们将 Bob 放入 curOrder 中，得到 [“king”, “Alice”, “Jack”, “Bob”] 。</p>
-<p>调用 Successor(Bob, curOrder) ，返回 null 。最终得到继承顺序为 [“king”, “Alice”, “Jack”, “Bob”] 。</p>
-<p>通过以上的函数，我们总是能得到一个唯一的继承顺序。</p>
-<p>请你实现 ThroneInheritance 类：</p>
-<p>ThroneInheritance(string kingName) 初始化一个 ThroneInheritance 类的对象。国王的名字作为构造函数的参数传入。</p>
-<p>void birth(string parentName, string childName) 表示 parentName 新拥有了一个名为 childName 的孩子。</p>
-<p>void death(string name) 表示名为 name 的人死亡。一个人的死亡不会影响 Successor 函数，也不会影响当前的继承顺序。你可以只将这个人标记为死亡状态。</p>
-<p>string[] getInheritanceOrder() 返回 除去 死亡人员的当前继承顺序列表。</p>
-<p>示例：</p>
-<p>输入：</p>
-<p>[“ThroneInheritance”, “birth”, “birth”, “birth”, “birth”, “birth”, “birth”, “getInheritanceOrder”, “death”, “getInheritanceOrder”]</p>
-<p>[[“king”], [“king”, “andy”], [“king”, “bob”], [“king”, “catherine”], [“andy”, “matthew”], [“bob”, “alex”], [“bob”, “asha”], [null], [“bob”], [null]]</p>
-<p>输出：</p>
-<p>[null, null, null, null, null, null, null, [“king”, “andy”, “matthew”, “bob”, “alex”, “asha”, “catherine”], null, [“king”, “andy”, “matthew”, “alex”, “asha”, “catherine”]]</p>
-<p>解释：</p>
-<p>ThroneInheritance t&#x3D; new ThroneInheritance(“king”); &#x2F;&#x2F; 继承顺序：king</p>
-<p>t.birth(“king”, “andy”); &#x2F;&#x2F; 继承顺序：king &gt; andy</p>
-<p>t.birth(“king”, “bob”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; bob</p>
-<p>t.birth(“king”, “catherine”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; bob &gt; catherine</p>
-<p>t.birth(“andy”, “matthew”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob &gt; catherine</p>
-<p>t.birth(“bob”, “alex”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob &gt; alex &gt; catherine</p>
-<p>t.birth(“bob”, “asha”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob &gt; alex &gt; asha &gt;<br>catherine</p>
-<p>t.getInheritanceOrder(); &#x2F;&#x2F; 返回 [“king”, “andy”, “matthew”, “bob”, “alex”, “asha”,<br>“catherine”]</p>
-<p>t.death(“bob”); &#x2F;&#x2F; 继承顺序：king &gt; andy &gt; matthew &gt; bob（已经去世）&gt; alex &gt; asha &gt; catherine</p>
-<p>t.getInheritanceOrder(); &#x2F;&#x2F; 返回 [“king”, “andy”, “matthew”, “alex”, “asha”, “catherine”]</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; kingName.length, parentName.length, childName.length, name.length &lt;&#x3D; 15</p>
-<p>kingName，parentName， childName 和 name 仅包含小写英文字母。</p>
-<p>所有的参数 childName 和 kingName 互不相同。</p>
-<p>所有 death 函数中的死亡名字 name 要么是国王，要么是已经出生了的人员名字。</p>
-<p>每次调用 birth(parentName, childName) 时，测试用例都保证 parentName 对应的人员是活着的。</p>
-<p>最多调用 105 次birth 和 death 。</p>
-<p>最多调用 10 次 getInheritanceOrder 。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class ThroneInheritance:</span><br><span class="line"></span><br><span class="line">    def __init__(self, kingName: str):</span><br><span class="line">        self.edges = defaultdict(list)</span><br><span class="line">        self.dead = set()</span><br><span class="line">        self.king = kingName</span><br><span class="line"></span><br><span class="line">    def birth(self, parentName: str, childName: str) -&gt; None:</span><br><span class="line">        self.edges[parentName].append(childName)</span><br><span class="line"></span><br><span class="line">    def death(self, name: str) -&gt; None:</span><br><span class="line">        self.dead.add(name)</span><br><span class="line"></span><br><span class="line">    def getInheritanceOrder(self) -&gt; List[str]:</span><br><span class="line">        ans = list()</span><br><span class="line"></span><br><span class="line">        def preorder(name: str) -&gt; None:</span><br><span class="line">            if name not in self.dead:</span><br><span class="line">                ans.append(name)</span><br><span class="line">            if name in self.edges:</span><br><span class="line">                for childName in self.edges[name]:</span><br><span class="line">                    preorder(childName)</span><br><span class="line"></span><br><span class="line">        preorder(self.king)</span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/12/4-7%E7%8E%8B%E4%BD%8D%E7%BB%A7%E6%89%BF%E9%A1%BA%E5%BA%8F/" data-id="clxbjhrsp001kg8o75pj54hvm" data-title="4-7王位继承顺序" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-6树节点的第-K-个祖先I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/" class="article-date">
-  <time class="dt-published" datetime="2024-04-12T12:59:48.000Z" itemprop="datePublished">2024-04-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/">4-6树节点的第 K 个祖先I</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一棵树，树上有 n 个节点，按从 0 到 n-1 编号。树以父节点数组的形式给出，其中 parent[i] 是节点 i 的父节点。树的根节点是编号为 0 的节点。</p>
-<p>树节点的第 k 个祖先节点是从该节点到根节点路径上的第 k 个节点。</p>
-<p>实现 TreeAncestor 类：</p>
-<p>TreeAncestor（int n， int[] parent） 对树和父数组中的节点数初始化对象。</p>
-<p>getKthAncestor(int node, int k) 返回节点 node 的第 k 个祖先节点。如果不存在这样的祖先节点，返回 -1 。</p>
-<p>示例 1：</p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/06/14/1528_ex1.png"></p>
-<p>输入：</p>
-<p>[“TreeAncestor”,”getKthAncestor”,”getKthAncestor”,”getKthAncestor”]</p>
-<p>[[7,[-1,0,0,1,1,2,2]],[3,1],[5,2],[6,3]]</p>
-<p>输出：</p>
-<p>[null,1,0,-1]</p>
-<p>解释：</p>
-<p>TreeAncestor treeAncestor &#x3D; new TreeAncestor(7, [-1, 0, 0, 1, 1, 2, 2]);</p>
-<p>treeAncestor.getKthAncestor(3, 1);  &#x2F;&#x2F; 返回 1 ，它是 3 的父节点</p>
-<p>treeAncestor.getKthAncestor(5, 2);  &#x2F;&#x2F; 返回 0 ，它是 5<br>的祖父节点</p>
-<p>treeAncestor.getKthAncestor(6, 3);  &#x2F;&#x2F; 返回 -1 因为不存在满足要求的祖先节点</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 5 * 104</p>
-<p>parent[0] &#x3D;&#x3D; -1 表示编号为 0 的节点是根节点。</p>
-<p>对于所有的 0 &lt; i &lt; n ，0 &lt;&#x3D; parent[i] &lt; n 总成立</p>
-<p>0 &lt;&#x3D; node &lt; n</p>
-<p>至多查询 5 * 104 次</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">const int LOG = 16;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    int **ancestors;</span><br><span class="line">    int n;</span><br><span class="line">&#125; TreeAncestor;</span><br><span class="line"></span><br><span class="line">TreeAncestor* treeAncestorCreate(int n, int* parent, int parentSize) &#123;</span><br><span class="line">    TreeAncestor *obj = (TreeAncestor *)malloc(sizeof(TreeAncestor));</span><br><span class="line">    obj-&gt;ancestors = (int **)malloc(sizeof(int *) * n);</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        obj-&gt;ancestors[i] = (int *)malloc(sizeof(int) * LOG);</span><br><span class="line">        memset(obj-&gt;ancestors[i], 0xff, sizeof(int) * LOG);</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        obj-&gt;ancestors[i][0] = parent[i];</span><br><span class="line">    &#125;</span><br><span class="line">    for (int j = 1; j &lt; LOG; j++) &#123;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (obj-&gt;ancestors[i][j - 1] != -1) &#123;</span><br><span class="line">                obj-&gt;ancestors[i][j] = obj-&gt;ancestors[obj-&gt;ancestors[i][j - 1]][j - 1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;    </span><br><span class="line">    return obj;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int treeAncestorGetKthAncestor(TreeAncestor* obj, int node, int k) &#123;</span><br><span class="line">    for (int j = 0; j &lt; LOG; j++) &#123;</span><br><span class="line">        if ((k &gt;&gt; j) &amp; 1) &#123;</span><br><span class="line">            node = obj-&gt;ancestors[node][j];</span><br><span class="line">            if (node == -1) &#123;</span><br><span class="line">                return -1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void treeAncestorFree(TreeAncestor* obj) &#123;</span><br><span class="line">    for (int i = 0; i &lt; obj-&gt;n; i++) &#123;</span><br><span class="line">        free(obj-&gt;ancestors[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    free(obj-&gt;ancestors);</span><br><span class="line">    free(obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/12/4-6%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC-K-%E4%B8%AA%E7%A5%96%E5%85%88I/" data-id="clxbjhrsp001jg8o7222bf7g4" data-title="4-6树节点的第 K 个祖先I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/12/4-8%E4%BD%BF%E6%95%B0%E7%BB%84%E8%BF%9E%E7%BB%AD%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0/" data-id="clyso5hcs001l3oo77tg247ph" data-title="4-8使数组连续的最少操作数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -716,7 +694,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
     </div>
   </div>
 
@@ -729,6 +707,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/">7-1最大化一张图中的路径价值</a>
+          </li>
+        
+          <li>
             <a href="/2024/06/12/6-4%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/">6-4在带权树网络中统计可连接服务器对数目</a>
           </li>
         
@@ -738,14 +724,6 @@
         
           <li>
             <a href="/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/">6-2分糖果</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/">6-1 给小朋友们分糖果 I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/">5-31找出缺失和重复的数字</a>
           </li>
         
       </ul>
