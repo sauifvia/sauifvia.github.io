@@ -69,6 +69,123 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-23爱生气的书店老板" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/" class="article-date">
+  <time class="dt-published" datetime="2024-05-22T14:03:20.000Z" itemprop="datePublished">2024-05-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/">4-23爱生气的书店老板</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>有一个书店老板，他的书店开了 n 分钟。每分钟都有一些顾客进入这家商店。给定一个长度为 n 的整数数组 customers ，其中 customers[i] 是在第 i 分钟开始时进入商店的顾客数量，所有这些顾客在第 i 分钟结束后离开。</p>
+<p>在某些时候，书店老板会生气。 如果书店老板在第 i 分钟生气，那么 grumpy[i] &#x3D; 1，否则 grumpy[i] &#x3D; 0。</p>
+<p>当书店老板生气时，那一分钟的顾客就会不满意，若老板不生气则顾客是满意的。</p>
+<p>书店老板知道一个秘密技巧，能抑制自己的情绪，可以让自己连续 minutes 分钟不生气，但却只能使用一次。</p>
+<p>请你返回 这一天营业下来，最多有多少客户能够感到满意 。</p>
+<p>示例 1：</p>
+<p>输入：customers &#x3D; [1,0,1,2,1,1,7,5], grumpy &#x3D;<br>[0,1,0,1,0,1,0,1], minutes &#x3D; 3</p>
+<p>输出：16</p>
+<p>解释：书店老板在最后 3 分钟保持冷静。</p>
+<p>感到满意的最大客户数量 &#x3D; 1 + 1 + 1 + 1 + 7 + 5 &#x3D; 16.</p>
+<p>示例 2：</p>
+<p>输入：customers &#x3D; [1], grumpy &#x3D; [0], minutes &#x3D; 1</p>
+<p>输出：1</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; customers.length &#x3D;&#x3D; grumpy.length</p>
+<p>1 &lt;&#x3D; minutes &lt;&#x3D; n &lt;&#x3D; 2 * 104</p>
+<p>0 &lt;&#x3D; customers[i] &lt;&#x3D; 1000</p>
+<p>grumpy[i] &#x3D;&#x3D; 0 or 1</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize, int minutes) &#123;</span><br><span class="line">    int total = 0;</span><br><span class="line">    int n = customersSize;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        if (grumpy[i] == 0) &#123;</span><br><span class="line">            total += customers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int increase = 0;</span><br><span class="line">    for (int i = 0; i &lt; minutes; i++) &#123;</span><br><span class="line">        increase += customers[i] * grumpy[i];</span><br><span class="line">    &#125;</span><br><span class="line">    int maxIncrease = increase;</span><br><span class="line">    for (int i = minutes; i &lt; n; i++) &#123;</span><br><span class="line">        increase = increase - customers[i - minutes] * grumpy[i - minutes] + customers[i] * grumpy[i];</span><br><span class="line">        maxIncrease = fmax(maxIncrease, increase);</span><br><span class="line">    &#125;</span><br><span class="line">    return total + maxIncrease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/" data-id="clyyizdhb0018yyo70zdi9wh8" data-title="4-23爱生气的书店老板" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-4-22组合总和-Ⅳ" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/21/4-22%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3/" class="article-date">
+  <time class="dt-published" datetime="2024-05-21T14:50:30.000Z" itemprop="datePublished">2024-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/21/4-22%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3/">4-22组合总和 Ⅳ</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个由 不同 整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。</p>
+<p>题目数据保证答案符合 32 位整数范围。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [1,2,3], target &#x3D; 4</p>
+<p>输出：7</p>
+<p>解释：</p>
+<p>所有可能的组合为：</p>
+<p>(1, 1, 1, 1)</p>
+<p>(1, 1, 2)</p>
+<p>(1, 2, 1)</p>
+<p>(1, 3)</p>
+<p>(2, 1, 1)</p>
+<p>(2, 2)</p>
+<p>(3, 1)<br>请注意，顺序不同的序列被视作不同的组合。</p>
+<p>示例 2：</p>
+<p>输入：nums &#x3D; [9], target &#x3D; 3</p>
+<p>输出：0</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 200</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 1000</p>
+<p>nums 中的所有元素 互不相同</p>
+<p>1 &lt;&#x3D; target &lt;&#x3D; 1000</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int combinationSum4(int* nums, int numsSize, int target) &#123;</span><br><span class="line">    int dp[target + 1];</span><br><span class="line">    memset(dp, 0, sizeof(dp));</span><br><span class="line">    dp[0] = 1;</span><br><span class="line">    for (int i = 1; i &lt;= target; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; numsSize; j++) &#123;</span><br><span class="line">            if (nums[j] &lt;= i &amp;&amp; dp[i - nums[j]] &lt; INT_MAX - dp[i]) &#123;</span><br><span class="line">                dp[i] += dp[i - nums[j]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[target];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/21/4-22%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3/" data-id="clyyizdhb0016yyo7grltgbze" data-title="4-22组合总和 Ⅳ" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-4-21组合总和-III" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/21/4-21%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-III/" class="article-date">
@@ -119,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/21/4-21%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-III/" data-id="clywzj1010016q6o7gmrwfq9k" data-title="4-21组合总和 III" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/21/4-21%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-III/" data-id="clyyizdha0012yyo7anpo68uv" data-title="4-21组合总和 III" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -178,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/21/4-20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" data-id="clywzj1000014q6o7h17z1hv1" data-title="4-20组合总和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/21/4-20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" data-id="clyyizdhb0015yyo72scc2ydv" data-title="4-20组合总和" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -243,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/21/4-19%E5%87%86%E6%97%B6%E6%8A%B5%E8%BE%BE%E4%BC%9A%E8%AE%AE%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%9C%80%E5%B0%8F%E8%B7%B3%E8%BF%87%E4%BC%91%E6%81%AF%E6%AC%A1%E6%95%B0/" data-id="clywzj1000012q6o7f8erewf0" data-title="4-19准时抵达会议现场的最小跳过休息次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/21/4-19%E5%87%86%E6%97%B6%E6%8A%B5%E8%BE%BE%E4%BC%9A%E8%AE%AE%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%9C%80%E5%B0%8F%E8%B7%B3%E8%BF%87%E4%BC%91%E6%81%AF%E6%AC%A1%E6%95%B0/" data-id="clyyizdha000zyyo7cr5i1nml" data-title="4-19准时抵达会议现场的最小跳过休息次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -307,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/21/4-18%E4%BB%8E%E5%8F%8C%E5%80%8D%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%98%E5%8E%9F%E5%8E%9F%E6%95%B0%E7%BB%84/" data-id="clywzj1000011q6o7auajduvy" data-title="4-18从双倍数组中还原原数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/21/4-18%E4%BB%8E%E5%8F%8C%E5%80%8D%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%98%E5%8E%9F%E5%8E%9F%E6%95%B0%E7%BB%84/" data-id="clyyizdha0013yyo71iah2ijf" data-title="4-18从双倍数组中还原原数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -368,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/" data-id="clywzj1000010q6o7an7s29qw" data-title="4-17尽量减少恶意软件的传播 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/18/4-17%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD-II/" data-id="clyyizdhb0014yyo74rdzg9ok" data-title="4-17尽量减少恶意软件的传播 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -430,7 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/" data-id="clywzj100000zq6o772o8gje1" data-title="4-16设计哈希映射" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/18/4-16%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84/" data-id="clyyizdha000yyyo7bljlgc6t" data-title="4-16设计哈希映射" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -479,7 +596,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" data-id="clywzj100000yq6o7h959b5nr" data-title="4-15尽量减少恶意软件的传播" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/18/4-15%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD/" data-id="clyyizdha000xyyo70xpvet2e" data-title="4-15尽量减少恶意软件的传播" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -540,134 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/" data-id="clywzj100000xq6o71saggt4u" data-title="4-14设计哈希集合I" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-13找到冠军2I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/" class="article-date">
-  <time class="dt-published" datetime="2024-04-24T14:29:20.000Z" itemprop="datePublished">2024-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/">4-13找到冠军2I</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#题目：<br>一场比赛中共有 n 支队伍，按从 0 到  n - 1 编号。每支队伍也是 有向无环图（DAG） 上的一个节点。</p>
-<p>给你一个整数 n 和一个下标从 0 开始、长度为 m 的二维整数数组 edges 表示这个有向无环图，其中 edges[i] &#x3D; [ui, vi] 表示图中存在一条从 ui 队到 vi 队的有向边。</p>
-<p>从 a 队到 b 队的有向边意味着 a 队比 b 队 强 ，也就是 b 队比 a 队 弱 。</p>
-<p>在这场比赛中，如果不存在某支强于 a 队的队伍，则认为 a 队将会是 冠军 。</p>
-<p>如果这场比赛存在 唯一 一个冠军，则返回将会成为冠军的队伍。否则，返回 -1 。</p>
-<p>注意</p>
-<p>环 是形如 a1, a2, …, an, an+1 的一个序列，且满足：节点 a1 与节点 an+1 是同一个节点；节点 a1, a2, …, an 互不相同；对于范围 [1, n] 中的每个 i ，均存在一条从节点 ai 到节点 ai+1 的有向边。</p>
-<p>有向无环图 是不存在任何环的有向图。</p>
-<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2023/10/19/graph-3.png"></p>
-<p>输入：n &#x3D; 3, edges &#x3D; [[0,1],[1,2]]</p>
-<p>输出：0</p>
-<p>解释：1 队比 0 队弱。2 队比 1 队弱。所以冠军是 0 队。</p>
-<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2023/10/19/graph-4.png"></p>
-<p>输入：n &#x3D; 4, edges &#x3D; [[0,2],[1,3],[1,2]]</p>
-<p>输出：-1</p>
-<p>解释：2 队比 0 队和 1 队弱。3 队比 1 队弱。但是 1 队和 0 队之间不存在强弱对比。所以答案是 -1 。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; n &lt;&#x3D; 100</p>
-<p>m &#x3D;&#x3D; edges.length</p>
-<p>0 &lt;&#x3D; m &lt;&#x3D; n * (n - 1) &#x2F; 2</p>
-<p>edges[i].length &#x3D;&#x3D; 2</p>
-<p>0 &lt;&#x3D; edge[i][j] &lt;&#x3D; n - 1</p>
-<p>edges[i][0] !&#x3D; edges[i][1]</p>
-<p>生成的输入满足：如果 a 队比 b 队强，就不存在 b 队比 a 队强</p>
-<p>生成的输入满足：如果 a 队比 b 队强，b 队比 c 队强，那么 a 队比 c 队强</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int findChampion(int n, int** edges, int edgesSize, int* edgesColSize) &#123;</span><br><span class="line">    int degree[n];</span><br><span class="line">    memset(degree, 0, sizeof(degree));</span><br><span class="line">    for (int i = 0; i &lt; edgesSize; i++) &#123;</span><br><span class="line">        degree[edges[i][1]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    int champion = -1;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        if (degree[i] == 0) &#123;</span><br><span class="line">            if (champion == -1) &#123;</span><br><span class="line">                champion = i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return -1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return champion;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/4-13%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B2I/" data-id="clywzj0zz000wq6o716i1cj7x" data-title="4-13找到冠军2I" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-12找到冠军-I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/24/4-12%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B-I/" class="article-date">
-  <time class="dt-published" datetime="2024-04-24T14:22:22.000Z" itemprop="datePublished">2024-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/24/4-12%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B-I/">找到冠军 I</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#题目：<br>一场比赛中共有 n 支队伍，按从 0 到  n - 1 编号。</p>
-<p>给你一个下标从 0 开始、大小为 n * n 的二维布尔矩阵 grid 。对于满足 0 &lt;&#x3D; i, j &lt;&#x3D; n - 1 且 i !&#x3D; j 的所有 i, j ：如果 grid[i][j] &#x3D;&#x3D; 1，那么 i 队比 j 队 强 ；否则，j 队比 i 队 强 。</p>
-<p>在这场比赛中，如果不存在某支强于 a 队的队伍，则认为 a 队将会是 冠军 。</p>
-<p>返回这场比赛中将会成为冠军的队伍。</p>
-<p>示例 1：</p>
-<p>输入：grid &#x3D; [[0,1],[0,0]]</p>
-<p>输出：0</p>
-<p>解释：比赛中有两支队伍。</p>
-<p>grid[0][1] &#x3D;&#x3D; 1 表示 0 队比 1 队强。所以 0 队是冠军。</p>
-<p>示例 2：</p>
-<p>输入：grid &#x3D; [[0,0,1],[1,0,1],[0,0,0]]</p>
-<p>输出：1</p>
-<p>解释：比赛中有三支队伍。</p>
-<p>grid[1][0] &#x3D;&#x3D; 1 表示 1 队比 0 队强。</p>
-<p>grid[1][2] &#x3D;&#x3D; 1 表示 1 队比 2 队强。</p>
-<p>所以 1 队是冠军。</p>
-<p>提示：</p>
-<p>n &#x3D;&#x3D; grid.length</p>
-<p>n &#x3D;&#x3D; grid[i].length</p>
-<p>2 &lt;&#x3D; n &lt;&#x3D; 100</p>
-<p>grid[i][j] 的值为 0 或 1</p>
-<p>对于所有 i， grid[i][i] 等于 0.</p>
-<p>对于满足 i !&#x3D; j 的所有 i, j ，grid[i][j] !&#x3D; grid[j][i]<br>均成立</p>
-<p>生成的输入满足：如果 a 队比 b 队强，b 队比 c 队强，那么 a 队比 c 队强</p>
-<p>#解题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int findChampion(int** grid, int gridSize, int* gridColSize) &#123;</span><br><span class="line">    for (int i = 0; i &lt; gridSize; i++) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int j = 0; j &lt; gridSize; j++) &#123;</span><br><span class="line">            sum += grid[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">        if (sum == gridSize - 1) &#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/4-12%E6%89%BE%E5%88%B0%E5%86%A0%E5%86%9B-I/" data-id="clywzj0zz000vq6o78qa855gs" data-title="找到冠军 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/24/4-14%E8%AE%BE%E8%AE%A1%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88I/" data-id="clyyizdha000vyyo733cz6byb" data-title="4-14设计哈希集合I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -715,6 +705,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
           </li>
         
@@ -724,14 +722,6 @@
         
           <li>
             <a href="/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/">7-4拾起 K 个 1 需要的最少行动次数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/">7-3哈沙德数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
           </li>
         
       </ul>

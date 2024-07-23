@@ -69,6 +69,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-5-3雇佣-K-名工人的最低成本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/" class="article-date">
+  <time class="dt-published" datetime="2024-05-25T13:58:37.000Z" itemprop="datePublished">2024-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/">5-3雇佣 K 名工人的最低成本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>有 n 名工人。 给定两个数组 quality 和 wage ，其中，quality[i] 表示第 i 名工人的工作质量，其最低期望工资为 wage[i] 。</p>
+<p>现在我们想雇佣 k 名工人组成一个 工资组。在雇佣 一组 k 名工人时，我们必须按照下述规则向他们支付工资：</p>
+<p>对工资组中的每名工人，应当按其工作质量与同组其他工人的工作质量的比例来支付工资。</p>
+<p>工资组中的每名工人至少应当得到他们的最低期望工资。</p>
+<p>给定整数 k ，返回 组成满足上述条件的付费群体所需的最小金额 。与实际答案误差相差在 10-5 以内的答案将被接受。</p>
+<p>示例 1：</p>
+<p>输入： quality &#x3D; [10,20,5], wage &#x3D; [70,50,30], k &#x3D; 2</p>
+<p>输出： 105.00000</p>
+<p>解释： 我们向 0 号工人支付 70，向 2 号工人支付 35。</p>
+<p>示例 2：</p>
+<p>输入： quality &#x3D; [3,1,10,10,1], wage &#x3D; [4,8,2,2,7], k &#x3D; 3</p>
+<p>输出： 30.66667</p>
+<p>解释： 我们向 0 号工人支付 4，向 2 号和 3 号分别支付 13.33333。</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; quality.length &#x3D;&#x3D; wage.length</p>
+<p>1 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 104</p>
+<p>1 &lt;&#x3D; quality[i], wage[i] &lt;&#x3D; 104</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -&gt; float:</span><br><span class="line">        pairs = sorted(zip(quality, wage), key=lambda p: p[1] / p[0])</span><br><span class="line">        ans = inf</span><br><span class="line">        totalq = 0</span><br><span class="line">        h = []</span><br><span class="line">        for q, w in pairs[:k - 1]:</span><br><span class="line">            totalq += q</span><br><span class="line">            heappush(h, -q)</span><br><span class="line">        for q, w in pairs[k - 1:]:</span><br><span class="line">            totalq += q</span><br><span class="line">            heappush(h, -q)</span><br><span class="line">            ans = min(ans, w / q * totalq)</span><br><span class="line">            totalq += heappop(h)</span><br><span class="line">        return ans</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/25/5-3%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/" data-id="clyyizdhf002byyo7gft657t1" data-title="5-3雇佣 K 名工人的最低成本" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-5-2去掉最低工资和最高工资后的工资平均值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" class="article-date">
+  <time class="dt-published" datetime="2024-05-24T13:44:46.000Z" itemprop="datePublished">2024-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/">5-2去掉最低工资和最高工资后的工资平均值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数数组 salary ，数组里每个数都是 唯一 的，其中 salary[i] 是第 i 个员工的工资。</p>
+<p>请你返回去掉最低工资和最高工资以后，剩下员工工资的平均值。</p>
+<p>示例 1：</p>
+<p>输入：salary &#x3D; [4000,3000,1000,2000]</p>
+<p>输出：2500.00000</p>
+<p>解释：最低工资和最高工资分别是 1000 和 4000 。</p>
+<p>去掉最低工资和最高工资以后的平均工资是 (2000+3000)&#x2F;2&#x3D; 2500</p>
+<p>示例 2：</p>
+<p>输入：salary &#x3D; [1000,2000,3000]</p>
+<p>输出：2000.00000<br>解释：最低工资和最高工资分别是 1000 和 3000 。</p>
+<p>去掉最低工资和最高工资以后的平均工资是 (2000)&#x2F;1&#x3D; 2000</p>
+<p>示例 3：</p>
+<p>输入：salary &#x3D; [6000,5000,4000,3000,2000,1000]</p>
+<p>输出：3500.00000</p>
+<p>示例 4：</p>
+<p>输入：salary &#x3D; [8000,9000,2000,3000,6000,1000]</p>
+<p>输出：4750.00000</p>
+<p>提示：</p>
+<p>3 &lt;&#x3D; salary.length &lt;&#x3D; 100</p>
+<p>10^3 &lt;&#x3D; salary[i] &lt;&#x3D; 10^6</p>
+<p>salary[i] 是唯一的。</p>
+<p>与真实值误差在 10^-5 以内的结果都将视为正确答案。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><p>···<br>ouble average(int* salary, int salarySize) {<br>    double maxValue &#x3D; INT_MIN;<br>    double minValue &#x3D; INT_MAX;<br>    double sum &#x3D; 0;</p>
+<pre><code>for (int i = 0; i &lt; salarySize; ++i) &#123;
+    if (salary[i] &gt; maxValue) &#123;
+        maxValue = salary[i];
+    &#125;
+    if (salary[i] &lt; minValue) &#123;
+        minValue = salary[i];
+    &#125;
+    sum += salary[i];
+&#125;
+sum -= maxValue + minValue;
+return sum / (salarySize - 2);
+</code></pre>
+<p>}</p>
+<p>···</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/05/24/5-2%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" data-id="clyyizdhf0027yyo75v6ue1jr" data-title="5-2去掉最低工资和最高工资后的工资平均值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-5-1雇佣-K-位工人的总代价" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/" class="article-date">
@@ -132,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/" data-id="clywzj104001xq6o78o3qe6ao" data-title="5-1雇佣 K 位工人的总代价" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/24/5-1%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/" data-id="clyyizdhe001yyyo7380m9oyj" data-title="5-1雇佣 K 位工人的总代价" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -199,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/24/4-30-%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/" data-id="clywzj102001fq6o7bron6kjt" data-title="4-30 满足目标工作时长的员工数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/24/4-30-%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/" data-id="clyyizdhc001gyyo71lrh2lkm" data-title="4-30 满足目标工作时长的员工数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -253,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/" data-id="clywzj101001dq6o7e2i80hfg" data-title="4-29将矩阵按对角线排序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-29%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/" data-id="clyyizdhb001cyyo76dvw3bk4" data-title="4-29将矩阵按对角线排序" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -307,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" data-id="clywzj101001cq6o711zr45ak" data-title="4-28负二进制转换" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-28%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" data-id="clyyizdhc001dyyo7cirl7jdq" data-title="4-28负二进制转换" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -353,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-27%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/" data-id="clywzj101001bq6o76agtf3ro" data-title="4-27查询网格图中每一列的宽度" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-27%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/" data-id="clyyizdhb001ayyo79g0jh5mn" data-title="4-27查询网格图中每一列的宽度" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -410,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-26%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/" data-id="clywzj101001aq6o7anqofw3i" data-title="4-26快照数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-26%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/" data-id="clyyizdhb001byyo79pt6d6zx" data-title="4-26快照数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -466,7 +596,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/23/4-25%E6%80%BB%E8%A1%8C%E9%A9%B6%E8%B7%9D%E7%A6%BB/" data-id="clywzj1010019q6o7ekpaeuds" data-title="4-25总行驶距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/23/4-25%E6%80%BB%E8%A1%8C%E9%A9%B6%E8%B7%9D%E7%A6%BB/" data-id="clyyizdhb0017yyo7ez5g71d7" data-title="4-25总行驶距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -536,124 +666,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/22/4-24%E6%84%9F%E6%9F%93%E4%BA%8C%E5%8F%89%E6%A0%91%E9%9C%80%E8%A6%81%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4/" data-id="clywzj1010018q6o70kkd9yft" data-title="4-24感染二叉树需要的总时间" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-23爱生气的书店老板" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/" class="article-date">
-  <time class="dt-published" datetime="2024-05-22T14:03:20.000Z" itemprop="datePublished">2024-05-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/">4-23爱生气的书店老板</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>有一个书店老板，他的书店开了 n 分钟。每分钟都有一些顾客进入这家商店。给定一个长度为 n 的整数数组 customers ，其中 customers[i] 是在第 i 分钟开始时进入商店的顾客数量，所有这些顾客在第 i 分钟结束后离开。</p>
-<p>在某些时候，书店老板会生气。 如果书店老板在第 i 分钟生气，那么 grumpy[i] &#x3D; 1，否则 grumpy[i] &#x3D; 0。</p>
-<p>当书店老板生气时，那一分钟的顾客就会不满意，若老板不生气则顾客是满意的。</p>
-<p>书店老板知道一个秘密技巧，能抑制自己的情绪，可以让自己连续 minutes 分钟不生气，但却只能使用一次。</p>
-<p>请你返回 这一天营业下来，最多有多少客户能够感到满意 。</p>
-<p>示例 1：</p>
-<p>输入：customers &#x3D; [1,0,1,2,1,1,7,5], grumpy &#x3D;<br>[0,1,0,1,0,1,0,1], minutes &#x3D; 3</p>
-<p>输出：16</p>
-<p>解释：书店老板在最后 3 分钟保持冷静。</p>
-<p>感到满意的最大客户数量 &#x3D; 1 + 1 + 1 + 1 + 7 + 5 &#x3D; 16.</p>
-<p>示例 2：</p>
-<p>输入：customers &#x3D; [1], grumpy &#x3D; [0], minutes &#x3D; 1</p>
-<p>输出：1</p>
-<p>提示：</p>
-<p>n &#x3D;&#x3D; customers.length &#x3D;&#x3D; grumpy.length</p>
-<p>1 &lt;&#x3D; minutes &lt;&#x3D; n &lt;&#x3D; 2 * 104</p>
-<p>0 &lt;&#x3D; customers[i] &lt;&#x3D; 1000</p>
-<p>grumpy[i] &#x3D;&#x3D; 0 or 1</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int maxSatisfied(int* customers, int customersSize, int* grumpy, int grumpySize, int minutes) &#123;</span><br><span class="line">    int total = 0;</span><br><span class="line">    int n = customersSize;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        if (grumpy[i] == 0) &#123;</span><br><span class="line">            total += customers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int increase = 0;</span><br><span class="line">    for (int i = 0; i &lt; minutes; i++) &#123;</span><br><span class="line">        increase += customers[i] * grumpy[i];</span><br><span class="line">    &#125;</span><br><span class="line">    int maxIncrease = increase;</span><br><span class="line">    for (int i = minutes; i &lt; n; i++) &#123;</span><br><span class="line">        increase = increase - customers[i - minutes] * grumpy[i - minutes] + customers[i] * grumpy[i];</span><br><span class="line">        maxIncrease = fmax(maxIncrease, increase);</span><br><span class="line">    &#125;</span><br><span class="line">    return total + maxIncrease;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/22/4-23%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/" data-id="clywzj1010017q6o71jaharl6" data-title="4-23爱生气的书店老板" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-4-22组合总和-Ⅳ" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/21/4-22%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3/" class="article-date">
-  <time class="dt-published" datetime="2024-05-21T14:50:30.000Z" itemprop="datePublished">2024-05-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/21/4-22%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3/">4-22组合总和 Ⅳ</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个由 不同 整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。</p>
-<p>题目数据保证答案符合 32 位整数范围。</p>
-<p>示例 1：</p>
-<p>输入：nums &#x3D; [1,2,3], target &#x3D; 4</p>
-<p>输出：7</p>
-<p>解释：</p>
-<p>所有可能的组合为：</p>
-<p>(1, 1, 1, 1)</p>
-<p>(1, 1, 2)</p>
-<p>(1, 2, 1)</p>
-<p>(1, 3)</p>
-<p>(2, 1, 1)</p>
-<p>(2, 2)</p>
-<p>(3, 1)<br>请注意，顺序不同的序列被视作不同的组合。</p>
-<p>示例 2：</p>
-<p>输入：nums &#x3D; [9], target &#x3D; 3</p>
-<p>输出：0</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 200</p>
-<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 1000</p>
-<p>nums 中的所有元素 互不相同</p>
-<p>1 &lt;&#x3D; target &lt;&#x3D; 1000</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int combinationSum4(int* nums, int numsSize, int target) &#123;</span><br><span class="line">    int dp[target + 1];</span><br><span class="line">    memset(dp, 0, sizeof(dp));</span><br><span class="line">    dp[0] = 1;</span><br><span class="line">    for (int i = 1; i &lt;= target; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; numsSize; j++) &#123;</span><br><span class="line">            if (nums[j] &lt;= i &amp;&amp; dp[i - nums[j]] &lt; INT_MAX - dp[i]) &#123;</span><br><span class="line">                dp[i] += dp[i - nums[j]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[target];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/21/4-22%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3/" data-id="clywzj1010015q6o74tqhg3rr" data-title="4-22组合总和 Ⅳ" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/05/22/4-24%E6%84%9F%E6%9F%93%E4%BA%8C%E5%8F%89%E6%A0%91%E9%9C%80%E8%A6%81%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4/" data-id="clyyizdhb0019yyo7g14c49di" data-title="4-24感染二叉树需要的总时间" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -701,6 +714,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
           </li>
         
@@ -710,14 +731,6 @@
         
           <li>
             <a href="/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/">7-4拾起 K 个 1 需要的最少行动次数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/">7-3哈沙德数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
           </li>
         
       </ul>

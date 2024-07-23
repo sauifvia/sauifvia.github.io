@@ -69,6 +69,99 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-6-2分糖果" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/" class="article-date">
+  <time class="dt-published" datetime="2024-06-12T07:48:57.000Z" itemprop="datePublished">2024-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/">6-2分糖果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>Alice 有 n 枚糖，其中第 i 枚糖的类型为 candyType[i] 。Alice 注意到她的体重正在增长，所以前去拜访了一位医生。</p>
+<p>医生建议 Alice 要少摄入糖分，只吃掉她所有糖的 n &#x2F; 2 即可（n 是一个偶数）。Alice 非常喜欢这些糖，她想要在遵循医生建议的情况下，尽可能吃到最多不同种类的糖。</p>
+<p>给你一个长度为 n 的整数数组 candyType ，返回： Alice 在仅吃掉 n &#x2F; 2 枚糖的情况下，可以吃到糖的 最多 种类数。</p>
+<p>示例 1：</p>
+<p>输入：candyType &#x3D; [1,1,2,2,3,3]<br>输出：3<br>解释：Alice 只能吃 6 &#x2F; 2 &#x3D; 3 枚糖，由于只有 3 种糖，她可以每种吃一枚。<br>示例 2：</p>
+<p>输入：candyType &#x3D; [1,1,2,3]<br>输出：2<br>解释：Alice 只能吃 4 &#x2F; 2 &#x3D; 2 枚糖，不管她选择吃的种类是 [1,2]、[1,3] 还是 [2,3]，她只能吃到两种不同类的糖。<br>示例 3：</p>
+<p>输入：candyType &#x3D; [6,6,6,6]<br>输出：1<br>解释：Alice 只能吃 4 &#x2F; 2 &#x3D; 2 枚糖，尽管她能吃 2 枚，但只能吃到 1 种糖。</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; candyType.length<br>2 &lt;&#x3D; n &lt;&#x3D; 104<br>n 是一个偶数<br>-105 &lt;&#x3D; candyType[i] &lt;&#x3D; 105</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def distributeCandies(self, candyType: List[int]) -&gt; int:</span><br><span class="line">        return min(len(set(candyType)), len(candyType) // 2)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/06/12/6-2%E5%88%86%E7%B3%96%E6%9E%9C/" data-id="clyyizdhh002oyyo7eow099gi" data-title="6-2分糖果" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-6-1-给小朋友们分糖果-I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/" class="article-date">
+  <time class="dt-published" datetime="2024-06-12T07:46:53.000Z" itemprop="datePublished">2024-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/">6-1 给小朋友们分糖果 I</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你两个正整数 n 和 limit 。</p>
+<p>请你将 n 颗糖果分给 3 位小朋友，确保没有任何小朋友得到超过 limit 颗糖果，请你返回满足此条件下的 总方案数 。</p>
+<p>示例 1：</p>
+<p>输入：n &#x3D; 5, limit &#x3D; 2<br>输出：3<br>解释：总共有 3 种方法分配 5 颗糖果，且每位小朋友的糖果数不超过 2 ：(1, 2, 2) ，(2, 1, 2) 和 (2, 2, 1) 。<br>示例 2：</p>
+<p>输入：n &#x3D; 3, limit &#x3D; 3<br>输出：10<br>解释：总共有 10 种方法分配 3 颗糖果，且每位小朋友的糖果数不超过 3 ：(0, 0, 3) ，(0, 1, 2) ，(0, 2, 1) ，(0, 3, 0) ，(1, 0, 2) ，(1, 1, 1) ，(1, 2, 0) ，(2, 0, 1) ，(2, 1, 0) 和 (3, 0, 0) 。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 50<br>1 &lt;&#x3D; limit &lt;&#x3D; 50</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def distributeCandies(self, n: int, limit: int) -&gt; int:</span><br><span class="line">        ans = 0</span><br><span class="line"></span><br><span class="line">        for i in range(limit + 1):</span><br><span class="line">            for j in range(limit + 1):</span><br><span class="line">                if i + j &gt; n:</span><br><span class="line">                    break</span><br><span class="line">                if n - i - j &lt;= limit:</span><br><span class="line">                    ans += 1</span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/06/12/6-1-%E7%BB%99%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%BB%AC%E5%88%86%E7%B3%96%E6%9E%9C-I/" data-id="clyyizdhg002hyyo7gy8n0vxx" data-title="6-1 给小朋友们分糖果 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-5-31找出缺失和重复的数字" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" class="article-date">
@@ -103,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" data-id="clywzj105002aq6o7h4i9c3t8" data-title="5-31找出缺失和重复的数字" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/5-31%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E5%92%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" data-id="clyyizdhf002ayyo7dfbghj66" data-title="5-31找出缺失和重复的数字" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -151,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/" data-id="clywzj1050029q6o7e0t9cz3h" data-title="5-30找出出现至少三次的最长特殊子字符串 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/" data-id="clyyizdhf0029yyo72nfnesib" data-title="5-30找出出现至少三次的最长特殊子字符串 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -199,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/" data-id="clywzj1050026q6o7fgp1bqoi" data-title="5-29找出出现至少三次的最长特殊子字符串 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/" data-id="clyyizdhf0028yyo74l9jfwmr" data-title="5-29找出出现至少三次的最长特殊子字符串 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -246,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/" data-id="clywzj1050027q6o70zx8egkc" data-title="5-28找出峰值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/" data-id="clyyizdhf0025yyo7booydovi" data-title="5-28找出峰值" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -296,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-27%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE/" data-id="clywzj1050025q6o7djcfbwwx" data-title="5-27找出缺失的观测数据" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/09/5-27%E6%89%BE%E5%87%BA%E7%BC%BA%E5%A4%B1%E7%9A%84%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE/" data-id="clyyizdhe0023yyo71w8v23uu" data-title="5-27找出缺失的观测数据" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -344,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-26%E6%89%BE%E5%87%BA%E7%AC%AC-K-%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/" data-id="clywzj1050024q6o76ra631dp" data-title="5-26找出第 K 大的异或坐标值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/09/5-26%E6%89%BE%E5%87%BA%E7%AC%AC-K-%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/" data-id="clyyizdhf0026yyo76b6deku8" data-title="5-26找出第 K 大的异或坐标值" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -392,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-25-%E6%89%BE%E5%87%BA%E6%BB%A1%E8%B6%B3%E5%B7%AE%E5%80%BC%E6%9D%A1%E4%BB%B6%E7%9A%84%E4%B8%8B%E6%A0%87-I/" data-id="clywzj1050023q6o749jf5p8m" data-title="5-25 找出满足差值条件的下标 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/06/5-25-%E6%89%BE%E5%87%BA%E6%BB%A1%E8%B6%B3%E5%B7%AE%E5%80%BC%E6%9D%A1%E4%BB%B6%E7%9A%84%E4%B8%8B%E6%A0%87-I/" data-id="clyyizdhf0024yyo78m1w8yzi" data-title="5-25 找出满足差值条件的下标 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -438,102 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-24%E6%89%BE%E5%87%BA%E6%9C%80%E5%85%B7%E7%AB%9E%E4%BA%89%E5%8A%9B%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97/" data-id="clywzj1040022q6o7hf89fn3y" data-title="5-24找出最具竞争力的子序列" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-23找出最长等值子数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/06/5-23%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%AD%89%E5%80%BC%E5%AD%90%E6%95%B0%E7%BB%84/" class="article-date">
-  <time class="dt-published" datetime="2024-06-06T11:49:47.000Z" itemprop="datePublished">2024-06-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/06/5-23%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%AD%89%E5%80%BC%E5%AD%90%E6%95%B0%E7%BB%84/">5-23找出最长等值子数组</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始的整数数组 nums 和一个整数 k 。</p>
-<p>如果子数组中所有元素都相等，则认为子数组是一个 等值子数组 。注意，空数组是 等值子数组 。</p>
-<p>从 nums 中删除最多 k 个元素后，返回可能的最长等值子数组的长度。</p>
-<p>子数组 是数组中一个连续且可能为空的元素序列。</p>
-<p>示例 1：</p>
-<p>输入：nums &#x3D; [1,3,2,3,1,3], k &#x3D; 3<br>输出：3<br>解释：最优的方案是删除下标 2 和下标 4 的元素。<br>删除后，nums 等于 [1, 3, 3, 3] 。<br>最长等值子数组从 i &#x3D; 1 开始到 j &#x3D; 3 结束，长度等于 3 。<br>可以证明无法创建更长的等值子数组。<br>示例 2：</p>
-<p>输入：nums &#x3D; [1,1,2,2,1,1], k &#x3D; 2<br>输出：4<br>解释：最优的方案是删除下标 2 和下标 3 的元素。<br>删除后，nums 等于 [1, 1, 1, 1] 。<br>数组自身就是等值子数组，长度等于 4 。<br>可以证明无法创建更长的等值子数组。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105<br>1 &lt;&#x3D; nums[i] &lt;&#x3D; nums.length<br>0 &lt;&#x3D; k &lt;&#x3D; nums.length</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def longestEqualSubarray(self, nums: List[int], k: int) -&gt; int:</span><br><span class="line">        pos = defaultdict(list)</span><br><span class="line">        for i, num in enumerate(nums):</span><br><span class="line">            pos[num].append(i)</span><br><span class="line"></span><br><span class="line">        ans = 0</span><br><span class="line">        for vec in pos.values():</span><br><span class="line">            j = 0</span><br><span class="line">            for i in range(len(vec)):</span><br><span class="line">                # 缩小窗口，直到不同元素数量小于等于 k </span><br><span class="line">                while vec[i] - vec[j] - (i - j) &gt; k:</span><br><span class="line">                    j += 1</span><br><span class="line">                ans = max(ans, i - j + 1)</span><br><span class="line"></span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-23%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%AD%89%E5%80%BC%E5%AD%90%E6%95%B0%E7%BB%84/" data-id="clywzj1040020q6o79cwjf73l" data-title="5-23找出最长等值子数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-22找出输掉零场或一场比赛的玩家" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/06/5-22%E6%89%BE%E5%87%BA%E8%BE%93%E6%8E%89%E9%9B%B6%E5%9C%BA%E6%88%96%E4%B8%80%E5%9C%BA%E6%AF%94%E8%B5%9B%E7%9A%84%E7%8E%A9%E5%AE%B6/" class="article-date">
-  <time class="dt-published" datetime="2024-06-06T11:48:36.000Z" itemprop="datePublished">2024-06-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/06/5-22%E6%89%BE%E5%87%BA%E8%BE%93%E6%8E%89%E9%9B%B6%E5%9C%BA%E6%88%96%E4%B8%80%E5%9C%BA%E6%AF%94%E8%B5%9B%E7%9A%84%E7%8E%A9%E5%AE%B6/">5-22找出输掉零场或一场比赛的玩家</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数数组 matches 其中 matches[i] &#x3D; [winneri, loseri] 表示在一场比赛中 winneri 击败了 loseri 。</p>
-<p>返回一个长度为 2 的列表 answer ：</p>
-<p>answer[0] 是所有 没有 输掉任何比赛的玩家列表。<br>answer[1] 是所有恰好输掉 一场 比赛的玩家列表。<br>两个列表中的值都应该按 递增 顺序返回。</p>
-<p>注意：</p>
-<p>只考虑那些参与 至少一场 比赛的玩家。<br>生成的测试用例保证 不存在 两场比赛结果 相同 。</p>
-<p>示例 1：</p>
-<p>输入：matches &#x3D; [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]<br>输出：[[1,2,10],[4,5,7,8]]<br>解释：<br>玩家 1、2 和 10 都没有输掉任何比赛。<br>玩家 4、5、7 和 8 每个都输掉一场比赛。<br>玩家 3、6 和 9 每个都输掉两场比赛。<br>因此，answer[0] &#x3D; [1,2,10] 和 answer[1] &#x3D; [4,5,7,8] 。<br>示例 2：</p>
-<p>输入：matches &#x3D; [[2,3],[1,3],[5,4],[6,4]]<br>输出：[[1,2,5,6],[]]<br>解释：<br>玩家 1、2、5 和 6 都没有输掉任何比赛。<br>玩家 3 和 4 每个都输掉两场比赛。<br>因此，answer[0] &#x3D; [1,2,5,6] 和 answer[1] &#x3D; [] 。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; matches.length &lt;&#x3D; 105<br>matches[i].length &#x3D;&#x3D; 2<br>1 &lt;&#x3D; winneri, loseri &lt;&#x3D; 105<br>winneri !&#x3D; loseri<br>所有 matches[i] 互不相同</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def findWinners(self, matches: List[List[int]]) -&gt; List[List[int]]:</span><br><span class="line">        freq = Counter()</span><br><span class="line">        for winner, loser in matches:</span><br><span class="line">            if winner not in freq:</span><br><span class="line">                freq[winner] = 0</span><br><span class="line">            freq[loser] += 1</span><br><span class="line">        </span><br><span class="line">        ans = [[], []]</span><br><span class="line">        for key, value in freq.items():</span><br><span class="line">            if value &lt; 2:</span><br><span class="line">                ans[value].append(key)</span><br><span class="line">        </span><br><span class="line">        ans[0].sort()</span><br><span class="line">        ans[1].sort()</span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-22%E6%89%BE%E5%87%BA%E8%BE%93%E6%8E%89%E9%9B%B6%E5%9C%BA%E6%88%96%E4%B8%80%E5%9C%BA%E6%AF%94%E8%B5%9B%E7%9A%84%E7%8E%A9%E5%AE%B6/" data-id="clywzj1040021q6o7a2addl3z" data-title="5-22找出输掉零场或一场比赛的玩家" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/06/5-24%E6%89%BE%E5%87%BA%E6%9C%80%E5%85%B7%E7%AB%9E%E4%BA%89%E5%8A%9B%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97/" data-id="clyyizdhe0022yyo7a1yh1fat" data-title="5-24找出最具竞争力的子序列" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -581,6 +579,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
           </li>
         
@@ -590,14 +596,6 @@
         
           <li>
             <a href="/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/">7-4拾起 K 个 1 需要的最少行动次数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/">7-3哈沙德数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
           </li>
         
       </ul>
