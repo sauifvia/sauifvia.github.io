@@ -69,6 +69,148 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-16矩阵中移动的最大次数块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2024-03-17T08:57:00.000Z" itemprop="datePublished">2024-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/">3-16矩阵中移动的最大次数块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始、大小为 m x n 的矩阵 grid ，矩阵由若干 正 整数组成。</p>
+<p>你可以从矩阵第一列中的 任一 单元格出发，按以下方式遍历 grid ：</p>
+<p>从单元格 (row, col) 可以移动到 (row - 1, col + 1)、(row, col + 1) 和 (row + 1, col + 1) </p>
+<p>三个单元格中任一满足值 严格 大于当前单元格的单元格。</p>
+<p>返回你在矩阵中能够 移动 的 最大 次数。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2023/04/11/yetgriddrawio-10.png"></p>
+<p>输入：grid &#x3D; [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]</p>
+<p>输出：3</p>
+<p>解释：可以从单元格 (0, 0) 开始并且按下面的路径移动：</p>
+<ul>
+<li><p>(0, 0) -&gt; (0, 1).</p>
+</li>
+<li><p>(0, 1) -&gt; (1, 2).</p>
+</li>
+<li><p>(1, 2) -&gt; (2, 3).</p>
+</li>
+</ul>
+<p>可以证明这是能够移动的最大次数。</p>
+<p>示例 2：</p>
+<p><img src="https://assets.leetcode.com/uploads/2023/04/12/yetgrid4drawio.png"></p>
+<p>输入：grid &#x3D; [[3,2,4],[2,1,9],[1,1,7]]</p>
+<p>输出：0</p>
+<p>解释：从第一列的任一单元格开始都无法移动。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxMoves(self, grid: List[List[int]]) -&gt; int:</span><br><span class="line">        m, n = len(grid), len(grid[0])</span><br><span class="line">        q = set(range(m))</span><br><span class="line">        for j in range(1, n):</span><br><span class="line">            q2 = set()</span><br><span class="line">            for i in q:</span><br><span class="line">                for i2 in [i - 1, i, i + 1]:</span><br><span class="line">                    if 0 &lt;= i2 &lt; m and grid[i][j - 1] &lt; grid[i2][j]:</span><br><span class="line">                        q2.add(i2)</span><br><span class="line">            q = q2</span><br><span class="line">            if not q:</span><br><span class="line">                return j - 1</span><br><span class="line">        return n - 1</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/maximum-number-of-moves-in-a-grid/solutions/2684036/ju-zhen-zhong-yi-dong-de-zui-da-ci-shu-b-b7jx/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/17/3-16%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0%E5%9D%97/" data-id="clz5m42a3000cmfo7dwad5iq7" data-title="3-16矩阵中移动的最大次数块" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3-15-卖木头块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2024-03-17T08:17:02.000Z" itemprop="datePublished">2024-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/">3-15-卖木头块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你两个整数 m 和 n ，分别表示一块矩形木块的高和宽。同时给你一个二维整数数组 prices ，其中 prices[i] &#x3D; [hi, wi, pricei] 表示你可以以 pricei 元的价格卖一块高为 hi 宽为 wi 的矩形木块。</p>
+<p>每一次操作中，你必须按下述方式之一执行切割操作，以得到两块更小的矩形木块：</p>
+<p>沿垂直方向按高度 完全 切割木块，或</p>
+<p>沿水平方向按宽度 完全 切割木块</p>
+<p>在将一块木块切成若干小木块后，你可以根据 prices 卖木块。你可以卖多块同样尺寸的木块。你不需要将所有小</p>
+<p>木块都卖出去。你 不能 旋转切好后木块的高和宽。</p>
+<p>请你返回切割一块大小为 m x n 的木块后，能得到的 最多 钱数。</p>
+<p>注意你可以切割木块任意次。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2022/04/27/ex1.png"></p>
+<p>输入：m &#x3D; 3, n &#x3D; 5, prices &#x3D; [[1,4,2],[2,2,7],[2,1,3]]</p>
+<p>输出：19</p>
+<p>解释：上图展示了一个可行的方案。包括：</p>
+<ul>
+<li><p>2 块 2 x 2 的小木块，售出 2 * 7 &#x3D; 14 元。</p>
+</li>
+<li><p>1 块 2 x 1 的小木块，售出 1 * 3 &#x3D; 3 元。</p>
+</li>
+<li><p>1 块 1 x 4 的小木块，售出 1 * 2 &#x3D; 2 元。</p>
+</li>
+</ul>
+<p>总共售出 14 + 3 + 2 &#x3D; 19 元。</p>
+<p>19 元是最多能得到的钱数。</p>
+<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2022/04/27/ex2new.png"></p>
+<p>输入：m &#x3D; 4, n &#x3D; 6, prices &#x3D; [[3,2,10],[1,4,2],[4,1,3]]</p>
+<p>输出：32</p>
+<p>解释：上图展示了一个可行的方案。包括：</p>
+<ul>
+<li><p>3 块 3 x 2 的小木块，售出 3 * 10 &#x3D; 30 元。</p>
+</li>
+<li><p>1 块 1 x 4 的小木块，售出 1 * 2 &#x3D; 2 元。</p>
+</li>
+</ul>
+<p>总共售出 30 + 2 &#x3D; 32 元。</p>
+<p>32 元是最多能得到的钱数。</p>
+<p>注意我们不能旋转 1 x 4 的木块来得到 4 x 1 的木块。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; m, n &lt;&#x3D; 200</p>
+<p>1 &lt;&#x3D; prices.length &lt;&#x3D; 2 * 104</p>
+<p>prices[i].length &#x3D;&#x3D; 3</p>
+<p>1 &lt;&#x3D; hi &lt;&#x3D; m</p>
+<p>1 &lt;&#x3D; wi &lt;&#x3D; n</p>
+<p>1 &lt;&#x3D; pricei &lt;&#x3D; 106</p>
+<p>所有 (hi, wi) 互不相同 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    long long key;</span><br><span class="line">    long long val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashItem; </span><br><span class="line"></span><br><span class="line">HashItem *hashFindItem(HashItem **obj, long long key) &#123;</span><br><span class="line">    HashItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND(hh, *obj, &amp;key, sizeof(long long), pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashAddItem(HashItem **obj, long long key, long long val) &#123;</span><br><span class="line">    if (hashFindItem(obj, key)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    HashItem *pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">    pEntry-&gt;key = key;</span><br><span class="line">    pEntry-&gt;val = val;</span><br><span class="line">    HASH_ADD(hh, *obj, key, sizeof(key), pEntry);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashSetItem(HashItem **obj, long long key, long long val) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        hashAddItem(obj, key, val);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        pEntry-&gt;val = val;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int hashGetItem(HashItem **obj, long long key, long long defaultVal) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        return defaultVal;</span><br><span class="line">    &#125;</span><br><span class="line">    return pEntry-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashFree(HashItem **obj) &#123;</span><br><span class="line">    HashItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long pairHash(int x, int y) &#123;</span><br><span class="line">    return ((long long) x &lt;&lt; 16) ^ y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long dfs(int x, int y, long long **memo, HashItem **val) &#123;</span><br><span class="line">    if (memo[x][y] != -1) &#123;</span><br><span class="line">        return memo[x][y];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    long long ret = hashGetItem(val, pairHash(x, y), 0LL);</span><br><span class="line">    if (x &gt; 1) &#123;</span><br><span class="line">        for (int i = 1; i &lt; x; ++i) &#123;</span><br><span class="line">            ret = fmax(ret, dfs(i, y, memo, val) + dfs(x - i, y, memo, val));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (y &gt; 1) &#123;</span><br><span class="line">        for (int j = 1; j &lt; y; ++j) &#123;</span><br><span class="line">            ret = fmax(ret, dfs(x, j, memo, val) + dfs(x, y - j, memo, val));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return memo[x][y] = ret;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">long long sellingWood(int m, int n, int** prices, int pricesSize, int* pricesColSize) &#123;</span><br><span class="line">    HashItem *value = NULL;</span><br><span class="line">    long long *memo[m + 1];</span><br><span class="line">    for (int i = 0; i &lt;= m; i++) &#123;</span><br><span class="line">        memo[i] = (long long *)malloc(sizeof(long long) * (n + 1));</span><br><span class="line">        for (int j = 0; j &lt;= n; j++) &#123;</span><br><span class="line">            memo[i][j] = -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; pricesSize; ++i) &#123;</span><br><span class="line">        hashAddItem(&amp;value, pairHash(prices[i][0], prices[i][1]), prices[i][2]);</span><br><span class="line">    &#125;</span><br><span class="line">    long long ret = dfs(m, n, memo, &amp;value);</span><br><span class="line">    for (int i = 0; i &lt;= m; i++) &#123;</span><br><span class="line">        free(memo[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    hashFree(&amp;value);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/selling-pieces-of-wood/solutions/1630619/mai-mu-tou-kuai-by-leetcode-solution-gflg/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/17/3-15-%E5%8D%96%E6%9C%A8%E5%A4%B4%E5%9D%97/" data-id="clz5m42a3000bmfo764z9bq45" data-title="3-15-卖木头块" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-14合并后数组中的最大元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="article-date">
@@ -128,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="clz2rj948000arno7hjdk51gi" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/14/3-14%E5%90%88%E5%B9%B6%E5%90%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" data-id="clz5m42a2000amfo77xwbbxoo" data-title="3-14合并后数组中的最大元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -219,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="clz2rj9480008rno7ab903jwh" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/12/3-12%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0/" data-id="clz5m42a20009mfo76gla6nh7" data-title="3-12在受污染的二叉树中查找元素" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -283,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="clz2rj9470007rno76l973ng2" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/11/3-11%E5%B0%86%E6%A0%87%E9%A2%98%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99/" data-id="clz5m42a10007mfo7gq7d48ib" data-title="3-11将标题首字母大写" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -343,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="clz2rj94b000srno7c9702ysj" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/09/3-9%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC-K-%E5%A4%A7%E5%92%8C/" data-id="clz5m42a5000smfo72gzs5ai6" data-title="3-9找出数组的第 K 大和" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -388,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="clz2rj94b000rrno7f9fleeg5" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/07/3-7%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8F%AF%E6%95%B4%E9%99%A4%E6%95%B0%E7%BB%84/" data-id="clz5m42a5000rmfo7gp43gr8i" data-title="3-7找出字符串的可整除数组" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -456,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clz2rj94b000qrno7epjycdr7" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/05/3-5-%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clz5m42a5000qmfo7aatj9zg2" data-title="3-5 到达目的地的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -506,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="clz2rj94l0034rno7bdpx4fjx" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/03/03/%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" data-id="clz5m42af0036mfo74u1e2ahk" data-title="用队列实现栈" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -581,158 +723,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clz2rj94l0035rno7bk01adx1" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-使二叉树所有路径值相等的最小代价先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" class="article-date">
-  <time class="dt-published" datetime="2024-02-28T14:53:01.000Z" itemprop="datePublished">2024-02-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/">使二叉树所有路径值相等的最小代价先</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数 n 表示一棵 满二叉树 里面节点的数目，节点编号从 1 到 n 。根节点编号为 1 ，树中每个非叶子节点 i 都有两个孩子，分别是左孩子 2 * i 和右孩子 2 * i + 1 。</p>
-<p>树中每个节点都有一个值，用下标从 0 开始、长度为 n 的整数数组 cost 表示，其中 cost[i] 是第 i + 1 个节点的值。每次操作，你可以将树中 任意 节点的值 增加 1 。你可以执行操作 任意 次。</p>
-<p>你的目标是让根到每一个 叶子结点 的路径值相等。请你返回 最少 需要执行增加操作多少次。</p>
-<p>注意：</p>
-<p>满二叉树 指的是一棵树，它满足树中除了叶子节点外每个节点都恰好有 2 个子节点，且所有叶子节点距离根节点距离相同。<br>路径值 指的是路径上所有节点的值之和。</p>
-<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p><img src="https://assets.leetcode.com/uploads/2023/04/04/binaryytreeedrawio-4.png"></p>
-<p>输入：n &#x3D; 7, cost &#x3D; [1,5,2,2,3,3,1]</p>
-<p>输出：6</p>
-<p>解释：我们执行以下的增加操作：</p>
-<ul>
-<li><p>将节点 4 的值增加一次。</p>
-</li>
-<li><p>将节点 3 的值增加三次。</p>
-</li>
-<li><p>将节点 7 的值增加两次。</p>
-</li>
-</ul>
-<p>从根到叶子的每一条路径值都为 9 。</p>
-<p>总共增加次数为 1 + 3 + 2 &#x3D; 6 。</p>
-<p>这是最小的答案。</p>
-<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p><img src="https://assets.leetcode.com/uploads/2023/04/04/binaryytreee2drawio.png"></p>
-<p>输入：n &#x3D; 3, cost &#x3D; [5,3,3]</p>
-<p>输出：0</p>
-<p>解释：两条路径已经有相等的路径值，所以不需要执行任何增加操作。</p>
-<p>提示：</p>
-<p>3 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>n + 1 是 2 的幂</p>
-<p>cost.length &#x3D;&#x3D; n</p>
-<p>1 &lt;&#x3D; cost[i] &lt;&#x3D; 104</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#define MAX(a, b) ((a) &lt; (b) ? (b) : (a))</span><br><span class="line">#define ABS(a) ((a) &lt; 0 ? -(a) : (a))</span><br><span class="line">int minIncrements(int n, int* cost, int costSize)&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    for (int i = n / 2; i &gt; 0; i--) &#123;</span><br><span class="line">        ans += ABS(cost[i * 2 - 1] - cost[i * 2]);</span><br><span class="line">        cost[i - 1] += MAX(cost[i * 2 - 1], cost[i * 2]);</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/28/%E4%BD%BF%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%E5%80%BC%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7%E5%85%88/" data-id="clz2rj94l0031rno70feb95ri" data-title="使二叉树所有路径值相等的最小代价先" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-统计树中的合法路径数目先" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" class="article-date">
-  <time class="dt-published" datetime="2024-02-27T15:20:08.000Z" itemprop="datePublished">2024-02-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/">统计树中的合法路径数目先</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一棵 n 个节点的无向树，节点编号为 1 到 n 。给你一个整数 n 和一个长度为 n - 1 的二维整数数组 edges ，其中 edges[i] &#x3D; [ui, vi] 表示节点 ui 和 vi 在树中有一条边。</p>
-<p>请你返回树中的 合法路径数目 。</p>
-<p>如果在节点 a 到节点 b 之间 恰好有一个 节点的编号是质数，那么我们称路径 (a, b) 是 合法的 。</p>
-<p>注意：</p>
-<p>路径 (a, b) 指的是一条从节点 a 开始到节点 b 结束的一个节点序列，序列中的节点 互不相同 ，且相邻节点之间在树上有一条边。<br>路径 (a, b) 和路径 (b, a) 视为 同一条 路径，且只计入答案 一次 。</p>
-<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2023/08/27/example1.png"></p>
-<p>输入：n &#x3D; 5, edges &#x3D; [[1,2],[1,3],[2,4],[2,5]]</p>
-<p>输出：4</p>
-<p>解释：恰好有一个质数编号的节点路径有：</p>
-<ul>
-<li><p>(1, 2) 因为路径 1 到 2 只包含一个质数 2 。</p>
-</li>
-<li><p>(1, 3) 因为路径 1 到 3 只包含一个质数 3 。</p>
-</li>
-<li><p>(1, 4) 因为路径 1 到 4 只包含一个质数 2 。</p>
-</li>
-<li><p>(2, 4) 因为路径 2 到 4 只包含一个质数 2 。</p>
-</li>
-</ul>
-<p>只有 4 条合法路径。</p>
-<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2023/08/27/example2.png"></p>
-<p>输入：n &#x3D; 6, edges &#x3D; [[1,2],[1,3],[2,4],[3,5],[3,6]]</p>
-<p>输出：6</p>
-<p>解释：恰好有一个质数编号的节点路径有：</p>
-<ul>
-<li><p>(1, 2) 因为路径 1 到 2 只包含一个质数 2 。</p>
-</li>
-<li><p>(1, 3) 因为路径 1 到 3 只包含一个质数 3 。</p>
-</li>
-<li><p>(1, 4) 因为路径 1 到 4 只包含一个质数 2 。</p>
-</li>
-<li><p>(1, 6) 因为路径 1 到 6 只包含一个质数 3 。</p>
-</li>
-<li><p>(2, 4) 因为路径 2 到 4 只包含一个质数 2 。</p>
-</li>
-<li><p>(3, 6) 因为路径 3 到 6 只包含一个质数 3 。</p>
-</li>
-</ul>
-<p>只有 6 条合法路径。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; n &lt;&#x3D; 105</p>
-<p>edges.length &#x3D;&#x3D; n - 1</p>
-<p>edges[i].length &#x3D;&#x3D; 2</p>
-<p>1 &lt;&#x3D; ui, vi &lt;&#x3D; n</p>
-<p>输入保证 edges 形成一棵合法的树。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">int* isP;</span><br><span class="line">bool* v;</span><br><span class="line">int* last;</span><br><span class="line">int* next;</span><br><span class="line">int* sum;</span><br><span class="line">long long countPaths(int n, int** edges, int edgesSize, int* edgesColSize) &#123;</span><br><span class="line">    //埃氏筛</span><br><span class="line">    //n以内的质数至多有n/2 + 1个</span><br><span class="line">    isP = malloc(sizeof(int) * (n + 1));</span><br><span class="line">    memset(isP, 0, sizeof(int) * (n + 1));</span><br><span class="line">    isP[0] = isP[1] = -1;</span><br><span class="line">    int* p = malloc(sizeof(int) * ((n + 1) &gt;&gt; 1));</span><br><span class="line">    int s = 0;</span><br><span class="line">    for(int i = 2; i &lt;= n; i ++)&#123;</span><br><span class="line">        //记录质数位置</span><br><span class="line">        if(!isP[i]) p[isP[i] = s++] = i;</span><br><span class="line">        for(int j = 0; j &lt; s &amp;&amp; i * p[j] &lt;= n; j ++)&#123;</span><br><span class="line">            isP[i * p[j]] = -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    long long res = 0;</span><br><span class="line">    v = malloc(sizeof(bool) * (n + 1));</span><br><span class="line">    memset(v, false, sizeof(bool) * (n + 1));</span><br><span class="line">    //因map键值确定[1,n]</span><br><span class="line">    //且元素个数也确定2 * (n - 1)</span><br><span class="line">    //可以直接使用数组来构建map</span><br><span class="line">    next = malloc(sizeof(int) * ((n - 1) &lt;&lt; 1));</span><br><span class="line">    last = malloc(sizeof(int) * (n + 1));</span><br><span class="line">    sum = malloc(sizeof(int) * s);</span><br><span class="line">    memset(last, -1, sizeof(int) * (n + 1));</span><br><span class="line">    memset(sum, 0, sizeof(int) * s);</span><br><span class="line">    for(int i = 0, j = 0; i &lt; n - 1; i ++)&#123;</span><br><span class="line">        next[j] = last[edges[i][1]];</span><br><span class="line">        last[edges[i][1]] = j ++;</span><br><span class="line">        next[j] = last[edges[i][0]];</span><br><span class="line">        last[edges[i][0]] = j ++;</span><br><span class="line">    &#125;</span><br><span class="line">    //质数队列</span><br><span class="line">    int * de = malloc(sizeof(int) * s);</span><br><span class="line">    //元素队列,最坏情况,只有一个root结点,其余全为叶子结点</span><br><span class="line">    //需要占用n - s个格子</span><br><span class="line">    int * _item = malloc(sizeof(int) * (n - s));</span><br><span class="line">    int i_r = 1, cnt, de_r, _i_r, _i_l;</span><br><span class="line">    while(i_r &lt;= n)&#123;</span><br><span class="line">        if(v[i_r ++] || isP[i_r - 1] != -1) continue;</span><br><span class="line">        int x = i_r - 1;</span><br><span class="line">        v[i_r - 1] = true;</span><br><span class="line">        _i_l = _i_r = de_r = 0;</span><br><span class="line">        cnt = 1;//自身算一个</span><br><span class="line">        _item[_i_r ++] = x;</span><br><span class="line">        while(_i_l != _i_r)&#123;</span><br><span class="line">            int y = _item[_i_l ++];</span><br><span class="line">            int k = last[y];</span><br><span class="line">            while(k != -1)&#123;</span><br><span class="line">                //指向点</span><br><span class="line">                int tp = edges[k &gt;&gt; 1][k &amp; 1];</span><br><span class="line">                k = next[k];</span><br><span class="line">                if(v[tp]) continue;</span><br><span class="line">                if(isP[tp] != -1)&#123;</span><br><span class="line">                    de[de_r ++] = tp;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    cnt ++;</span><br><span class="line">                    v[tp] = true;</span><br><span class="line">                    _item[_i_r ++] = tp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; de_r; i ++)&#123;</span><br><span class="line">            //printf(&quot;(%d,%d)&quot;, de[i], cnt);</span><br><span class="line">            int x = de[i];</span><br><span class="line">            res += sum[isP[x]] * cnt + cnt;</span><br><span class="line">            sum[isP[x]] += cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(isP);</span><br><span class="line">    free(p);</span><br><span class="line">    free(v);</span><br><span class="line">    free(last);</span><br><span class="line">    free(next);</span><br><span class="line">    free(sum);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/27/%E7%BB%9F%E8%AE%A1%E6%A0%91%E4%B8%AD%E7%9A%84%E5%90%88%E6%B3%95%E8%B7%AF%E5%BE%84%E6%95%B0%E7%9B%AE%E5%85%88/" data-id="clz2rj94l0036rno76cssg1hb" data-title="统计树中的合法路径数目先" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/29/%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%83%BD%E7%9A%84%E6%A0%91%E6%A0%B9%E6%95%B0%E7%9B%AE/" data-id="clz5m42af0037mfo75bb2683j" data-title="统计可能的树根数目" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -780,6 +771,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/">7-10统计移除递增子数组的数目 I</a>
           </li>
         
@@ -789,14 +788,6 @@
         
           <li>
             <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
           </li>
         
       </ul>

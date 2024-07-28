@@ -69,6 +69,97 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-7-12最小数字游戏" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" class="article-date">
+  <time class="dt-published" datetime="2024-07-28T13:17:44.000Z" itemprop="datePublished">2024-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>你有一个下标从 0 开始、长度为 偶数 的整数数组 nums ，同时还有一个空数组 arr 。Alice 和 Bob 决定玩一个游戏，游戏中每一轮 Alice 和 Bob 都会各自执行一次操作。游戏规则如下：</p>
+<p>每一轮，Alice 先从 nums 中移除一个 最小 元素，然后 Bob 执行同样的操作。<br>接着，Bob 会将移除的元素添加到数组 arr 中，然后 Alice 也执行同样的操作。<br>游戏持续进行，直到 nums 变为空。<br>返回结果数组 arr 。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [5,4,2,3]<br>输出：[3,2,5,4]<br>解释：第一轮，Alice 先移除 2 ，然后 Bob 移除 3 。然后 Bob 先将 3 添加到 arr 中，接着 Alice 再将 2 添加到 arr 中。于是 arr &#x3D; [3,2] 。<br>第二轮开始时，nums &#x3D; [5,4] 。Alice 先移除 4 ，然后 Bob 移除 5 。接着他们都将元素添加到 arr 中，arr 变为 [3,2,5,4] 。<br>示例 2：</p>
+<p>输入：nums &#x3D; [2,5]<br>输出：[5,2]<br>解释：第一轮，Alice 先移除 2 ，然后 Bob 移除 5 。然后 Bob 先将 5 添加到 arr 中，接着 Alice 再将 2 添加到 arr 中。于是 arr &#x3D; [5,2] 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class Soution:</span><br><span class="line">	def mode(self,nums:List[int]) -&gt; List[int]:</span><br><span class="line">	    nums.sort()</span><br><span class="line">	    for i in range(0,len(nums),2):</span><br><span class="line">	        nums[i],nums[i+1]=nums[i+1],nums[i]</span><br><span class="line">	    return nums</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" data-id="clz5m42ad002omfo7fneu84od" data-title="7-12最小数字游戏" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-7-11统计移除递增子数组的数目-II" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/" class="article-date">
+  <time class="dt-published" datetime="2024-07-27T13:10:08.000Z" itemprop="datePublished">2024-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个下标从 0 开始的 正 整数数组 nums 。</p>
+<p>如果 nums 的一个子数组满足：移除这个子数组后剩余元素 严格递增 ，那么我们称这个子数组为 移除递增 子数组。比方说，[5, 3, 4, 6, 7] 中的 [3, 4] 是一个移除递增子数组，因为移除该子数组后，[5, 3, 4, 6, 7] 变为 [5, 6, 7] ，是严格递增的。</p>
+<p>请你返回 nums 中 移除递增 子数组的总数目。</p>
+<p>注意 ，剩余元素为空的数组也视为是递增的。</p>
+<p>子数组 指的是一个数组中一段连续的元素序列。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [1,2,3,4]<br>输出：10<br>解释：10 个移除递增子数组分别为：[1], [2], [3], [4], [1,2], [2,3], [3,4], [1,2,3], [2,3,4] 和 [1,2,3,4]。移除任意一个子数组后，剩余元素都是递增的。注意，空数组不是移除递增子数组。<br>示例 2：</p>
+<p>输入：nums &#x3D; [6,5,7,8]<br>输出：7<br>解释：7 个移除递增子数组分别为：[5], [6], [5,7], [6,5], [5,7,8], [6,5,7] 和 [6,5,7,8] 。<br>nums 中只有这 7 个移除递增子数组。<br>示例 3：</p>
+<p>输入：nums &#x3D; [8,7,6,6]<br>输出：3<br>解释：3 个移除递增子数组分别为：[8,7,6], [7,6,6] 和 [8,7,6,6] 。注意 [8,7] 不是移除递增子数组因为移除 [8,7] 后 nums 变为 [6,6] ，它不是严格递增的。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/" data-id="clz5m42ad002nmfo748zm3t4q" data-title="7-11统计移除递增子数组的数目 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-7-10统计移除递增子数组的数目-I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/" class="article-date">
@@ -104,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/" data-id="clz2rj94j002lrno75ailbsf7" data-title="7-10统计移除递增子数组的数目 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/" data-id="clz5m42ad002mmfo7c0z83tbs" data-title="7-10统计移除递增子数组的数目 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -156,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/26/7-9%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/" data-id="clz2rj94k002vrno71s9p9od6" data-title="7-9最小化曼哈顿距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/26/7-9%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/" data-id="clz5m42ae002xmfo7bbl0b9kk" data-title="7-9最小化曼哈顿距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -202,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/" data-id="clz2rj94k002urno73fno3dik" data-title="7-8寻找数组的中心下标" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/" data-id="clz5m42ae002wmfo79a8a3tc3" data-title="7-8寻找数组的中心下标" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -244,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/" data-id="clz2rj94k002srno7a5a7afis" data-title="7-7检查操作是否合法" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/" data-id="clz5m42ae002vmfo7bj7zbshg" data-title="7-7检查操作是否合法" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -295,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/" data-id="clz2rj94k002trno7drlt5hc5" data-title="7-6 交替子数组计数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/" data-id="clz5m42ae002umfo7fjf92zcc" data-title="7-6 交替子数组计数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -344,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/22/7-5%E4%BF%AE%E6%94%B9%E7%9F%A9%E9%98%B5/" data-id="clz2rj94k002rrno73eas1vqg" data-title="7-5修改矩阵" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/22/7-5%E4%BF%AE%E6%94%B9%E7%9F%A9%E9%98%B5/" data-id="clz5m42ae002tmfo72b1k5io6" data-title="7-5修改矩阵" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -395,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/" data-id="clz2rj94k002qrno7gpdr1icn" data-title="7-4拾起 K 个 1 需要的最少行动次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/" data-id="clz5m42ae002smfo7gsu61d5m" data-title="7-4拾起 K 个 1 需要的最少行动次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -444,108 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/" data-id="clz2rj94k002prno7ad7i99mj" data-title="7-3哈沙德数" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-7-2质数的最大距离" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/" class="article-date">
-  <time class="dt-published" datetime="2024-07-19T12:18:10.000Z" itemprop="datePublished">2024-07-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/">7-2质数的最大距离</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个整数数组 nums。</p>
-<p>返回两个（不一定不同的）质数在 nums 中 下标 的 最大距离。</p>
-<p>示例 1：</p>
-<p>输入： nums &#x3D; [4,2,9,5,3]</p>
-<p>输出： 3</p>
-<p>解释： nums[1]、nums[3] 和 nums[4] 是质数。因此答案是 |4 - 1| &#x3D; 3。</p>
-<p>示例 2：</p>
-<p>输入： nums &#x3D; [4,8,2,8]</p>
-<p>输出： 0</p>
-<p>解释： nums[2] 是质数。因为只有一个质数，所以答案是 |2 - 2| &#x3D; 0。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 105<br>1 &lt;&#x3D; nums[i] &lt;&#x3D; 100<br>输入保证 nums 中至少有一个质数。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/" data-id="clz2rj94k002orno7e4ez19hf" data-title="7-2质数的最大距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-7-1最大化一张图中的路径价值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2024-07-19T09:14:37.000Z" itemprop="datePublished">2024-07-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/">7-1最大化一张图中的路径价值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一张 无向 图，图中有 n 个节点，节点编号从 0 到 n - 1 （都包括）。同时给你一个下标从 0 开始的整数数组 values ，其中 values[i] 是第 i 个节点的 价值 。同时给你一个下标从 0 开始的二维整数数组 edges ，其中 edges[j] &#x3D; [uj, vj, timej] 表示节点 uj 和 vj 之间有一条需要 timej 秒才能通过的无向边。最后，给你一个整数 maxTime 。</p>
-<p>合法路径 指的是图中任意一条从节点 0 开始，最终回到节点 0 ，且花费的总时间 不超过 maxTime 秒的一条路径。你可以访问一个节点任意次。一条合法路径的 价值 定义为路径中 不同节点 的价值 之和 （每个节点的价值 至多 算入价值总和中一次）。</p>
-<p>请你返回一条合法路径的 最大 价值。</p>
-<p>注意：每个节点 至多 有 四条 边与之相连。</p>
-<p>示例 1：</p>
-<p><img src="https://assets.leetcode.com/uploads/2021/10/19/ex1drawio.png"></p>
-<p>输入：values &#x3D; [0,32,10,43], edges &#x3D; [[0,1,10],[1,2,15],[0,3,10]], maxTime &#x3D; 49<br>输出：75<br>解释：<br>一条可能的路径为：0 -&gt; 1 -&gt; 0 -&gt; 3 -&gt; 0 。总花费时间为 10 + 10 + 10 + 10 &#x3D; 40 &lt;&#x3D; 49 。<br>访问过的节点为 0 ，1 和 3 ，最大路径价值为 0 + 32 + 43 &#x3D; 75 。<br>示例 2：</p>
-<p><img src="https://assets.leetcode.com/uploads/2021/10/19/ex2drawio.png"></p>
-<p>输入：values &#x3D; [5,10,15,20], edges &#x3D; [[0,1,10],[1,2,10],[0,3,10]], maxTime &#x3D; 30<br>输出：25<br>解释：<br>一条可能的路径为：0 -&gt; 3 -&gt; 0 。总花费时间为 10 + 10 &#x3D; 20 &lt;&#x3D; 30 。<br>访问过的节点为 0 和 3 ，最大路径价值为 5 + 20 &#x3D; 25 。<br>示例 3：</p>
-<p><img src="https://assets.leetcode.com/uploads/2021/10/19/ex31drawio.png"></p>
-<p>输入：values &#x3D; [1,2,3,4], edges &#x3D; [[0,1,10],[1,2,11],[2,3,12],[1,3,13]], maxTime &#x3D; 50<br>输出：7<br>解释：<br>一条可能的路径为：0 -&gt; 1 -&gt; 3 -&gt; 1 -&gt; 0 。总花费时间为 10 + 13 + 13 + 10 &#x3D; 46 &lt;&#x3D; 50 。<br>访问过的节点为 0 ，1 和 3 ，最大路径价值为 1 + 2 + 4 &#x3D; 7 。<br>示例 4：</p>
-<p><img src="https://assets.leetcode.com/uploads/2021/10/21/ex4drawio.png"></p>
-<p>输入：values &#x3D; [0,1,2], edges &#x3D; [[1,2,10]], maxTime &#x3D; 10<br>输出：0<br>解释：<br>唯一一条路径为 0 。总花费时间为 0 。<br>唯一访问过的节点为 0 ，最大路径价值为 0 。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maximalPathQuality(self, values: List[int], edges: List[List[int]], maxTime: int) -&gt; int:</span><br><span class="line">        g = defaultdict(list)</span><br><span class="line">        for x, y, z in edges:</span><br><span class="line">            g[x].append((y, z))</span><br><span class="line">            g[y].append((x, z))</span><br><span class="line">        </span><br><span class="line">        visited = &#123;0&#125;</span><br><span class="line">        ans = 0</span><br><span class="line">        </span><br><span class="line">        def dfs(u: int, time: int, value: int) -&gt; None:</span><br><span class="line">            if u == 0:</span><br><span class="line">                nonlocal ans</span><br><span class="line">                ans = max(ans, value)</span><br><span class="line">            for v, dist in g[u]:</span><br><span class="line">                if time + dist &lt;= maxTime:</span><br><span class="line">                    if v not in visited:</span><br><span class="line">                        visited.add(v)</span><br><span class="line">                        dfs(v, time + dist, value + values[v])</span><br><span class="line">                        visited.discard(v)</span><br><span class="line">                    else:</span><br><span class="line">                        dfs(v, time + dist, value)</span><br><span class="line">        </span><br><span class="line">        dfs(0, 0, values[0])</span><br><span class="line">        return ans</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/19/7-1%E6%9C%80%E5%A4%A7%E5%8C%96%E4%B8%80%E5%BC%A0%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%E4%BB%B7%E5%80%BC/" data-id="clz2rj94k002nrno74jfs3x54" data-title="7-1最大化一张图中的路径价值" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/" data-id="clz5m42ad002qmfo7f1oq8s5f" data-title="7-3哈沙德数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -593,6 +583,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/">7-10统计移除递增子数组的数目 I</a>
           </li>
         
@@ -602,14 +600,6 @@
         
           <li>
             <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
           </li>
         
       </ul>

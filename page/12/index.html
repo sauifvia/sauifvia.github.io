@@ -69,6 +69,155 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2-17N叉树层序遍历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="article-date">
+  <time class="dt-published" datetime="2024-02-17T13:53:55.000Z" itemprop="datePublished">2024-02-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">2-17学习记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#题目：N叉树的层序遍历<br>给定一个 N 叉树，返回其节点值的层序遍历。（即从左到右，逐层遍历）。</p>
+<p>树的序列化输入是用层序遍历，每组子节点都由 null 值分隔（参见示例）。</p>
+<p>示例 1：<br><img src="https://assets.leetcode.com/uploads/2018/10/12/narytreeexample.png"></p>
+<p>输入：root &#x3D; [1,null,3,2,4,null,5,6]</p>
+<p>输出：[[1],[3,2,4],[5,6]]</p>
+<p>示例 2：</p>
+<p><img src="https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png"></p>
+<p>输入：root &#x3D; [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]</p>
+<p>输出：[[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]</p>
+<p>提示：</p>
+<p>树的高度不会超过 1000</p>
+<p>树的节点总数在 [0, 10^4] 之间</p>
+<p>#思路：<br>把根节点放入队列中，随后在广度优先搜索的每一轮中，我们首先记录下当前队列中包含的节点个数。从队列中依次取出节点，直到取出了上一层的全部节点为止。当取出节点 cnt时，我们将cnt 的值放入一个临时列表，再将 cnt 的所有子节点全部放入队列中。</p>
+<p>#解题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#define MAX_LEVE_SIZE 1000</span><br><span class="line">#define MAX_NODE_SIZE 10000</span><br><span class="line"></span><br><span class="line">int** levelOrder(struct Node* root, int* returnSize, int** returnColumnSizes) &#123;</span><br><span class="line">    int ** ans = (int **)malloc(sizeof(int *) * MAX_LEVE_SIZE);</span><br><span class="line">    *returnColumnSizes = (int *)malloc(sizeof(int) * MAX_LEVE_SIZE);</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        *returnSize = 0;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">    struct Node ** queue = (struct Node **)malloc(sizeof(struct Node *) * MAX_NODE_SIZE);</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    int level = 0;</span><br><span class="line">    queue[tail++] = root;</span><br><span class="line"></span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        int cnt = tail - head;</span><br><span class="line">        ans[level] = (int *)malloc(sizeof(int) * cnt);</span><br><span class="line">        for (int i = 0; i &lt; cnt; ++i) &#123;</span><br><span class="line">            struct Node * cur = queue[head++];</span><br><span class="line">            ans[level][i] = cur-&gt;val;</span><br><span class="line">            for (int j = 0; j &lt; cur-&gt;numChildren; j++) &#123;</span><br><span class="line">                queue[tail++] = cur-&gt;children[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        (*returnColumnSizes)[level++] = cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    *returnSize = level;</span><br><span class="line">    free(queue);</span><br><span class="line">    return </span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/17/2-17N%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clz5m42a10004mfo769et4uvc" data-title="2-17学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2-16二叉树锯齿遍历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" class="article-date">
+  <time class="dt-published" datetime="2024-02-16T02:46:50.000Z" itemprop="datePublished">2024-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/">2-16学习记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#题目：<br>给你二叉树的根节点 root ，返回其节点值的 锯齿形层序遍历 。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。</p>
+<p>#示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg"></p>
+<p>输入：root &#x3D; [3,9,20,null,null,15,7]</p>
+<p>输出：[[3],[20,9],[15,7]]</p>
+<p>#示例 2：</p>
+<p>输入：root &#x3D; [1]</p>
+<p>输出：[[1]]</p>
+<p>#示例 3：</p>
+<p>输入：root &#x3D; []</p>
+<p>输出：[]</p>
+<p>#提示：</p>
+<p>树中节点数目在范围 [0, 2000] 内</p>
+<p>-100 &lt;&#x3D; Node.val &lt;&#x3D; 100</p>
+<p>#解题：</p>
+<pre><code>#define N 2000
+
+int** zigzagLevelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) &#123;
+    *returnSize = 0;
+    if (root == NULL) &#123;
+        return NULL;
+    &#125;
+    int** ans = malloc(sizeof(int*) * N);
+    *returnColumnSizes = malloc(sizeof(int) * N);
+    struct TreeNode* nodeQueue[N];
+    int left = 0, right = 0;
+    nodeQueue[right++] = root;
+    bool isOrderLeft = true;
+
+    while (left &lt; right) &#123;
+        int levelList[N * 2];
+        int front = N, rear = N;
+        int size = right - left;
+        for (int i = 0; i &lt; size; ++i) &#123;
+            struct TreeNode* node = nodeQueue[left++];
+            if (isOrderLeft) &#123;
+                levelList[rear++] = node-&gt;val;
+            &#125; else &#123;
+                levelList[--front] = node-&gt;val;
+            &#125;
+            if (node-&gt;left) &#123;
+                nodeQueue[right++] = node-&gt;left;
+            &#125;
+            if (node-&gt;right) &#123;
+                nodeQueue[right++] = node-&gt;right;
+            &#125;
+        &#125;
+        int* tmp = malloc(sizeof(int) * (rear - front));
+        for (int i = 0; i &lt; rear - front; i++) &#123;
+            tmp[i] = levelList[i + front];
+        &#125;
+        ans[*returnSize] = tmp;
+        (*returnColumnSizes)[*returnSize] = rear - front;
+        (*returnSize)++;
+        isOrderLeft = !isOrderLeft;
+    &#125;
+    return ans;
+&#125; 
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/16/2-16%E4%BA%8C%E5%8F%89%E6%A0%91%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" data-id="clz5m42a00003mfo70mdnb5w2" data-title="2-16学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-2-15二叉从上到下树层序遍历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="article-date">
@@ -103,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clz2rj9450001rno796gmaqxq" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/15/2-15%E4%BA%8C%E5%8F%89%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clz5m429z0001mfo7ga43ec0d" data-title="2-15学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -185,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" data-id="clz2rj9480009rno7ak6x7e1l" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/2-14%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%E5%B1%82%E5%BA%8F/" data-id="clz5m42a00002mfo7g9ba6fbi" data-title="2-14学习记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -259,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clz2rj94k002wrno7dxti2bm8" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/Mac%E7%94%B5%E8%84%91-Vscode-%EF%BC%9A-Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E6%9C%80%E7%BB%86%E8%8A%82%E6%95%99%E7%A8%8B%EF%BC%89/" data-id="clz5m42ae002zmfo78ncegf72" data-title="Mac电脑 Vscode ： Flutter 开发环境搭建教程" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -303,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clz2rj94l0032rno7hzuadf8x" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%96%B0%E5%8D%9A%E5%AE%A2/" data-id="clz5m42af0034mfo701ak946o" data-title="如何创建新博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -358,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/13/2-13%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clz2rj9420000rno782srbblz" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/13/2-13%E5%9E%82%E5%BA%8F%E9%81%8D%E5%8E%86/" data-id="clz5m429x0000mfo75e9cbgcy" data-title="2.13learn" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -406,6 +555,14 @@
       <ul>
         
           <li>
+            <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/">7-10统计移除递增子数组的数目 I</a>
           </li>
         
@@ -415,14 +572,6 @@
         
           <li>
             <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
           </li>
         
       </ul>
