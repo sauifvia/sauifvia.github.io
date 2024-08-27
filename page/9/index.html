@@ -69,6 +69,226 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3-29元素和最小的山形三元组-I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/" class="article-date">
+  <time class="dt-published" datetime="2024-04-07T14:19:23.000Z" itemprop="datePublished">2024-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/">3-29元素和最小的山形三元组 I</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始的整数数组 nums 。</p>
+<p>如果下标三元组 (i, j, k) 满足下述全部条件，则认为它是一个 山形三元组 ：</p>
+<p>i &lt; j &lt; k</p>
+<p>nums[i] &lt; nums[j] 且 nums[k] &lt; nums[j]</p>
+<p>请你找出 nums 中 元素和最小 的山形三元组，并返回其 元素和 。如果不存在满足条件的三元组，返回 -1 。</p>
+<h2 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h2><p>输入：nums &#x3D; [8,6,1,5,3]</p>
+<p>输出：9</p>
+<p>解释：三元组 (2, 3, 4) 是一个元素和等于 9 的山形三元组，因<br>为： </p>
+<ul>
+<li><p>2 &lt; 3 &lt; 4</p>
+</li>
+<li><p>nums[2] &lt; nums[3] 且 nums[4] &lt; nums[3]</p>
+</li>
+</ul>
+<p>这个三元组的元素和等于 nums[2] + nums[3] + nums[4] &#x3D; 9 。</p>
+<p>可以证明不存在元素和小于 9 的山形三元组。</p>
+<h2 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h2><p>输入：nums &#x3D; [5,4,8,7,10,2]</p>
+<p>输出：13</p>
+<p>解释：三元组 (1, 3, 5) 是一个元素和等于 13 的山形三元组，因<br>为： </p>
+<ul>
+<li><p>1 &lt; 3 &lt; 5 </p>
+</li>
+<li><p>nums[1] &lt; nums[3] 且 nums[5] &lt; nums[3]</p>
+</li>
+</ul>
+<p>这个三元组的元素和等于 nums[1] + nums[3] + nums[5] &#x3D; 13 。可以证明不存在元素和小于 13 的山形三元组。</p>
+<h2 id="示例-3："><a href="#示例-3：" class="headerlink" title="示例 3："></a>示例 3：</h2><p>输入：nums &#x3D; [6,5,4,3,4,5]</p>
+<p>输出：-1</p>
+<p>解释：可以证明 nums 中不存在山形三元组。</p>
+<p>提示：</p>
+<p>3 &lt;&#x3D; nums.length &lt;&#x3D; 50</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 50</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def minimumSum(self, nums: List[int]) -&gt; int:</span><br><span class="line">        n = len(nums)</span><br><span class="line">        res = 1000</span><br><span class="line">        for i in range(n):</span><br><span class="line">            for j in range(i + 1, n):</span><br><span class="line">                for k in range(j + 1, n):</span><br><span class="line">                    if nums[i] &lt; nums[j] and nums[k] &lt; nums[j]:</span><br><span class="line">                        res = min(res, nums[i] + nums[j] + nums[k])</span><br><span class="line">        return res if res &lt; 1000 else -1</span><br><span class="line"></span><br><span class="line">归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/07/3-29%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%B1%B1%E5%BD%A2%E4%B8%89%E5%85%83%E7%BB%84-I/" data-id="clz5m42a5000pmfo75ne0d0wq" data-title="3-29元素和最小的山形三元组 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3-28访问完所有房间的第一天数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-28T09:35:49.000Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/">3-28访问完所有房间的第一天数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>你需要访问 n 个房间，房间从 0 到 n - 1 编号。同时，每一天都有一个日期编号，从 0 开始，依天数递增。你每天都会访问一个房间。</p>
+<p>最开始的第 0 天，你访问 0 号房间。给你一个长度为 n 且 下标从 0 开始 的数组 nextVisit 。在接下来的几天中，你访问房间的 次序 将根据下面的 规则 决定：</p>
+<p>假设某一天，你访问 i 号房间。</p>
+<p>如果算上本次访问，访问 i 号房间的次数为 奇数 ，那么 第二天 需要访问 nextVisit[i] 所指定的房间，</p>
+<p>其中 0 &lt;&#x3D; nextVisit[i] &lt;&#x3D; i 。</p>
+<p>如果算上本次访问，访问 i 号房间的次数为 偶数 ，那么 第二天 需要访问 (i + 1) mod n 号房间。</p>
+<p>请返回你访问完所有房间的第一天的日期编号。题目数据保证总是存在这样的一天。由于答案可能很大，返回对 109 + 7 取余后的结果。</p>
+<p>示例 1：</p>
+<p>输入：nextVisit &#x3D; [0,0]</p>
+<p>输出：2</p>
+<p>解释：</p>
+<ul>
+<li><p>第 0 天，你访问房间 0 。访问 0 号房间的总次数为 1 ，次数为奇数。<br>下一天你需要访问房间的编号是 nextVisit[0] &#x3D; 0</p>
+</li>
+<li><p>第 1 天，你访问房间 0 。访问 0 号房间的总次数为 2 ，次数为偶数。<br>下一天你需要访问房间的编号是 (0 + 1) mod 2 &#x3D; 1</p>
+</li>
+<li><p>第 2 天，你访问房间 1 。这是你第一次完成访问所有房间的那天。<br>示例 2：</p>
+</li>
+</ul>
+<p>输入：nextVisit &#x3D; [0,0,2]</p>
+<p>输出：6</p>
+<p>解释：</p>
+<p>你每天访问房间的次序是 [0,0,1,0,0,1,2,…] 。</p>
+<p>第 6 天是你访问完所有房间的第一天。</p>
+<p>示例 3：</p>
+<p>输入：nextVisit &#x3D; [0,1,2,0]</p>
+<p>输出：6</p>
+<p>解释：</p>
+<p>你每天访问房间的次序是 [0,0,1,1,2,2,3,…] 。</p>
+<p>第 6 天是你访问完所有房间的第一天。</p>
+<p>提示：</p>
+<p>n &#x3D;&#x3D; nextVisit.length</p>
+<p>2 &lt;&#x3D; n &lt;&#x3D; 105</p>
+<p>0 &lt;&#x3D; nextVisit[i] &lt;&#x3D; i</p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const int MOD = 1e9 + 7;</span><br><span class="line"></span><br><span class="line">int firstDayBeenInAllRooms(int* nextVisit, int nextVisitSize) &#123;</span><br><span class="line">    int dp[nextVisitSize ];</span><br><span class="line">    memset(dp, 0, sizeof(dp));</span><br><span class="line"></span><br><span class="line">    // 初始化原地待一天+访问下一个房间一天</span><br><span class="line">    dp[0] = 2; </span><br><span class="line">    for (int i = 1; i &lt; nextVisitSize; i++) &#123;</span><br><span class="line">        int to = nextVisit[i];</span><br><span class="line">        dp[i] = 2 + dp[i - 1];</span><br><span class="line">        if (to) &#123;</span><br><span class="line">            // 避免负数</span><br><span class="line">            dp[i] = (dp[i] - dp[to - 1] + MOD) % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[i] = (dp[i] + dp[i - 1]) % MOD;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[nextVisitSize - 2]; //题目保证n &gt;= 2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/first-day-where-you-have-been-in-all-the-rooms/solutions/2710218/fang-wen-wan-suo-you-fang-jian-de-di-yi-p7fc2/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/3-28%E8%AE%BF%E9%97%AE%E5%AE%8C%E6%89%80%E6%9C%89%E6%88%BF%E9%97%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9%E6%95%B0/" data-id="clz5m42a5000omfo7hhqh5xlc" data-title="3-28访问完所有房间的第一天数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3-27统计将重叠区间合并成组的方案数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-28T09:25:29.000Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">3-27统计将重叠区间合并成组的方案数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>给你一个二维整数数组 ranges ，其中 ranges[i] &#x3D; [starti, endi] 表示 starti 到 endi 之间（包括二者）的所有整数都包含在第 i 个区间中。</p>
+<p>你需要将 ranges 分成 两个 组（可以为空），满足：</p>
+<p>每个区间只属于一个组。</p>
+<p>两个有 交集 的区间必须在 同一个 组内。</p>
+<p>如果两个区间有至少 一个 公共整数，那么这两个区间是 有交集 的。</p>
+<p>比方说，区间 [1, 3] 和 [2, 5] 有交集，因为 2 和 3 在两个区间中都被包含。</p>
+<p>请你返回将 ranges 划分成两个组的 总方案数 。由于答案可能很大，将它对 109 + 7 取余 后返回。</p>
+<p>示例 1：</p>
+<p>输入：ranges &#x3D; [[6,10],[5,15]]</p>
+<p>输出：2</p>
+<p>解释：</p>
+<p>两个区间有交集，所以它们必须在同一个组内。</p>
+<p>所以有两种方案：</p>
+<ul>
+<li><p>将两个区间都放在第 1 个组中。</p>
+</li>
+<li><p>将两个区间都放在第 2 个组中。</p>
+</li>
+</ul>
+<p>示例 2：</p>
+<p>输入：ranges &#x3D; [[1,3],[10,20],[2,5],[4,8]]</p>
+<p>输出：4</p>
+<p>解释：</p>
+<p>区间 [1,3] 和 [2,5] 有交集，所以它们必须在同一个组中。</p>
+<p>同理，区间 [2,5] 和 [4,8] 也有交集，所以它们也必须在同一个组中。</p>
+<p>所以总共有 4 种分组方案：</p>
+<ul>
+<li><p>所有区间都在第 1 组。</p>
+</li>
+<li><p>所有区间都在第 2 组。</p>
+</li>
+<li><p>区间 [1,3] ，[2,5] 和 [4,8] 在第 1 个组中，[10,20] 在第 2 个组中。</p>
+</li>
+<li><p>区间 [1,3] ，[2,5] 和 [4,8] 在第 2 个组中，[10,20] 在第 1 个组中。</p>
+</li>
+</ul>
+<p>提示：</p>
+<p>1 &lt;&#x3D; ranges.length &lt;&#x3D; 105</p>
+<p>ranges[i].length &#x3D;&#x3D; 2</p>
+<p>0 &lt;&#x3D; starti &lt;&#x3D; endi &lt;&#x3D; 109</p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const int mod = 1e9 + 7;</span><br><span class="line"></span><br><span class="line">int cmp(const void *a, const void *b) &#123;</span><br><span class="line">    return (*(int **)a)[0] - (*(int **)b)[0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int countWays(int** ranges, int rangesSize, int* rangesColSize) &#123;</span><br><span class="line">    qsort(ranges, rangesSize, sizeof(int *), cmp);</span><br><span class="line">    long long res = 1;</span><br><span class="line">    for (int i = 0; i &lt; rangesSize; ) &#123;</span><br><span class="line">        int r = ranges[i][1];</span><br><span class="line">        int j = i + 1;</span><br><span class="line">        while (j &lt; rangesSize &amp;&amp; ranges[j][0] &lt;= r) &#123;</span><br><span class="line">            r = fmax(r, ranges[j][1]);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        res = res * 2 % mod;</span><br><span class="line">        i = j;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/solutions/2706464/tong-ji-jiang-zhong-die-qu-jian-he-bing-be3bs/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/3-27%E7%BB%9F%E8%AE%A1%E5%B0%86%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E6%88%90%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/" data-id="clz5m42a5000nmfo78t81hkjj" data-title="3-27统计将重叠区间合并成组的方案数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-3-26设计可以求最短路径的图类" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/26/3-26%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E6%B1%82%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E5%9B%BE%E7%B1%BB/" class="article-date">
@@ -498,178 +718,6 @@
 
 
   
-    <article id="post-3-19好子数组的最大分数树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/19/3-19%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2024-03-19T14:30:16.000Z" itemprop="datePublished">2024-03-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/19/3-19%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0%E6%A0%91/">3-19好子数组的最大分数树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数数组 nums （下标从 0 开始）和一个整数 k 。</p>
-<p>一个子数组 (i, j) 的 分数 定义为 min(nums[i], nums[i+1], …, nums[j]) * (j - i + 1) 。</p>
-<p>一个 好 子数组的两个端点下标需要满足 i &lt;&#x3D; k &lt;&#x3D; j 。</p>
-<p>请你返回 好 子数组的最大可能 分数 。</p>
-<p>示例 1：</p>
-<p>输入：nums &#x3D; [1,4,3,7,4,5], k &#x3D; 3</p>
-<p>输出：15</p>
-<p>解释：最优子数组的左右端点下标是 (1, 5) ，分数为 min(4,3,7,4,5) * (5-1+1) &#x3D; 3 * 5 &#x3D; 15 。</p>
-<p>示例 2：</p>
-<p>输入：nums &#x3D; [5,5,4,5,4,1,1,1], k &#x3D; 0</p>
-<p>输出：20</p>
-<p>解释：最优子数组的左右端点下标是 (0, 4) ，分数为 min(5,5,4,5,4) * (4-0+1) &#x3D; 4 * 5 &#x3D; 20 。</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 105</p>
-<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 2 * 104</p>
-<p>0 &lt;&#x3D; k &lt; nums.length</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">int maximumScore(int* nums, int numsSize, int k) &#123;</span><br><span class="line">    int left = k - 1, right = k + 1;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    for (int i = nums[k];;) &#123;</span><br><span class="line">        while (left &gt;= 0 &amp;&amp; nums[left] &gt;= i) &#123;</span><br><span class="line">            --left;</span><br><span class="line">        &#125;</span><br><span class="line">        while (right &lt; numsSize &amp;&amp; nums[right] &gt;= i) &#123;</span><br><span class="line">            ++right;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = fmax(ans, (right - left - 1) * i);</span><br><span class="line">        if (left == -1 &amp;&amp; right == numsSize) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        i = fmax((left == -1 ? -1 : nums[left]), (right == numsSize ? -1 : nums[right]));</span><br><span class="line">        if (i == -1) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/maximum-score-of-a-good-subarray/solutions/2688286/hao-zi-shu-zu-de-zui-da-fen-shu-by-leetc-94gx/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/19/3-19%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%86%E6%95%B0%E6%A0%91/" data-id="clz5m42a3000fmfo72sl08nv1" data-title="3-19好子数组的最大分数树" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-3-18区域和检索-数组不可变树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/19/3-18%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2024-03-19T14:28:09.000Z" itemprop="datePublished">2024-03-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/19/3-18%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%A0%91/">3-18区域和检索 - 数组不可变树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给定一个整数数组  nums，处理以下类型的多个查询:</p>
-<p>计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left &lt;&#x3D; right<br>实现 NumArray 类：</p>
-<p>NumArray(int[] nums) 使用数组 nums 初始化对象</p>
-<p>int sumRange(int i, int j) 返回数组 nums 中索引 left 和 </p>
-<p>right 之间的元素的 总和 ，包含 left 和 right 两点（也就是 </p>
-<p>nums[left] + nums[left + 1] + … + nums[right] )</p>
-<p>示例 1：</p>
-<p>输入：</p>
-<p>[“NumArray”, “sumRange”, “sumRange”, “sumRange”]</p>
-<p>[[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]</p>
-<p>输出：</p>
-<p>[null, 1, -1, -3]</p>
-<p>解释：</p>
-<p>NumArray numArray &#x3D; new NumArray([-2, 0, 3, -5, 2,<br>-1]);</p>
-<p>numArray.sumRange(0, 2); &#x2F;&#x2F; return 1 ((-2) + 0 + 3)</p>
-<p>numArray.sumRange(2, 5); &#x2F;&#x2F; return -1 (3 + (-5) + 2 + (-1)) </p>
-<p>numArray.sumRange(0, 5); &#x2F;&#x2F; return -3 ((-2) + 0 + 3 + (-5) + 2 + (-1))</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 104</p>
-<p>-105 &lt;&#x3D; nums[i] &lt;&#x3D; 105</p>
-<p>0 &lt;&#x3D; i &lt;&#x3D; j &lt; nums.length</p>
-<p>最多调用 104 次 sumRange 方法</p>
-<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int* sums;</span><br><span class="line">&#125; NumArray;</span><br><span class="line"></span><br><span class="line">NumArray* numArrayCreate(int* nums, int numsSize) &#123;</span><br><span class="line">    NumArray* ret = malloc(sizeof(NumArray));</span><br><span class="line">    ret-&gt;sums = malloc(sizeof(int) * (numsSize + 1));</span><br><span class="line">    ret-&gt;sums[0] = 0;</span><br><span class="line">    for (int i = 0; i &lt; numsSize; i++) &#123;</span><br><span class="line">        ret-&gt;sums[i + 1] = ret-&gt;sums[i] + nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int numArraySumRange(NumArray* obj, int i, int j) &#123;</span><br><span class="line">    return obj-&gt;sums[j + 1] - obj-&gt;sums[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void numArrayFree(NumArray* obj) &#123;</span><br><span class="line">    free(obj-&gt;sums);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/range-sum-query-immutable/solutions/627052/qu-yu-he-jian-suo-shu-zu-bu-ke-bian-by-l-px41/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/19/3-18%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%A0%91/" data-id="clz5m42a3000emfo73ol4ea5a" data-title="3-18区域和检索 - 数组不可变树" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-3-17最小高度树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2024-03-17T09:26:51.000Z" itemprop="datePublished">2024-03-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/">3-17最小高度树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>树是一个无向图，其中任何两个顶点只通过一条路径连接。 换句话说，一个任何没有简单环路的连通图都是一棵树。</p>
-<p>给你一棵包含 n 个节点的树，标记为 0 到 n - 1 。给定数字 n 和一个有 n - 1 条无向边的 edges 列表（每一个边都是一对标签），其中 edges[i] &#x3D; [ai, bi] 表示树中节点 ai 和 bi 之间存在一条无向边。</p>
-<p>可选择树中任何一个节点作为根。当选择节点 x 作为根节点时，设结果树的高度为 h 。在所有可能的树中，具有最小高度的树（即，min(h)）被称为 最小高度树 。</p>
-<p>请你找到所有的 最小高度树 并按 任意顺序 返回它们的根节点标签列表。</p>
-<p>树的 高度 是指根节点和叶子节点之间最长向下路径上边的数量。</p>
-<p>示例 1：</p>
-<p><img src="https://assets.leetcode.com/uploads/2020/09/01/e1.jpg"></p>
-<p>输入：n &#x3D; 4, edges &#x3D; [[1,0],[1,2],[1,3]]</p>
-<p>输出：[1]</p>
-<p>解释：如图所示，当根是标签为 1 的节点时，树的高度是 1 ，这是唯一的最小高度树。</p>
-<p>示例 2：<br><img src="https://assets.leetcode.com/uploads/2020/09/01/e2.jpg"></p>
-<p>输入：n &#x3D; 6, edges &#x3D; [[3,0],[3,1],[3,2],[3,4],[5,4]]</p>
-<p>输出：[3,4]</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; n &lt;&#x3D; 2 * 104</p>
-<p>edges.length &#x3D;&#x3D; n - 1</p>
-<p>0 &lt;&#x3D; ai, bi &lt; n</p>
-<p>ai !&#x3D; bi</p>
-<p>所有 (ai, bi) 互不相同</p>
-<p>给定的输入 保证 是一棵树，并且 不会有重复的边<br>#解题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">int findLongestNode(int u, int * parent, const struct ListNode ** adj, int n) &#123;</span><br><span class="line">    int * queue = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    int head = 0, tail = 0;</span><br><span class="line">    bool * visit = (bool *)malloc(sizeof(bool) * n);</span><br><span class="line">    memset(visit, 0, sizeof(bool) * n);</span><br><span class="line">    queue[tail++] = u;</span><br><span class="line">    visit[u] = true;</span><br><span class="line">    int res = -1;</span><br><span class="line"></span><br><span class="line">    while (head != tail) &#123;</span><br><span class="line">        int curr = queue[head++];</span><br><span class="line">        res = curr;</span><br><span class="line">        struct ListNode * node = adj[curr];</span><br><span class="line">        while (node) &#123;</span><br><span class="line">            if (!visit[node-&gt;val]) &#123;</span><br><span class="line">                visit[node-&gt;val] = true;</span><br><span class="line">                parent[node-&gt;val] = curr;</span><br><span class="line">                queue[tail++] = node-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(queue);</span><br><span class="line">    free(visit);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int* findMinHeightTrees(int n, int** edges, int edgesSize, int* edgesColSize, int* returnSize)&#123;</span><br><span class="line">    int * res = NULL;</span><br><span class="line">    if (n == 1) &#123;</span><br><span class="line">        res = (int *)malloc(sizeof(int));</span><br><span class="line">        *res = 0;</span><br><span class="line">        *returnSize = 1;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct ListNode ** adj = (struct ListNode *)malloc(sizeof(struct ListNode *) * n);</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        adj[i] = NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; edgesSize; i++) &#123;</span><br><span class="line">        int u = edges[i][0];</span><br><span class="line">        int v = edges[i][1];</span><br><span class="line">        struct ListNode * node = (struct ListNode *)malloc(sizeof(struct ListNode));</span><br><span class="line">        node-&gt;val = u;</span><br><span class="line">        node-&gt;next = adj[v];</span><br><span class="line">        adj[v] = node;</span><br><span class="line">        node = (struct ListNode *)malloc(sizeof(struct ListNode));</span><br><span class="line">        node-&gt;val = v;</span><br><span class="line">        node-&gt;next = adj[u];</span><br><span class="line">        adj[u] = node;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int * parent = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    /* 找到与节点 0 最远的节点 x */</span><br><span class="line">    int x = findLongestNode(0, parent, adj, n);</span><br><span class="line">    /* 找到与节点 x 最远的节点 y */</span><br><span class="line">    int y = findLongestNode(x, parent, adj, n);</span><br><span class="line">    /* 求出节点 x 到节点 y 的路径 */</span><br><span class="line">    int * path = (int *)malloc(sizeof(int) * n);</span><br><span class="line">    int pos = 0;</span><br><span class="line">    parent[x] = -1;</span><br><span class="line">    while (y != -1) &#123;</span><br><span class="line">        path[pos++] = y;</span><br><span class="line">        y = parent[y];</span><br><span class="line">    &#125;</span><br><span class="line">    if (pos % 2 == 0) &#123;</span><br><span class="line">        res = (int *)malloc(sizeof(int) * 2);</span><br><span class="line">        res[0] = path[pos / 2 - 1];</span><br><span class="line">        res[1] = path[pos / 2];</span><br><span class="line">        *returnSize = 2;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        res = (int *)malloc(sizeof(int));</span><br><span class="line">        *res = path[pos / 2];</span><br><span class="line">        *returnSize = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    free(path);</span><br><span class="line">    free(parent);</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        struct ListNode * node = adj[i];</span><br><span class="line">        while (node) &#123;</span><br><span class="line">            struct ListNode * curr = node;</span><br><span class="line">            node = curr-&gt;next;</span><br><span class="line">            free(curr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    free(adj);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/minimum-height-trees/solutions/1395249/zui-xiao-gao-du-shu-by-leetcode-solution-6v6f/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/17/3-17%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/" data-id="clz5m42a3000dmfo72x9ibg4f" data-title="3-17最小高度树" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -693,7 +741,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
     </div>
   </div>
 
@@ -706,23 +754,23 @@
       <ul>
         
           <li>
+            <a href="/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/">7-14特殊数组 II</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/01/7-13%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%8F%98%E4%B8%BA%E6%9C%89%E5%BA%8F/">7-13判断一个数组是否可以变为有序</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
           </li>
         
           <li>
             <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/">7-10统计移除递增子数组的数目 I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/26/7-9%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/">7-9最小化曼哈顿距离</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
           </li>
         
       </ul>

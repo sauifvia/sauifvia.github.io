@@ -69,6 +69,155 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-7-5修改矩阵" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/22/7-5%E4%BF%AE%E6%94%B9%E7%9F%A9%E9%98%B5/" class="article-date">
+  <time class="dt-published" datetime="2024-07-22T12:16:30.000Z" itemprop="datePublished">2024-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/22/7-5%E4%BF%AE%E6%94%B9%E7%9F%A9%E9%98%B5/">7-5修改矩阵</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个下标从 0 开始、大小为 m x n 的整数矩阵 matrix ，新建一个下标从 0 开始、名为 answer 的矩阵。使 answer 与 matrix 相等，接着将其中每个值为 -1 的元素替换为所在列的 最大 元素。</p>
+<p>返回矩阵 answer 。</p>
+<p>示例 1：</p>
+<p><img src="https://assets.leetcode.com/uploads/2023/12/24/matrix1.png"></p>
+<p>输入：matrix &#x3D; [[1,2,-1],[4,-1,6],[7,8,9]]<br>输出：[[1,2,9],[4,8,6],[7,8,9]]<br>解释：上图显示了发生替换的元素（蓝色区域）。</p>
+<ul>
+<li>将单元格 [1][1] 中的值替换为列 1 中的最大值 8 。</li>
+<li>将单元格 [0][2] 中的值替换为列 2 中的最大值 9 。<br>示例 2：</li>
+</ul>
+<p><img src="https://assets.leetcode.com/uploads/2023/12/24/matrix2.png"></p>
+<p>输入：matrix &#x3D; [[3,-1],[5,2]]<br>输出：[[3,2],[5,2]]<br>解释：上图显示了发生替换的元素（蓝色区域）。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lass Solution:</span><br><span class="line">    def modifiedMatrix(self, matrix: List[List[int]]) -&gt; List[List[int]]:</span><br><span class="line">        n, m = len(matrix), len(matrix[0])</span><br><span class="line">        for j in range(m):</span><br><span class="line">            zd = -1</span><br><span class="line">            for i in range(n):</span><br><span class="line">                zd = max(zd, matrix[i][j])</span><br><span class="line">            for i in range(n):</span><br><span class="line">                if matrix[i][j] == -1:</span><br><span class="line">                    matrix[i][j] = zd</span><br><span class="line">        return matrix</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/22/7-5%E4%BF%AE%E6%94%B9%E7%9F%A9%E9%98%B5/" data-id="clz5m42ae002tmfo72b1k5io6" data-title="7-5修改矩阵" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-7-4拾起-K-个-1-需要的最少行动次数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-07-22T12:14:19.000Z" itemprop="datePublished">2024-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/">7-4拾起 K 个 1 需要的最少行动次数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个下标从 0 开始的二进制数组 nums，其长度为 n ；另给你一个 正整数 k 以及一个 非负整数 maxChanges 。</p>
+<p>Alice 在玩一个游戏，游戏的目标是让 Alice 使用 最少 数量的 行动 次数从 nums 中拾起 k 个 1 。游戏开始时，Alice 可以选择数组 [0, n - 1] 范围内的任何索引 aliceIndex 站立。如果 nums[aliceIndex] &#x3D;&#x3D; 1 ，Alice 会拾起一个 1 ，并且 nums[aliceIndex] 变成0（这 不算 作一次行动）。之后，Alice 可以执行 任意数量 的 行动（包括零次），在每次行动中 Alice 必须 恰好 执行以下动作之一：</p>
+<p>选择任意一个下标 j !&#x3D; aliceIndex 且满足 nums[j] &#x3D;&#x3D; 0 ，然后将 nums[j] 设置为 1 。这个动作最多可以执行 maxChanges 次。<br>选择任意两个相邻的下标 x 和 y（|x - y| &#x3D;&#x3D; 1）且满足 nums[x] &#x3D;&#x3D; 1, nums[y] &#x3D;&#x3D; 0 ，然后交换它们的值（将 nums[y] &#x3D; 1 和 nums[x] &#x3D; 0）。如果 y &#x3D;&#x3D; aliceIndex，在这次行动后 Alice 拾起一个 1 ，并且 nums[y] 变成 0 。<br>返回 Alice 拾起 恰好 k 个 1 所需的 最少 行动次数。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [1,1,0,0,0,1,1,0,0,1], k &#x3D; 3, maxChanges &#x3D; 1</p>
+<p>输出：3</p>
+<p>解释：如果游戏开始时 Alice 在 aliceIndex &#x3D;&#x3D; 1 的位置上，按照以下步骤执行每个动作，他可以利用 3 次行动拾取 3 个 1 ：</p>
+<p>游戏开始时 Alice 拾取了一个 1 ，nums[1] 变成了 0。此时 nums 变为 [1,0,0,0,0,1,1,0,0,1] 。<br>选择 j &#x3D;&#x3D; 2 并执行第一种类型的动作。nums 变为 [1,0,1,0,0,1,1,0,0,1]<br>选择 x &#x3D;&#x3D; 2 和 y &#x3D;&#x3D; 1 ，并执行第二种类型的动作。nums 变为 [1,1,0,0,0,1,1,0,0,1] 。由于 y &#x3D;&#x3D; aliceIndex，Alice 拾取了一个 1 ，nums 变为  [1,0,0,0,0,1,1,0,0,1] 。<br>选择 x &#x3D;&#x3D; 0 和 y &#x3D;&#x3D; 1 ，并执行第二种类型的动作。nums 变为 [0,1,0,0,0,1,1,0,0,1] 。由于 y &#x3D;&#x3D; aliceIndex，Alice 拾取了一个 1 ，nums 变为  [0,0,0,0,0,1,1,0,0,1] 。<br>请注意，Alice 也可能执行其他的 3 次行动序列达成拾取 3 个 1 。</p>
+<p>示例 2：</p>
+<p>输入：nums &#x3D; [0,0,0,0], k &#x3D; 2, maxChanges &#x3D; 3</p>
+<p>输出：4</p>
+<p>解释：如果游戏开始时 Alice 在 aliceIndex &#x3D;&#x3D; 0 的位置上，按照以下步骤执行每个动作，他可以利用 4 次行动拾取 2 个 1 ：</p>
+<p>选择 j &#x3D;&#x3D; 1 并执行第一种类型的动作。nums 变为 [0,1,0,0] 。<br>选择 x &#x3D;&#x3D; 1 和 y &#x3D;&#x3D; 0 ，并执行第二种类型的动作。nums 变为 [1,0,0,0] 。由于 y &#x3D;&#x3D; aliceIndex，Alice 拾起了一个 1 ，nums 变为 [0,0,0,0] 。<br>再次选择 j &#x3D;&#x3D; 1 并执行第一种类型的动作。nums 变为 [0,1,0,0] 。<br>再次选择 x &#x3D;&#x3D; 1 和 y &#x3D;&#x3D; 0 ，并执行第二种类型的动作。nums 变为 [1,0,0,0] 。由于y &#x3D;&#x3D; aliceIndex，Alice 拾起了一个 1 ，nums 变为 [0,0,0,0] 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def minimumMoves(self, nums: List[int], k: int, maxChanges: int) -&gt; int:</span><br><span class="line">        n = len(nums)</span><br><span class="line">        def f(i: int) -&gt; int:</span><br><span class="line">            return sum(nums[max(i - 1, 0):min(i + 2, n)])</span><br><span class="line"></span><br><span class="line">        indexSum, count = [0] * (n + 1), [0] * (n + 1)</span><br><span class="line">        for i in range(n):</span><br><span class="line">            indexSum[i + 1], count[i + 1] = indexSum[i] + nums[i] * i, count[i] + nums[i]</span><br><span class="line">        res = inf</span><br><span class="line">        for i in range(n):</span><br><span class="line">            if f(i) + maxChanges &gt;= k:</span><br><span class="line">                if k &lt;= f(i):</span><br><span class="line">                    res = min(res, k - nums[i])</span><br><span class="line">                else:</span><br><span class="line">                    res = min(res, 2 * k - f(i) - nums[i])</span><br><span class="line">            left, right = 0, n</span><br><span class="line">            while left &lt;= right:</span><br><span class="line">                mid = (left + right) // 2</span><br><span class="line">                i1, i2 = max(i - mid, 0), min(i + mid, n - 1)</span><br><span class="line">                if count[i2 + 1] - count[i1] &gt;= k - maxChanges:</span><br><span class="line">                    right = mid - 1</span><br><span class="line">                else:</span><br><span class="line">                    left = mid + 1</span><br><span class="line">            i1, i2 = max(i - left, 0), min(i + left, n - 1)</span><br><span class="line">            if count[i2 + 1] - count[i1] &gt; k - maxChanges:</span><br><span class="line">                i1 += 1</span><br><span class="line">            count1, count2 = count[i + 1] - count[i1], count[i2 + 1] - count[i + 1]</span><br><span class="line">            res = min(res, indexSum[i2 + 1] - indexSum[i + 1] - i * count2 + i * count1 - (indexSum[i + 1] - indexSum[i1]) + 2 * maxChanges)</span><br><span class="line">        return res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/22/7-4%E6%8B%BE%E8%B5%B7-K-%E4%B8%AA-1-%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%A1%8C%E5%8A%A8%E6%AC%A1%E6%95%B0/" data-id="clz5m42ae002smfo7gsu61d5m" data-title="7-4拾起 K 个 1 需要的最少行动次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-7-3哈沙德数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-07-22T12:02:26.000Z" itemprop="datePublished">2024-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/">7-3哈沙德数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>如果一个整数能够被其各个数位上的数字之和整除，则称之为 哈沙德数（Harshad number）。给你一个整数 x 。如果 x 是 哈沙德数 ，则返回 x 各个数位上的数字之和，否则，返回 -1 。</p>
+<p>示例 1：</p>
+<p>输入： x &#x3D; 18</p>
+<p>输出： 9</p>
+<p>解释：</p>
+<p>x 各个数位上的数字之和为 9 。18 能被 9 整除。因此 18 是哈沙德数，答案是 9 。</p>
+<p>示例 2：</p>
+<p>输入： x &#x3D; 23</p>
+<p>输出： -1</p>
+<p>解释：</p>
+<p>x 各个数位上的数字之和为 5 。23 不能被 5 整除。因此 23 不是哈沙德数，答案是 -1 。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def sumOfTheDigitsOfHarshadNumber(self, x: int) -&gt; int:</span><br><span class="line">        s = 0</span><br><span class="line">        y = x</span><br><span class="line">        while y:</span><br><span class="line">            y, r = divmod(y, 10)</span><br><span class="line">            s += r</span><br><span class="line">        return -1 if x % s else s</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/22/7-3%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/" data-id="clz5m42ad002qmfo7f1oq8s5f" data-title="7-3哈沙德数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-7-2质数的最大距离" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/07/19/7-2%E8%B4%A8%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB/" class="article-date">
@@ -405,149 +554,6 @@
 
 
   
-    <article id="post-5-30找出出现至少三次的最长特殊子字符串-II" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/" class="article-date">
-  <time class="dt-published" datetime="2024-06-12T07:44:56.000Z" itemprop="datePublished">2024-06-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/">5-30找出出现至少三次的最长特殊子字符串 II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个仅由小写英文字母组成的字符串 s 。</p>
-<p>如果一个字符串仅由单一字符组成，那么它被称为 特殊 字符串。例如，字符串 “abc” 不是特殊字符串，而字符串 “ddd”、”zz” 和 “f” 是特殊字符串。</p>
-<p>返回在 s 中出现 至少三次 的 最长特殊子字符串 的长度，如果不存在出现至少三次的特殊子字符串，则返回 -1 。</p>
-<p>子字符串 是字符串中的一个连续 非空 字符序列。</p>
-<p>示例 1：</p>
-<p>输入：s &#x3D; “aaaa”<br>输出：2<br>解释：出现三次的最长特殊子字符串是 “aa” ：子字符串 “aaaa”、”aaaa” 和 “aaaa”。<br>可以证明最大长度是 2 。<br>示例 2：</p>
-<p>输入：s &#x3D; “abcdef”<br>输出：-1<br>解释：不存在出现至少三次的特殊子字符串。因此返回 -1 。<br>示例 3：</p>
-<p>输入：s &#x3D; “abcaba”<br>输出：1<br>解释：出现三次的最长特殊子字符串是 “a” ：子字符串 “abcaba”、”abcaba” 和 “abcaba”。<br>可以证明最大长度是 1 。</p>
-<p>提示：</p>
-<p>3 &lt;&#x3D; s.length &lt;&#x3D; 5 * 105<br>s 仅由小写英文字母组成。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maximumLength(self, s: str) -&gt; int:</span><br><span class="line">        n = len(s)</span><br><span class="line">        cnt = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        i = 0</span><br><span class="line">        while i &lt; n:</span><br><span class="line">            j = i</span><br><span class="line">            while j &lt; n and s[j] == s[i]:</span><br><span class="line">                j += 1</span><br><span class="line">            if s[i] not in cnt:</span><br><span class="line">                cnt[s[i]] = []</span><br><span class="line">            cnt[s[i]].append(j - i)</span><br><span class="line">            i = j</span><br><span class="line">            </span><br><span class="line">        res = -1</span><br><span class="line">        for vec in cnt.values():</span><br><span class="line">            lo, hi = 1, n - 2</span><br><span class="line">            while lo &lt;= hi:</span><br><span class="line">                mid = (lo + hi) // 2</span><br><span class="line">                count = 0</span><br><span class="line">                for x in vec:</span><br><span class="line">                    if x &gt;= mid:</span><br><span class="line">                        count += x - mid + 1</span><br><span class="line">                if count &gt;= 3:</span><br><span class="line">                    res = max(res, mid)</span><br><span class="line">                    lo = mid + 1</span><br><span class="line">                else:</span><br><span class="line">                    hi = mid - 1</span><br><span class="line">        return res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/12/5-30%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-II/" data-id="clz5m42ab0029mfo7alsggent" data-title="5-30找出出现至少三次的最长特殊子字符串 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-29找出出现至少三次的最长特殊子字符串-I" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/" class="article-date">
-  <time class="dt-published" datetime="2024-06-09T02:44:03.000Z" itemprop="datePublished">2024-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/">5-29找出出现至少三次的最长特殊子字符串 I</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个仅由小写英文字母组成的字符串 s 。</p>
-<p>如果一个字符串仅由单一字符组成，那么它被称为 特殊 字符串。例如，字符串 “abc” 不是特殊字符串，而字符串 “ddd”、”zz” 和 “f” 是特殊字符串。</p>
-<p>返回在 s 中出现 至少三次 的 最长特殊子字符串 的长度，如果不存在出现至少三次的特殊子字符串，则返回 -1 。</p>
-<p>子字符串 是字符串中的一个连续 非空 字符序列。</p>
-<p>示例 1：</p>
-<p>输入：s &#x3D; “aaaa”<br>输出：2<br>解释：出现三次的最长特殊子字符串是 “aa” ：子字符串 “aaaa”、”aaaa” 和 “aaaa”。<br>可以证明最大长度是 2 。<br>示例 2：</p>
-<p>输入：s &#x3D; “abcdef”<br>输出：-1<br>解释：不存在出现至少三次的特殊子字符串。因此返回 -1 。<br>示例 3：</p>
-<p>输入：s &#x3D; “abcaba”<br>输出：1<br>解释：出现三次的最长特殊子字符串是 “a” ：子字符串 “abcaba”、”abcaba” 和 “abcaba”。<br>可以证明最大长度是 1 。</p>
-<p>提示：</p>
-<p>3 &lt;&#x3D; s.length &lt;&#x3D; 50<br>s 仅由小写英文字母组成。</p>
-<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maximumLength(self, s: str) -&gt; int:</span><br><span class="line">        ans = -1</span><br><span class="line"></span><br><span class="line">        chs = [[] for _ in range(26)]</span><br><span class="line">        cnt = 0</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            cnt += 1</span><br><span class="line">            if i + 1 == len(s) or s[i] != s[i + 1]:</span><br><span class="line">                ch = ord(s[i]) - ord(&#x27;a&#x27;)</span><br><span class="line">                chs[ch].append(cnt)</span><br><span class="line">                cnt = 0</span><br><span class="line">                for j in range(len(chs[ch]) - 1, 0, -1):</span><br><span class="line">                    if chs[ch][j] &gt; chs[ch][j - 1]:</span><br><span class="line">                        chs[ch][j], chs[ch][j - 1] = chs[ch][j - 1], chs[ch][j]</span><br><span class="line">                    else:</span><br><span class="line">                        break</span><br><span class="line">                if len(chs[ch]) &gt; 3:</span><br><span class="line">                    chs[ch].pop()</span><br><span class="line"></span><br><span class="line">        for i in range(26):</span><br><span class="line">            if len(chs[i]) &gt; 0 and chs[i][0] &gt; 2:</span><br><span class="line">                ans = max(ans, chs[i][0] - 2)</span><br><span class="line">            if len(chs[i]) &gt; 1 and chs[i][0] &gt; 1:</span><br><span class="line">                ans = max(ans, min(chs[i][0] - 1, chs[i][1]))</span><br><span class="line">            if len(chs[i]) &gt; 2:</span><br><span class="line">                ans = max(ans, chs[i][2])</span><br><span class="line"></span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-29%E6%89%BE%E5%87%BA%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91%E4%B8%89%E6%AC%A1%E7%9A%84%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2-I/" data-id="clz5m42ab0027mfo785npemfu" data-title="5-29找出出现至少三次的最长特殊子字符串 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-28找出峰值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2024-06-09T02:42:50.000Z" itemprop="datePublished">2024-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/">5-28找出峰值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始的数组 mountain 。你的任务是找出数组 mountain 中的所有 峰值。</p>
-<p>以数组形式返回给定数组中 峰值 的下标，顺序不限 。</p>
-<p>注意：</p>
-<p>峰值 是指一个严格大于其相邻元素的元素。<br>数组的第一个和最后一个元素 不 是峰值。</p>
-<p>示例 1：</p>
-<p>输入：mountain &#x3D; [2,4,4]<br>输出：[]<br>解释：mountain[0] 和 mountain[2] 不可能是峰值，因为它们是数组的第一个和最后一个元素。<br>mountain[1] 也不可能是峰值，因为它不严格大于 mountain[2] 。<br>因此，答案为 [] 。<br>示例 2：</p>
-<p>输入：mountain &#x3D; [1,4,3,8,5]<br>输出：[1,3]<br>解释：mountain[0] 和 mountain[4] 不可能是峰值，因为它们是数组的第一个和最后一个元素。<br>mountain[2] 也不可能是峰值，因为它不严格大于 mountain[3] 和 mountain[1] 。<br>但是 mountain[1] 和 mountain[3] 严格大于它们的相邻元素。<br>因此，答案是 [1,3] 。</p>
-<p>提示：</p>
-<p>3 &lt;&#x3D; mountain.length &lt;&#x3D; 100<br>1 &lt;&#x3D; mountain[i] &lt;&#x3D; 100</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def findPeaks(self, mountain: List[int]) -&gt; List[int]:</span><br><span class="line">            res = []</span><br><span class="line">            for i in range(1, len(mountain) - 1):</span><br><span class="line">                if mountain[i - 1] &lt; mountain[i] and mountain[i] &gt; mountain[i + 1]:</span><br><span class="line">                    res.append(i)</span><br><span class="line">            return res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/09/5-28%E6%89%BE%E5%87%BA%E5%B3%B0%E5%80%BC/" data-id="clz5m42ab0026mfo7cw86ehgs" data-title="5-28找出峰值" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -571,7 +577,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li></ul>
     </div>
   </div>
 
@@ -584,23 +590,23 @@
       <ul>
         
           <li>
+            <a href="/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/">7-14特殊数组 II</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/01/7-13%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%8F%98%E4%B8%BA%E6%9C%89%E5%BA%8F/">7-13判断一个数组是否可以变为有序</a>
+          </li>
+        
+          <li>
             <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
           </li>
         
           <li>
             <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/">7-10统计移除递增子数组的数目 I</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/26/7-9%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/">7-9最小化曼哈顿距离</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/">7-8寻找数组的中心下标</a>
           </li>
         
       </ul>
