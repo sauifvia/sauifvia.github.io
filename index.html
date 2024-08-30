@@ -69,6 +69,120 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-7-17K-周期字符串需要的最少操作次数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/30/7-17K-%E5%91%A8%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-08-30T12:26:51.000Z" itemprop="datePublished">2024-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/08/30/7-17K-%E5%91%A8%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/">7-17K 周期字符串需要的最少操作次数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个长度为 n 的字符串 word 和一个整数 k ，其中 k 是 n 的因数。</p>
+<p>在一次操作中，你可以选择任意两个下标 i 和 j，其中 0 &lt;&#x3D; i, j &lt; n ，且这两个下标都可以被 k 整除，然后用从 j 开始的长度为 k 的子串替换从 i 开始的长度为 k 的子串。也就是说，将子串 word[i..i + k - 1] 替换为子串 word[j..j + k - 1] 。</p>
+<p>返回使 word 成为 K 周期字符串 所需的 最少 操作次数。</p>
+<p>如果存在某个长度为 k 的字符串 s，使得 word 可以表示为任意次数连接 s ，则称字符串 word 是 K 周期字符串 。例如，如果 word &#x3D;&#x3D; “ababab”，那么 word 就是 s &#x3D; “ab” 时的 2 周期字符串 。</p>
+<p>示例 1：</p>
+<p>输入：word &#x3D; “leetcodeleet”, k &#x3D; 4</p>
+<p>输出：1</p>
+<p>解释：可以选择 i &#x3D; 4 和 j &#x3D; 0 获得一个 4 周期字符串。这次操作后，word 变为 “leetleetleet” 。</p>
+<p>示例 2：</p>
+<p>输入：word &#x3D; “leetcoleet”, k &#x3D; 2</p>
+<p>输出：3</p>
+<p>解释：可以执行以下操作获得一个 2 周期字符串。</p>
+<p>i	j	word<br>0	2	etetcoleet<br>4	0	etetetleet<br>6	0	etetetetet</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &#x3D;&#x3D; word.length &lt;&#x3D; 105<br>1 &lt;&#x3D; k &lt;&#x3D; word.length<br>k 能整除 word.length 。<br>word 仅由小写英文字母组成。</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def minimumOperationsToMakeKPeriodic(self, word: str, k: int) -&gt; int:</span><br><span class="line">        n = len(word)</span><br><span class="line">        count = Counter(word[i: i + k] for i in range(0, n, k))</span><br><span class="line">        return n // k - max(count.values())</span><br><span class="line"></span><br><span class="line">作者：力扣官方题解</span><br><span class="line">链接：https://leetcode.cn/problems/minimum-number-of-operations-to-make-word-k-periodic/solutions/2878600/k-zhou-qi-zi-fu-chuan-xu-yao-de-zui-shao-vw1b/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/08/30/7-17K-%E5%91%A8%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/" data-id="cm0gox2j6002t4uo75mftc0rl" data-title="7-17K 周期字符串需要的最少操作次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-7-15划分数组得到最小的值之和" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/30/7-15%E5%88%92%E5%88%86%E6%95%B0%E7%BB%84%E5%BE%97%E5%88%B0%E6%9C%80%E5%B0%8F%E7%9A%84%E5%80%BC%E4%B9%8B%E5%92%8C/" class="article-date">
+  <time class="dt-published" datetime="2024-08-30T12:24:23.000Z" itemprop="datePublished">2024-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/08/30/7-15%E5%88%92%E5%88%86%E6%95%B0%E7%BB%84%E5%BE%97%E5%88%B0%E6%9C%80%E5%B0%8F%E7%9A%84%E5%80%BC%E4%B9%8B%E5%92%8C/">7-15划分数组得到最小的值之和</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p> 给你两个数组 nums 和 andValues，长度分别为 n 和 m。</p>
+<p>数组的 值 等于该数组的 最后一个 元素。</p>
+<p>你需要将 nums 划分为 m 个 不相交的连续<br>子数组<br>，对于第 ith 个子数组 [li, ri]，子数组元素的按位 AND 运算结果等于 andValues[i]，换句话说，对所有的 1 &lt;&#x3D; i &lt;&#x3D; m，nums[li] &amp; nums[li + 1] &amp; … &amp; nums[ri] &#x3D;&#x3D; andValues[i] ，其中 &amp; 表示按位 AND 运算符。</p>
+<p>返回将 nums 划分为 m 个子数组所能得到的可能的 最小 子数组 值 之和。如果无法完成这样的划分，则返回 -1 。</p>
+<p>示例 1：</p>
+<p>输入： nums &#x3D; [1,4,3,3,2], andValues &#x3D; [0,3,3,2]</p>
+<p>输出： 12</p>
+<p>解释：</p>
+<p>唯一可能的划分方法为：</p>
+<p>[1,4] 因为 1 &amp; 4 &#x3D;&#x3D; 0<br>[3] 因为单元素子数组的按位 AND 结果就是该元素本身<br>[3] 因为单元素子数组的按位 AND 结果就是该元素本身<br>[2] 因为单元素子数组的按位 AND 结果就是该元素本身<br>这些子数组的值之和为 4 + 3 + 3 + 2 &#x3D; 12</p>
+<p>示例 2：</p>
+<p>输入： nums &#x3D; [2,3,5,7,7,7,5], andValues &#x3D; [0,7,5]</p>
+<p>输出： 17</p>
+<p>解释：</p>
+<p>划分 nums 的三种方式为：</p>
+<p>[[2,3,5],[7,7,7],[5]] 其中子数组的值之和为 5 + 7 + 5 &#x3D; 17<br>[[2,3,5,7],[7,7],[5]] 其中子数组的值之和为 7 + 7 + 5 &#x3D; 19<br>[[2,3,5,7,7],[7],[5]] 其中子数组的值之和为 7 + 7 + 5 &#x3D; 19<br>子数组值之和的最小可能值为 17</p>
+<p>示例 3：</p>
+<p>输入： nums &#x3D; [1,2,3,4], andValues &#x3D; [2]</p>
+<p>输出： -1</p>
+<p>解释：</p>
+<p>整个数组 nums 的按位 AND 结果为 0。由于无法将 nums 划分为单个子数组使得元素的按位 AND 结果为 2，因此返回 -1。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &#x3D;&#x3D; nums.length &lt;&#x3D; 104<br>1 &lt;&#x3D; m &#x3D;&#x3D; andValues.length &lt;&#x3D; min(n, 10)<br>1 &lt;&#x3D; nums[i] &lt; 105<br>0 &lt;&#x3D; andValues[j] &lt; 105</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def minimumValueSum(self, nums: List[int], andValues: List[int]) -&gt; int:</span><br><span class="line">        inf = (1 &lt;&lt; 20) - 1</span><br><span class="line"></span><br><span class="line">        @cache</span><br><span class="line">        def dfs(i, j, cur):</span><br><span class="line">            if i == len(nums) and j == len(andValues):</span><br><span class="line">                return 0</span><br><span class="line">            if i == len(nums) or j == len(andValues):</span><br><span class="line">                return inf</span><br><span class="line">            cur &amp;= nums[i]</span><br><span class="line">            if cur &amp; andValues[j] &lt; andValues[j]:</span><br><span class="line">                return inf</span><br><span class="line">            res = dfs(i + 1, j, cur)</span><br><span class="line">            if cur == andValues[j]:</span><br><span class="line">                res = min(res, dfs(i + 1, j + 1, inf) + nums[i])</span><br><span class="line">            return res</span><br><span class="line"></span><br><span class="line">        res = dfs(0, 0, inf)</span><br><span class="line">        return res if res &lt; inf else -1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/08/30/7-15%E5%88%92%E5%88%86%E6%95%B0%E7%BB%84%E5%BE%97%E5%88%B0%E6%9C%80%E5%B0%8F%E7%9A%84%E5%80%BC%E4%B9%8B%E5%92%8C/" data-id="cm0gox2j6002r4uo74zyd2kc9" data-title="7-15划分数组得到最小的值之和" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-7-14矩阵中的最大得分" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/" class="article-date">
@@ -111,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/" data-id="cm0cc46ps0001nso7apapbjeb" data-title="7-14特殊数组 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/" data-id="cm0gox2j6002q4uo7eioh86s0" data-title="7-14特殊数组 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -123,9 +237,9 @@
 
 
   
-    <article id="post-7-15特殊数组-II" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-7-16特殊数组-II" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/" class="article-date">
+    <a href="/2024/08/27/7-16%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/" class="article-date">
   <time class="dt-published" datetime="2024-08-27T10:31:11.000Z" itemprop="datePublished">2024-08-27</time>
 </a>
     
@@ -137,7 +251,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
+      <a class="p-name article-title" href="/2024/08/27/7-16%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
     </h1>
   
 
@@ -164,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/" data-id="cm0cc46pt0002nso74vuz44le" data-title="7-15特殊数组 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/08/27/7-16%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/" data-id="cm0gox2j6002s4uo70v2ccu1n" data-title="7-15特殊数组 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -217,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/08/01/7-13%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%8F%98%E4%B8%BA%E6%9C%89%E5%BA%8F/" data-id="cm0cc46pp0000nso7425leiee" data-title="7-13判断一个数组是否可以变为有序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/08/01/7-13%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%8F%98%E4%B8%BA%E6%9C%89%E5%BA%8F/" data-id="cm0gox2j6002p4uo7e5zk3cjg" data-title="7-13判断一个数组是否可以变为有序" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -261,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" data-id="clz5m42ad002omfo7fneu84od" data-title="7-12最小数字游戏" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" data-id="cm0gox2j6002o4uo7d5ax69sm" data-title="7-12最小数字游戏" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -308,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/" data-id="clz5m42ad002nmfo748zm3t4q" data-title="7-11统计移除递增子数组的数目 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/" data-id="cm0gox2j6002n4uo78ebcgkyg" data-title="7-11统计移除递增子数组的数目 II" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -355,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/" data-id="clz5m42ad002mmfo7c0z83tbs" data-title="7-10统计移除递增子数组的数目 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/26/7-10%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-I/" data-id="cm0gox2j6002m4uo7asazdgna" data-title="7-10统计移除递增子数组的数目 I" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -407,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/26/7-9%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/" data-id="clz5m42ae002xmfo7bbl0b9kk" data-title="7-9最小化曼哈顿距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/26/7-9%E6%9C%80%E5%B0%8F%E5%8C%96%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB/" data-id="cm0gox2j700324uo76y4rfo0o" data-title="7-9最小化曼哈顿距离" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -453,100 +567,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/" data-id="clz5m42ae002wmfo79a8a3tc3" data-title="7-8寻找数组的中心下标" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-7-7检查操作是否合法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2024-07-23T14:19:57.000Z" itemprop="datePublished">2024-07-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/">7-7检查操作是否合法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个下标从 0 开始的 8 x 8 网格 board ，其中 board[r][c] 表示游戏棋盘上的格子 (r, c) 。棋盘上空格用 ‘.’ 表示，白色格子用 ‘W’ 表示，黑色格子用 ‘B’ 表示。</p>
-<p>游戏中每次操作步骤为：选择一个空格子，将它变成你正在执行的颜色（要么白色，要么黑色）。但是，合法 操作必须满足：涂色后这个格子是 好线段的一个端点 （好线段可以是水平的，竖直的或者是对角线）。</p>
-<p>好线段 指的是一个包含 三个或者更多格子（包含端点格子）的线段，线段两个端点格子为 同一种颜色 ，且中间剩余格子的颜色都为 另一种颜色 （线段上不能有任何空格子）。你可以在下图找到好线段的例子：<br><img src="https://assets.leetcode.com/uploads/2021/07/22/goodlines5.png"></p>
-<p>给你两个整数 rMove 和 cMove 以及一个字符 color ，表示你正在执行操作的颜色（白或者黑），如果将格子 (rMove, cMove) 变成颜色 color 后，是一个 合法 操作，那么返回 true ，如果不是合法操作返回 false 。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def checkMove(self, board: List[List[str]], rMove: int, cMove: int, color: str) -&gt; bool:</span><br><span class="line">        # 判断每个方向是否存在以操作位置为起点的好线段</span><br><span class="line">        def check(dx: int, dy: int) -&gt; bool:</span><br><span class="line">            x, y = rMove + dx, cMove + dy</span><br><span class="line">            step = 1   # 当前遍历到的节点序号</span><br><span class="line">            while 0 &lt;= x &lt; 8 and 0 &lt;= y &lt; 8:</span><br><span class="line">                if step == 1:</span><br><span class="line">                    # 第一个点必须为相反颜色</span><br><span class="line">                    if board[x][y] == &quot;.&quot; or board[x][y] == color:</span><br><span class="line">                        return False</span><br><span class="line">                else:</span><br><span class="line">                    # 好线段中不应存在空格子</span><br><span class="line">                    if board[x][y] == &quot;.&quot;:</span><br><span class="line">                        return False</span><br><span class="line">                    # 遍历到好线段的终点，返回 true</span><br><span class="line">                    if board[x][y] == color:</span><br><span class="line">                        return True</span><br><span class="line">                step += 1</span><br><span class="line">                x += dx</span><br><span class="line">                y += dy</span><br><span class="line">            # 不存在符合要求的好线段</span><br><span class="line">            return False</span><br><span class="line">        </span><br><span class="line">        # 从 x 轴正方向开始逆时针枚举 8 个方向</span><br><span class="line">        dx = [1, 1, 0, -1, -1, -1, 0, 1]   # 行改变量</span><br><span class="line">        dy = [0, 1, 1, 1, 0, -1, -1, -1]   # 列改变量</span><br><span class="line">        for k in range(8):</span><br><span class="line">            if check(dx[k], dy[k]):</span><br><span class="line">                return True</span><br><span class="line">        return False</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/23/7-7%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E5%90%88%E6%B3%95/" data-id="clz5m42ae002vmfo7bj7zbshg" data-title="7-7检查操作是否合法" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-7-6-交替子数组计数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-07-22T12:44:29.000Z" itemprop="datePublished">2024-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/">7-6 交替子数组计数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>给你一个<br>二进制数组<br>nums 。</p>
-<p>如果一个<br>子数组<br>中 不存在 两个 相邻 元素的值 相同 的情况，我们称这样的子数组为 交替子数组 。</p>
-<p>返回数组 nums 中交替子数组的数量。</p>
-<p>示例 1：</p>
-<p>输入： nums &#x3D; [0,1,1,1]</p>
-<p>输出： 5</p>
-<p>解释：</p>
-<p>以下子数组是交替子数组：[0] 、[1] 、[1] 、[1] 以及 [0,1] 。</p>
-<p>示例 2：</p>
-<p>输入： nums &#x3D; [1,0,1,0]</p>
-<p>输出： 10</p>
-<p>解释：</p>
-<p>数组的每个子数组都是交替子数组。可以统计在内的子数组共有 10 个。</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def countAlternatingSubarrays(self, nums: List[int]) -&gt; int:</span><br><span class="line">        res = cur = 0</span><br><span class="line">        pre = -1</span><br><span class="line">        for a in nums:</span><br><span class="line">            if pre != a:</span><br><span class="line">                cur += 1</span><br><span class="line">            else:</span><br><span class="line">                cur = 1</span><br><span class="line">            pre = a</span><br><span class="line">            res += cur</span><br><span class="line">        return res</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/22/7-6-%E4%BA%A4%E6%9B%BF%E5%AD%90%E6%95%B0%E7%BB%84%E8%AE%A1%E6%95%B0/" data-id="clz5m42ae002umfo7fjf92zcc" data-title="7-6 交替子数组计数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/07/23/7-8%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E4%B8%8B%E6%A0%87/" data-id="cm0gox2j700314uo7hzlr6q76" data-title="7-8寻找数组的中心下标" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -562,7 +583,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -594,23 +615,23 @@
       <ul>
         
           <li>
+            <a href="/2024/08/30/7-17K-%E5%91%A8%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/">7-17K 周期字符串需要的最少操作次数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/30/7-15%E5%88%92%E5%88%86%E6%95%B0%E7%BB%84%E5%BE%97%E5%88%B0%E6%9C%80%E5%B0%8F%E7%9A%84%E5%80%BC%E4%B9%8B%E5%92%8C/">7-15划分数组得到最小的值之和</a>
+          </li>
+        
+          <li>
             <a href="/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/">7-14特殊数组 II</a>
           </li>
         
           <li>
-            <a href="/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
+            <a href="/2024/08/27/7-16%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
           </li>
         
           <li>
             <a href="/2024/08/01/7-13%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%8F%98%E4%B8%BA%E6%9C%89%E5%BA%8F/">7-13判断一个数组是否可以变为有序</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
           </li>
         
       </ul>

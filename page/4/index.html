@@ -69,6 +69,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-5-22找出输掉零场或一场比赛的玩家" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/06/5-22%E6%89%BE%E5%87%BA%E8%BE%93%E6%8E%89%E9%9B%B6%E5%9C%BA%E6%88%96%E4%B8%80%E5%9C%BA%E6%AF%94%E8%B5%9B%E7%9A%84%E7%8E%A9%E5%AE%B6/" class="article-date">
+  <time class="dt-published" datetime="2024-06-06T11:48:36.000Z" itemprop="datePublished">2024-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/06/5-22%E6%89%BE%E5%87%BA%E8%BE%93%E6%8E%89%E9%9B%B6%E5%9C%BA%E6%88%96%E4%B8%80%E5%9C%BA%E6%AF%94%E8%B5%9B%E7%9A%84%E7%8E%A9%E5%AE%B6/">5-22找出输掉零场或一场比赛的玩家</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个整数数组 matches 其中 matches[i] &#x3D; [winneri, loseri] 表示在一场比赛中 winneri 击败了 loseri 。</p>
+<p>返回一个长度为 2 的列表 answer ：</p>
+<p>answer[0] 是所有 没有 输掉任何比赛的玩家列表。<br>answer[1] 是所有恰好输掉 一场 比赛的玩家列表。<br>两个列表中的值都应该按 递增 顺序返回。</p>
+<p>注意：</p>
+<p>只考虑那些参与 至少一场 比赛的玩家。<br>生成的测试用例保证 不存在 两场比赛结果 相同 。</p>
+<p>示例 1：</p>
+<p>输入：matches &#x3D; [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]<br>输出：[[1,2,10],[4,5,7,8]]<br>解释：<br>玩家 1、2 和 10 都没有输掉任何比赛。<br>玩家 4、5、7 和 8 每个都输掉一场比赛。<br>玩家 3、6 和 9 每个都输掉两场比赛。<br>因此，answer[0] &#x3D; [1,2,10] 和 answer[1] &#x3D; [4,5,7,8] 。<br>示例 2：</p>
+<p>输入：matches &#x3D; [[2,3],[1,3],[5,4],[6,4]]<br>输出：[[1,2,5,6],[]]<br>解释：<br>玩家 1、2、5 和 6 都没有输掉任何比赛。<br>玩家 3 和 4 每个都输掉两场比赛。<br>因此，answer[0] &#x3D; [1,2,5,6] 和 answer[1] &#x3D; [] 。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; matches.length &lt;&#x3D; 105<br>matches[i].length &#x3D;&#x3D; 2<br>1 &lt;&#x3D; winneri, loseri &lt;&#x3D; 105<br>winneri !&#x3D; loseri<br>所有 matches[i] 互不相同</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def findWinners(self, matches: List[List[int]]) -&gt; List[List[int]]:</span><br><span class="line">        freq = Counter()</span><br><span class="line">        for winner, loser in matches:</span><br><span class="line">            if winner not in freq:</span><br><span class="line">                freq[winner] = 0</span><br><span class="line">            freq[loser] += 1</span><br><span class="line">        </span><br><span class="line">        ans = [[], []]</span><br><span class="line">        for key, value in freq.items():</span><br><span class="line">            if value &lt; 2:</span><br><span class="line">                ans[value].append(key)</span><br><span class="line">        </span><br><span class="line">        ans[0].sort()</span><br><span class="line">        ans[1].sort()</span><br><span class="line">        return ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/06/06/5-22%E6%89%BE%E5%87%BA%E8%BE%93%E6%8E%89%E9%9B%B6%E5%9C%BA%E6%88%96%E4%B8%80%E5%9C%BA%E6%AF%94%E8%B5%9B%E7%9A%84%E7%8E%A9%E5%AE%B6/" data-id="cm0gox2j400204uo73cby4344" data-title="5-22找出输掉零场或一场比赛的玩家" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-5-21找出最大的可达成数字" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/06/5-21%E6%89%BE%E5%87%BA%E6%9C%80%E5%A4%A7%E7%9A%84%E5%8F%AF%E8%BE%BE%E6%88%90%E6%95%B0%E5%AD%97/" class="article-date">
+  <time class="dt-published" datetime="2024-06-06T11:47:23.000Z" itemprop="datePublished">2024-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/06/5-21%E6%89%BE%E5%87%BA%E6%9C%80%E5%A4%A7%E7%9A%84%E5%8F%AF%E8%BE%BE%E6%88%90%E6%95%B0%E5%AD%97/">5-21找出最大的可达成数字</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你两个整数 num 和 t 。</p>
+<p>如果整数 x 可以在执行下述操作不超过 t 次的情况下变为与 num 相等，则称其为 可达成数字 ：</p>
+<p>每次操作将 x 的值增加或减少 1 ，同时可以选择将 num 的值增加或减少 1 。<br>返回所有可达成数字中的最大值。可以证明至少存在一个可达成数字。</p>
+<p>示例 1：</p>
+<p>输入：num &#x3D; 4, t &#x3D; 1<br>输出：6<br>解释：最大可达成数字是 x &#x3D; 6 ，执行下述操作可以使其等于 num ：</p>
+<ul>
+<li>x 减少 1 ，同时 num 增加 1 。此时，x &#x3D; 5 且 num &#x3D; 5 。<br>可以证明不存在大于 6 的可达成数字。<br>示例 2：</li>
+</ul>
+<p>输入：num &#x3D; 3, t &#x3D; 2<br>输出：7<br>解释：最大的可达成数字是 x &#x3D; 7 ，执行下述操作可以使其等于 num ：</p>
+<ul>
+<li>x 减少 1 ，同时 num 增加 1 。此时，x &#x3D; 6 且 num &#x3D; 4 。 </li>
+<li>x 减少 1 ，同时 num 增加 1 。此时，x &#x3D; 5 且 num &#x3D; 5 。<br>可以证明不存在大于 7 的可达成数字。</li>
+</ul>
+<p>提示：</p>
+<p>1 &lt;&#x3D; num, t &lt;&#x3D; 50</p>
+<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int theMaximumAchievableX(int num, int t)&#123;</span><br><span class="line">    return num + 2 * t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/06/06/5-21%E6%89%BE%E5%87%BA%E6%9C%80%E5%A4%A7%E7%9A%84%E5%8F%AF%E8%BE%BE%E6%88%90%E6%95%B0%E5%AD%97/" data-id="cm0gox2j3001z4uo7ei1q27nk" data-title="5-21找出最大的可达成数字" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-5-20找出最长的超赞子字符串" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/06/5-20%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%9A%84%E8%B6%85%E8%B5%9E%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
@@ -105,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-20%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%9A%84%E8%B6%85%E8%B5%9E%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="clz5m42aa001ymfo740mt0yc9" data-title="5-20找出最长的超赞子字符串" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/06/5-20%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%9A%84%E8%B6%85%E8%B5%9E%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cm0gox2j3001y4uo79yfqbgx5" data-title="5-20找出最长的超赞子字符串" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -154,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-19%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E6%B8%B8%E6%88%8F%E7%9A%84%E8%B5%A2%E5%AE%B6/" data-id="clz5m42aa001wmfo71yree9go" data-title="5-19找出数组游戏的赢家" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/06/5-19%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E6%B8%B8%E6%88%8F%E7%9A%84%E8%B5%A2%E5%AE%B6/" data-id="cm0gox2j3001w4uo7e02xe0ht" data-title="5-19找出数组游戏的赢家" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -221,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/06/5-18%E6%89%BE%E5%87%BA%E5%8F%AF%E6%95%B4%E9%99%A4%E6%80%A7%E5%BE%97%E5%88%86%E6%9C%80%E5%A4%A7%E7%9A%84%E6%95%B4%E6%95%B0/" data-id="clz5m42aa001vmfo77juo29ia" data-title="5-18找出可整除性得分最大的整数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/06/5-18%E6%89%BE%E5%87%BA%E5%8F%AF%E6%95%B4%E9%99%A4%E6%80%A7%E5%BE%97%E5%88%86%E6%9C%80%E5%A4%A7%E7%9A%84%E6%95%B4%E6%95%B0/" data-id="cm0gox2j3001v4uo7f6a2a0x7" data-title="5-18找出可整除性得分最大的整数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -267,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-17%E5%AE%89%E6%8E%92%E5%B7%A5%E4%BD%9C%E4%BB%A5%E8%BE%BE%E5%88%B0%E6%9C%80%E5%A4%A7%E6%94%B6%E7%9B%8A/" data-id="clz5m42aa001umfo7gae5fpyu" data-title="5-17安排工作以达到最大收益" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/05/5-17%E5%AE%89%E6%8E%92%E5%B7%A5%E4%BD%9C%E4%BB%A5%E8%BE%BE%E5%88%B0%E6%9C%80%E5%A4%A7%E6%94%B6%E7%9B%8A/" data-id="cm0gox2j3001u4uo757g94f5w" data-title="5-17安排工作以达到最大收益" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -331,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-16%E4%BD%A0%E5%8F%AF%E4%BB%A5%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E5%91%A8%E6%95%B0/" data-id="clz5m42a9001tmfo7afpxekzi" data-title="5-16你可以工作的最大周数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/05/5-16%E4%BD%A0%E5%8F%AF%E4%BB%A5%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E5%91%A8%E6%95%B0/" data-id="cm0gox2j3001t4uo7hv5sc8er" data-title="5-16你可以工作的最大周数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -387,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-15%E5%AE%8C%E6%88%90%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%9C%80%E5%B0%91%E6%97%B6%E9%97%B4/" data-id="clz5m42a9001smfo7fzxw4wtu" data-title="5-15完成所有任务的最少时间" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/05/5-15%E5%AE%8C%E6%88%90%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%9C%80%E5%B0%91%E6%97%B6%E9%97%B4/" data-id="cm0gox2j3001s4uo7626me77w" data-title="5-15完成所有任务的最少时间" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -438,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-14%E5%AE%8C%E6%88%90%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%BD%AE%E6%95%B0/" data-id="clz5m42a9001rmfo7e4kt354q" data-title="5-14完成所有任务需要的最少轮数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/05/5-14%E5%AE%8C%E6%88%90%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%BD%AE%E6%95%B0/" data-id="cm0gox2j3001r4uo787npbhys" data-title="5-14完成所有任务需要的最少轮数" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -486,115 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-13%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/" data-id="clz5m42a9001qmfo70nek1sqq" data-title="5-13腐烂的橘子" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-12吃掉-N-个橘子的最少天数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/05/5-12%E5%90%83%E6%8E%89-N-%E4%B8%AA%E6%A9%98%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%91%E5%A4%A9%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-06-05T13:33:15.000Z" itemprop="datePublished">2024-06-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/05/5-12%E5%90%83%E6%8E%89-N-%E4%B8%AA%E6%A9%98%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%91%E5%A4%A9%E6%95%B0/">5-12吃掉 N 个橘子的最少天数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>厨房里总共有 n 个橘子，你决定每一天选择如下方式之一吃这些橘子：</p>
-<p>吃掉一个橘子。<br>如果剩余橘子数 n 能被 2 整除，那么你可以吃掉 n&#x2F;2 个橘子。<br>如果剩余橘子数 n 能被 3 整除，那么你可以吃掉 2*(n&#x2F;3) 个橘子。<br>每天你只能从以上 3 种方案中选择一种方案。</p>
-<p>请你返回吃掉所有 n 个橘子的最少天数。</p>
-<p>示例 1：</p>
-<p>输入：n &#x3D; 10<br>输出：4<br>解释：你总共有 10 个橘子。<br>第 1 天：吃 1 个橘子，剩余橘子数 10 - 1 &#x3D; 9。<br>第 2 天：吃 6 个橘子，剩余橘子数 9 - 2*(9&#x2F;3) &#x3D; 9 - 6 &#x3D; 3。（9 可以被 3 整除）<br>第 3 天：吃 2 个橘子，剩余橘子数 3 - 2*(3&#x2F;3) &#x3D; 3 - 2 &#x3D; 1。<br>第 4 天：吃掉最后 1 个橘子，剩余橘子数 1 - 1 &#x3D; 0。<br>你需要至少 4 天吃掉 10 个橘子。<br>示例 2：</p>
-<p>输入：n &#x3D; 6<br>输出：3<br>解释：你总共有 6 个橘子。<br>第 1 天：吃 3 个橘子，剩余橘子数 6 - 6&#x2F;2 &#x3D; 6 - 3 &#x3D; 3。（6 可以被 2 整除）<br>第 2 天：吃 2 个橘子，剩余橘子数 3 - 2*(3&#x2F;3) &#x3D; 3 - 2 &#x3D; 1。（3 可以被 3 整除）<br>第 3 天：吃掉剩余 1 个橘子，剩余橘子数 1 - 1 &#x3D; 0。<br>你至少需要 3 天吃掉 6 个橘子。<br>示例 3：</p>
-<p>输入：n &#x3D; 1<br>输出：1<br>示例 4：</p>
-<p>输入：n &#x3D; 56<br>输出：6</p>
-<p>提示：</p>
-<p>1 &lt;&#x3D; n &lt;&#x3D; 2*10^9</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int key;</span><br><span class="line">    int val;</span><br><span class="line">    UT_hash_handle hh;</span><br><span class="line">&#125; HashItem; </span><br><span class="line"></span><br><span class="line">HashItem *hashFindItem(HashItem **obj, int key) &#123;</span><br><span class="line">    HashItem *pEntry = NULL;</span><br><span class="line">    HASH_FIND_INT(*obj, &amp;key, pEntry);</span><br><span class="line">    return pEntry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashAddItem(HashItem **obj, int key, int val) &#123;</span><br><span class="line">    if (hashFindItem(obj, key)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    HashItem *pEntry = (HashItem *)malloc(sizeof(HashItem));</span><br><span class="line">    pEntry-&gt;key = key;</span><br><span class="line">    pEntry-&gt;val = val;</span><br><span class="line">    HASH_ADD_INT(*obj, key, pEntry);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool hashSetItem(HashItem **obj, int key, int val) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        hashAddItem(obj, key, val);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        pEntry-&gt;val = val;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int hashGetItem(HashItem **obj, int key, int defaultVal) &#123;</span><br><span class="line">    HashItem *pEntry = hashFindItem(obj, key);</span><br><span class="line">    if (!pEntry) &#123;</span><br><span class="line">        return defaultVal;</span><br><span class="line">    &#125;</span><br><span class="line">    return pEntry-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void hashFree(HashItem **obj) &#123;</span><br><span class="line">    HashItem *curr = NULL, *tmp = NULL;</span><br><span class="line">    HASH_ITER(hh, *obj, curr, tmp) &#123;</span><br><span class="line">        HASH_DEL(*obj, curr);  </span><br><span class="line">        free(curr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int helper(int n, HashItem **memo) &#123;</span><br><span class="line">    if (n &lt;= 1) &#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    if (hashFindItem(memo, n)) &#123;</span><br><span class="line">        return hashGetItem(memo, n, 0);</span><br><span class="line">    &#125;</span><br><span class="line">    int ret = fmin(n % 2 + 1 + helper(n / 2, memo), n % 3 + 1 + minDays(n / 3, memo));</span><br><span class="line">    hashAddItem(memo, n, ret);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int minDays(int n)&#123;</span><br><span class="line">    HashItem *memo = NULL;</span><br><span class="line">    int ret = helper(n, &amp;memo);</span><br><span class="line">    hashFree(&amp;memo);</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-12%E5%90%83%E6%8E%89-N-%E4%B8%AA%E6%A9%98%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%91%E5%A4%A9%E6%95%B0/" data-id="clz5m42a9001pmfo79l69fbug" data-title="5-12吃掉 N 个橘子的最少天数" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-5-11收集垃圾的最少总时间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/05/5-11%E6%94%B6%E9%9B%86%E5%9E%83%E5%9C%BE%E7%9A%84%E6%9C%80%E5%B0%91%E6%80%BB%E6%97%B6%E9%97%B4/" class="article-date">
-  <time class="dt-published" datetime="2024-06-05T13:32:17.000Z" itemprop="datePublished">2024-06-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/05/5-11%E6%94%B6%E9%9B%86%E5%9E%83%E5%9C%BE%E7%9A%84%E6%9C%80%E5%B0%91%E6%80%BB%E6%97%B6%E9%97%B4/">5-11收集垃圾的最少总时间</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>给你一个下标从 0 开始的字符串数组 garbage ，其中 garbage[i] 表示第 i 个房子的垃圾集合。garbage[i] 只包含字符 ‘M’ ，’P’ 和 ‘G’ ，但可能包含多个相同字符，每个字符分别表示一单位的金属、纸和玻璃。垃圾车收拾 一 单位的任何一种垃圾都需要花费 1 分钟。</p>
-<p>同时给你一个下标从 0 开始的整数数组 travel ，其中 travel[i] 是垃圾车从房子 i 行驶到房子 i + 1 需要的分钟数。</p>
-<p>城市里总共有三辆垃圾车，分别收拾三种垃圾。每辆垃圾车都从房子 0 出发，按顺序 到达每一栋房子。但它们 不是必须 到达所有的房子。</p>
-<p>任何时刻只有 一辆 垃圾车处在使用状态。当一辆垃圾车在行驶或者收拾垃圾的时候，另外两辆车 不能 做任何事情。</p>
-<p>请你返回收拾完所有垃圾需要花费的 最少 总分钟数。</p>
-<p>示例 1：</p>
-<p>输入：garbage &#x3D; [“G”,”P”,”GP”,”GG”], travel &#x3D; [2,4,3]<br>输出：21<br>解释：<br>收拾纸的垃圾车：</p>
-<ol>
-<li>从房子 0 行驶到房子 1</li>
-<li>收拾房子 1 的纸垃圾</li>
-<li>从房子 1 行驶到房子 2</li>
-<li>收拾房子 2 的纸垃圾<br>收拾纸的垃圾车总共花费 8 分钟收拾完所有的纸垃圾。<br>收拾玻璃的垃圾车：</li>
-<li>收拾房子 0 的玻璃垃圾</li>
-<li>从房子 0 行驶到房子 1</li>
-<li>从房子 1 行驶到房子 2</li>
-<li>收拾房子 2 的玻璃垃圾</li>
-<li>从房子 2 行驶到房子 3</li>
-<li>收拾房子 3 的玻璃垃圾<br>收拾玻璃的垃圾车总共花费 13 分钟收拾完所有的玻璃垃圾。<br>由于没有金属垃圾，收拾金属的垃圾车不需要花费任何时间。<br>所以总共花费 8 + 13 &#x3D; 21 分钟收拾完所有垃圾。<br>示例 2：</li>
-</ol>
-<p>输入：garbage &#x3D; [“MMM”,”PGM”,”GP”], travel &#x3D; [3,10]<br>输出：37<br>解释：<br>收拾金属的垃圾车花费 7 分钟收拾完所有的金属垃圾。<br>收拾纸的垃圾车花费 15 分钟收拾完所有的纸垃圾。<br>收拾玻璃的垃圾车花费 15 分钟收拾完所有的玻璃垃圾。<br>总共花费 7 + 15 + 15 &#x3D; 37 分钟收拾完所有的垃圾。</p>
-<p>提示：</p>
-<p>2 &lt;&#x3D; garbage.length &lt;&#x3D; 105<br>garbage[i] 只包含字母 ‘M’ ，’P’ 和 ‘G’ 。<br>1 &lt;&#x3D; garbage[i].length &lt;&#x3D; 10<br>travel.length &#x3D;&#x3D; garbage.length - 1<br>1 &lt;&#x3D; travel[i] &lt;&#x3D; 100</p>
-<h1 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int garbageCollection(char** garbage, int garbageSize, int* travel, int travelSize) &#123;</span><br><span class="line">    int distance[26] = &#123;0&#125;; </span><br><span class="line">    int res = 0, curDis = 0;</span><br><span class="line">    for (int i = 0; i &lt; garbageSize; i++) &#123;</span><br><span class="line">        res += strlen(garbage[i]);</span><br><span class="line">        if (i &gt; 0) &#123;</span><br><span class="line">            curDis += travel[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = 0; garbage[i][j] != &#x27;\0&#x27;; j++) &#123;</span><br><span class="line">            distance[garbage[i][j] - &#x27;A&#x27;] = curDis;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt; 26; i++) &#123;</span><br><span class="line">        res += distance[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/05/5-11%E6%94%B6%E9%9B%86%E5%9E%83%E5%9C%BE%E7%9A%84%E6%9C%80%E5%B0%91%E6%80%BB%E6%97%B6%E9%97%B4/" data-id="clz5m42a9001omfo7cclqcjdy" data-title="5-11收集垃圾的最少总时间" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/06/05/5-13%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/" data-id="cm0gox2j2001q4uo7abfk9kcx" data-title="5-13腐烂的橘子" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -610,7 +604,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -642,23 +636,23 @@
       <ul>
         
           <li>
+            <a href="/2024/08/30/7-17K-%E5%91%A8%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/">7-17K 周期字符串需要的最少操作次数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/30/7-15%E5%88%92%E5%88%86%E6%95%B0%E7%BB%84%E5%BE%97%E5%88%B0%E6%9C%80%E5%B0%8F%E7%9A%84%E5%80%BC%E4%B9%8B%E5%92%8C/">7-15划分数组得到最小的值之和</a>
+          </li>
+        
+          <li>
             <a href="/2024/08/27/7-14%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BE%97%E5%88%86/">7-14特殊数组 II</a>
           </li>
         
           <li>
-            <a href="/2024/08/27/7-15%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
+            <a href="/2024/08/27/7-16%E7%89%B9%E6%AE%8A%E6%95%B0%E7%BB%84-II/">7-15特殊数组 II</a>
           </li>
         
           <li>
             <a href="/2024/08/01/7-13%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%8F%98%E4%B8%BA%E6%9C%89%E5%BA%8F/">7-13判断一个数组是否可以变为有序</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/28/7-12%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">7-12最小数字游戏</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/27/7-11%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE-II/">7-11统计移除递增子数组的数目 II</a>
           </li>
         
       </ul>
